@@ -1,0 +1,11 @@
+# This file contains additional build requirements that did not get
+# picked up automatically. One name per line, no whitespace.
+desktop-file-utils
+libidn-dev
+libgcrypt-dev
+SDL_image-dev
+SDL2_image-dev
+libxml2-dev
+libjpeg-turbo-dev
+librsvg-dev
+mpg123-dev

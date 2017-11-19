@@ -1,0 +1,10 @@
+# This file contains additional pkgconfig build requirements that did
+# not get picked up automatically. One name per line, no whitespace.
+dbus-1
+lua
+xi
+xcb-keysyms
+ice
+fribidi
+udev
+sm

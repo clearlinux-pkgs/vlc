@@ -1,0 +1,6 @@
+--disable-mad
+--disable-avcodec
+--disable-swscale
+--disable-a52
+--disable-lua
+--disable-libgcrypt
