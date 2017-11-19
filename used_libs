@@ -64,6 +64,7 @@ libtinfow.so.6
 libudev.so.1
 libvorbis.so.0
 libvorbisenc.so.2
+libvpx.so.4
 libxcb-composite.so.0
 libxcb-keysyms.so.1
 libxcb-randr.so.0

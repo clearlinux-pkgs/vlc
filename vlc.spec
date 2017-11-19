@@ -6,7 +6,7 @@
 #
 Name     : vlc
 Version  : 2.2.6
-Release  : 2
+Release  : 3
 URL      : http://get.videolan.org/vlc/2.2.6/vlc-2.2.6.tar.xz
 Source0  : http://get.videolan.org/vlc/2.2.6/vlc-2.2.6.tar.xz
 Source99 : http://get.videolan.org/vlc/2.2.6/vlc-2.2.6.tar.xz.asc
@@ -54,6 +54,7 @@ BuildRequires : pkgconfig(sm)
 BuildRequires : pkgconfig(speexdsp)
 BuildRequires : pkgconfig(udev)
 BuildRequires : pkgconfig(vorbis)
+BuildRequires : pkgconfig(vpx)
 BuildRequires : pkgconfig(xcb)
 BuildRequires : pkgconfig(xcb-keysyms)
 BuildRequires : pkgconfig(xi)
@@ -137,7 +138,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1511056051
+export SOURCE_DATE_EPOCH=1511060979
 %configure --disable-static --disable-mad \
 --disable-avcodec \
 --disable-swscale \
@@ -154,7 +155,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1511056051
+export SOURCE_DATE_EPOCH=1511060979
 rm -rf %{buildroot}
 %make_install
 %find_lang vlc
@@ -392,6 +393,7 @@ rm -rf %{buildroot}
 /usr/lib64/vlc/plugins/codec/libtheora_plugin.so
 /usr/lib64/vlc/plugins/codec/libuleaddvaudio_plugin.so
 /usr/lib64/vlc/plugins/codec/libvorbis_plugin.so
+/usr/lib64/vlc/plugins/codec/libvpx_plugin.so
 /usr/lib64/vlc/plugins/codec/libxwd_plugin.so
 /usr/lib64/vlc/plugins/control/libdbus_plugin.so
 /usr/lib64/vlc/plugins/control/libdummy_plugin.so

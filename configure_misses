@@ -64,7 +64,6 @@ Configure miss: POSTPROC
 Configure miss: faad.h usability
 Configure miss: faad.h presence
 Configure miss: faad.h
-Configure miss: VPX
 Configure miss: TWOLAME
 Configure miss: DCA
 Configure miss: LIBMPEG2
