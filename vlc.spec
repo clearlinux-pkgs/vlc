@@ -6,7 +6,7 @@
 #
 Name     : vlc
 Version  : 2.2.6
-Release  : 1
+Release  : 2
 URL      : http://get.videolan.org/vlc/2.2.6/vlc-2.2.6.tar.xz
 Source0  : http://get.videolan.org/vlc/2.2.6/vlc-2.2.6.tar.xz
 Source99 : http://get.videolan.org/vlc/2.2.6/vlc-2.2.6.tar.xz.asc
@@ -21,11 +21,17 @@ Requires: vlc-locales
 BuildRequires : SDL2_image-dev
 BuildRequires : SDL_image-dev
 BuildRequires : desktop-file-utils
+BuildRequires : flac-dev
 BuildRequires : libgcrypt-dev
 BuildRequires : libidn-dev
 BuildRequires : libjpeg-turbo-dev
+BuildRequires : libogg-dev
 BuildRequires : librsvg-dev
+BuildRequires : libsamplerate-dev
+BuildRequires : libtheora-dev
 BuildRequires : libxml2-dev
+BuildRequires : mpg123-dev
+BuildRequires : opencv-dev
 BuildRequires : pkgconfig(Qt5Core)
 BuildRequires : pkgconfig(Qt5Gui)
 BuildRequires : pkgconfig(Qt5Widgets)
@@ -52,6 +58,9 @@ BuildRequires : pkgconfig(xcb)
 BuildRequires : pkgconfig(xcb-keysyms)
 BuildRequires : pkgconfig(xi)
 BuildRequires : pkgconfig(xpm)
+BuildRequires : speex-dev
+BuildRequires : unzip
+BuildRequires : yasm
 
 %description
 ===============================
@@ -128,7 +137,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1511055640
+export SOURCE_DATE_EPOCH=1511056051
 %configure --disable-static --disable-mad \
 --disable-avcodec \
 --disable-swscale \
@@ -145,7 +154,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1511055640
+export SOURCE_DATE_EPOCH=1511056051
 rm -rf %{buildroot}
 %make_install
 %find_lang vlc
@@ -336,6 +345,7 @@ rm -rf %{buildroot}
 /usr/lib64/vlc/plugins/audio_filter/libnormvol_plugin.so
 /usr/lib64/vlc/plugins/audio_filter/libparam_eq_plugin.so
 /usr/lib64/vlc/plugins/audio_filter/libremap_plugin.so
+/usr/lib64/vlc/plugins/audio_filter/libsamplerate_plugin.so
 /usr/lib64/vlc/plugins/audio_filter/libscaletempo_plugin.so
 /usr/lib64/vlc/plugins/audio_filter/libsimple_channel_mixer_plugin.so
 /usr/lib64/vlc/plugins/audio_filter/libspatializer_plugin.so
@@ -360,6 +370,7 @@ rm -rf %{buildroot}
 /usr/lib64/vlc/plugins/codec/libdts_plugin.so
 /usr/lib64/vlc/plugins/codec/libdvbsub_plugin.so
 /usr/lib64/vlc/plugins/codec/libedummy_plugin.so
+/usr/lib64/vlc/plugins/codec/libflac_plugin.so
 /usr/lib64/vlc/plugins/codec/libg711_plugin.so
 /usr/lib64/vlc/plugins/codec/libgstdecode_plugin.so
 /usr/lib64/vlc/plugins/codec/libjpeg_plugin.so
@@ -378,6 +389,7 @@ rm -rf %{buildroot}
 /usr/lib64/vlc/plugins/codec/libsvgdec_plugin.so
 /usr/lib64/vlc/plugins/codec/libt140_plugin.so
 /usr/lib64/vlc/plugins/codec/libtelx_plugin.so
+/usr/lib64/vlc/plugins/codec/libtheora_plugin.so
 /usr/lib64/vlc/plugins/codec/libuleaddvaudio_plugin.so
 /usr/lib64/vlc/plugins/codec/libvorbis_plugin.so
 /usr/lib64/vlc/plugins/codec/libxwd_plugin.so
@@ -537,6 +549,8 @@ rm -rf %{buildroot}
 /usr/lib64/vlc/plugins/video_filter/libmotionblur_plugin.so
 /usr/lib64/vlc/plugins/video_filter/libmotiondetect_plugin.so
 /usr/lib64/vlc/plugins/video_filter/liboldmovie_plugin.so
+/usr/lib64/vlc/plugins/video_filter/libopencv_example_plugin.so
+/usr/lib64/vlc/plugins/video_filter/libopencv_wrapper_plugin.so
 /usr/lib64/vlc/plugins/video_filter/libposterize_plugin.so
 /usr/lib64/vlc/plugins/video_filter/libpsychedelic_plugin.so
 /usr/lib64/vlc/plugins/video_filter/libpuzzle_plugin.so

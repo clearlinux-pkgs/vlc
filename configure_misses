@@ -1,4 +1,3 @@
-Configure miss: yasm
 Configure miss: an Android system
 Configure miss: 3rd party libraries path
 Configure miss: buggy GNU/libc versions
@@ -24,7 +23,6 @@ Configure miss: LINSYS_SDI
 Configure miss: DVDREAD
 Configure miss: DVDNAV
 Configure miss: BLURAY
-Configure miss: OPENCV
 Configure miss: SMBCLIENT
 Configure miss: SFTP
 Configure miss: sys/videoio.h usability
@@ -69,11 +67,9 @@ Configure miss: faad.h
 Configure miss: VPX
 Configure miss: TWOLAME
 Configure miss: DCA
-Configure miss: FLAC
 Configure miss: LIBMPEG2
 Configure miss: SPEEX
 Configure miss: OPUS
-Configure miss: THEORA
 Configure miss: SCHROEDINGER
 Configure miss: X262
 Configure miss: X265
@@ -101,7 +97,6 @@ Configure miss: audioclient.h presence
 Configure miss: audioclient.h
 Configure miss: JACK
 Configure miss: JACK
-Configure miss: SAMPLERATE
 Configure miss: kai.h usability
 Configure miss: kai.h presence
 Configure miss: kai.h

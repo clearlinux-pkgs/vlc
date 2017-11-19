@@ -9,3 +9,12 @@ libxml2-dev
 libjpeg-turbo-dev
 librsvg-dev
 mpg123-dev
+libsamplerate-dev
+yasm
+unzip
+opencv-dev
+
+libtheora-dev
+libogg-dev
+flac-dev
+speex-dev
