@@ -5,14 +5,14 @@
 # Source0 file verified with key 0x7180713BE58D1ADC
 #
 Name     : vlc
-Version  : 2.2.6
-Release  : 3
-URL      : http://get.videolan.org/vlc/2.2.6/vlc-2.2.6.tar.xz
-Source0  : http://get.videolan.org/vlc/2.2.6/vlc-2.2.6.tar.xz
-Source99 : http://get.videolan.org/vlc/2.2.6/vlc-2.2.6.tar.xz.asc
+Version  : 2.2.8
+Release  : 4
+URL      : http://get.videolan.org/vlc/2.2.8/vlc-2.2.8.tar.xz
+Source0  : http://get.videolan.org/vlc/2.2.8/vlc-2.2.8.tar.xz
+Source99 : http://get.videolan.org/vlc/2.2.8/vlc-2.2.8.tar.xz.asc
 Summary  : VLC media player external control library
 Group    : Development/Tools
-License  : GPL-2.0 LGPL-2.1
+License  : GPL-2.0 LGPL-2.1 WTFPL Zlib
 Requires: vlc-bin
 Requires: vlc-lib
 Requires: vlc-data
@@ -131,14 +131,14 @@ locales components for the vlc package.
 
 
 %prep
-%setup -q -n vlc-2.2.6
+%setup -q -n vlc-2.2.8
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1511060979
+export SOURCE_DATE_EPOCH=1511342061
 %configure --disable-static --disable-mad \
 --disable-avcodec \
 --disable-swscale \
@@ -155,7 +155,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1511060979
+export SOURCE_DATE_EPOCH=1511342061
 rm -rf %{buildroot}
 %make_install
 %find_lang vlc
@@ -299,9 +299,9 @@ rm -rf %{buildroot}
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libvlc.so.5
-/usr/lib64/libvlc.so.5.5.0
+/usr/lib64/libvlc.so.5.5.1
 /usr/lib64/libvlccore.so.8
-/usr/lib64/libvlccore.so.8.0.0
+/usr/lib64/libvlccore.so.8.0.1
 /usr/lib64/vlc/plugins/access/libaccess_alsa_plugin.so
 /usr/lib64/vlc/plugins/access/libaccess_bd_plugin.so
 /usr/lib64/vlc/plugins/access/libaccess_mms_plugin.so
