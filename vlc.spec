@@ -6,7 +6,7 @@
 #
 Name     : vlc
 Version  : 2.2.8
-Release  : 4
+Release  : 5
 URL      : http://get.videolan.org/vlc/2.2.8/vlc-2.2.8.tar.xz
 Source0  : http://get.videolan.org/vlc/2.2.8/vlc-2.2.8.tar.xz
 Source99 : http://get.videolan.org/vlc/2.2.8/vlc-2.2.8.tar.xz.asc
@@ -18,6 +18,7 @@ Requires: vlc-lib
 Requires: vlc-data
 Requires: vlc-doc
 Requires: vlc-locales
+Requires: qt-everywhere-opensource-src
 BuildRequires : SDL2_image-dev
 BuildRequires : SDL_image-dev
 BuildRequires : desktop-file-utils
@@ -138,7 +139,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1511342061
+export SOURCE_DATE_EPOCH=1511799123
 %configure --disable-static --disable-mad \
 --disable-avcodec \
 --disable-swscale \
@@ -155,7 +156,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1511342061
+export SOURCE_DATE_EPOCH=1511799123
 rm -rf %{buildroot}
 %make_install
 %find_lang vlc
