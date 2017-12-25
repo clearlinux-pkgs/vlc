@@ -6,7 +6,7 @@
 #
 Name     : vlc
 Version  : 2.2.8
-Release  : 6
+Release  : 7
 URL      : http://get.videolan.org/vlc/2.2.8/vlc-2.2.8.tar.xz
 Source0  : http://get.videolan.org/vlc/2.2.8/vlc-2.2.8.tar.xz
 Source99 : http://get.videolan.org/vlc/2.2.8/vlc-2.2.8.tar.xz.asc
@@ -139,7 +139,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1511799123
+export SOURCE_DATE_EPOCH=1514217624
 %configure --disable-static --disable-mad \
 --disable-avcodec \
 --disable-swscale \
@@ -156,7 +156,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1511799123
+export SOURCE_DATE_EPOCH=1514217624
 rm -rf %{buildroot}
 %make_install
 %find_lang vlc
@@ -351,6 +351,7 @@ rm -rf %{buildroot}
 /usr/lib64/vlc/plugins/audio_filter/libscaletempo_plugin.so
 /usr/lib64/vlc/plugins/audio_filter/libsimple_channel_mixer_plugin.so
 /usr/lib64/vlc/plugins/audio_filter/libspatializer_plugin.so
+/usr/lib64/vlc/plugins/audio_filter/libspeex_resampler_plugin.so
 /usr/lib64/vlc/plugins/audio_filter/libstereo_widen_plugin.so
 /usr/lib64/vlc/plugins/audio_filter/libtrivial_channel_mixer_plugin.so
 /usr/lib64/vlc/plugins/audio_filter/libugly_resampler_plugin.so
@@ -382,6 +383,7 @@ rm -rf %{buildroot}
 /usr/lib64/vlc/plugins/codec/librawvideo_plugin.so
 /usr/lib64/vlc/plugins/codec/libscte27_plugin.so
 /usr/lib64/vlc/plugins/codec/libsdl_image_plugin.so
+/usr/lib64/vlc/plugins/codec/libspeex_plugin.so
 /usr/lib64/vlc/plugins/codec/libspudec_plugin.so
 /usr/lib64/vlc/plugins/codec/libstl_plugin.so
 /usr/lib64/vlc/plugins/codec/libsubsdec_plugin.so

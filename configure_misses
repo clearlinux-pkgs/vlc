@@ -1,9 +1,6 @@
 Configure miss: an Android system
 Configure miss: 3rd party libraries path
 Configure miss: buggy GNU/libc versions
-Configure miss: xlocale.h usability
-Configure miss: xlocale.h presence
-Configure miss: xlocale.h
 Configure miss: netinet/udplite.h usability
 Configure miss: netinet/udplite.h presence
 Configure miss: netinet/udplite.h
@@ -67,7 +64,6 @@ Configure miss: faad.h
 Configure miss: TWOLAME
 Configure miss: DCA
 Configure miss: LIBMPEG2
-Configure miss: SPEEX
 Configure miss: OPUS
 Configure miss: SCHROEDINGER
 Configure miss: X262
@@ -85,7 +81,6 @@ Configure miss: Carbon/Carbon.h usability
 Configure miss: Carbon/Carbon.h presence
 Configure miss: Carbon/Carbon.h
 Configure miss: CACA
-Configure miss: kva.h usability
 Configure miss: kva.h presence
 Configure miss: kva.h
 Configure miss: sndio.h usability
@@ -94,7 +89,6 @@ Configure miss: sndio.h
 Configure miss: audioclient.h usability
 Configure miss: audioclient.h presence
 Configure miss: audioclient.h
-Configure miss: JACK
 Configure miss: JACK
 Configure miss: kai.h usability
 Configure miss: kai.h presence
@@ -106,10 +100,6 @@ Configure miss: uic-qt5
 Configure miss: whether Qt uses Xlib
 Configure miss: XINERAMA
 Configure miss: GOOM
-Configure miss: PROJECTM
 Configure miss: VSXU
-Configure miss: BONJOUR
 Configure miss: MTP
-Configure miss: UPNP
 Configure miss: TAGLIB
-Configure miss: NOTIFY
