@@ -6,7 +6,7 @@
 #
 Name     : vlc
 Version  : 2.2.8
-Release  : 8
+Release  : 9
 URL      : http://get.videolan.org/vlc/2.2.8/vlc-2.2.8.tar.xz
 Source0  : http://get.videolan.org/vlc/2.2.8/vlc-2.2.8.tar.xz
 Source99 : http://get.videolan.org/vlc/2.2.8/vlc-2.2.8.tar.xz.asc
