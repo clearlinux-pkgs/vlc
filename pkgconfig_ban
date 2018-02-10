@@ -21,3 +21,8 @@ libvsxu
 lua5.2
 minizip
 taglib
+libplacebo
+aribb24
+breakpad-client
+ecore
+evas

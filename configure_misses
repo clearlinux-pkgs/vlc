@@ -1,17 +1,21 @@
+Configure miss: whether C compiler accepts -Werror=unknown-warning-option
+Configure miss: whether C compiler accepts -Werror=invalid-command-line-argument
 Configure miss: an Android system
+Configure miss: Tizen
 Configure miss: 3rd party libraries path
 Configure miss: buggy GNU/libc versions
+Configure miss: strnstr
+Configure miss: threads.h usability
+Configure miss: threads.h presence
+Configure miss: threads.h
 Configure miss: netinet/udplite.h usability
 Configure miss: netinet/udplite.h presence
 Configure miss: netinet/udplite.h
-Configure miss: machine/param.h usability
-Configure miss: machine/param.h presence
-Configure miss: machine/param.h
 Configure miss: MINIZIP
 Configure miss: unzip.h usability
 Configure miss: unzip.h presence
 Configure miss: unzip.h
-Configure miss: ntohl in sys/param.h
+Configure miss: ARCHIVE
 Configure miss: LIVE555
 Configure miss: live555 version 1324598400 or later
 Configure miss: DC1394
@@ -21,14 +25,15 @@ Configure miss: DVDREAD
 Configure miss: DVDNAV
 Configure miss: BLURAY
 Configure miss: SMBCLIENT
+Configure miss: DSM
 Configure miss: SFTP
+Configure miss: NFS
 Configure miss: sys/videoio.h usability
 Configure miss: sys/videoio.h presence
 Configure miss: sys/videoio.h
 Configure miss: DeckLinkAPIDispatch.cpp usability
 Configure miss: DeckLinkAPIDispatch.cpp presence
 Configure miss: DeckLinkAPIDispatch.cpp
-Configure miss: GNOMEVFS
 Configure miss: scsireq in sys/scsiio.h
 Configure miss: ioc_toc_header in sys/cdio.h
 Configure miss: LIBCDDB
@@ -41,9 +46,7 @@ Configure miss: gme/gme.h presence
 Configure miss: gme/gme.h
 Configure miss: SID
 Configure miss: SHOUT
-Configure miss: ebml/EbmlVersion.h usability
-Configure miss: ebml/EbmlVersion.h presence
-Configure miss: ebml/EbmlVersion.h
+Configure miss: MATROSKA
 Configure miss: LIBMODPLUG
 Configure miss: mpc/mpcdec.h usability
 Configure miss: mpc/mpcdec.h presence
@@ -52,38 +55,53 @@ Configure miss: mpcdec/mpcdec.h usability
 Configure miss: mpcdec/mpcdec.h presence
 Configure miss: mpcdec/mpcdec.h
 Configure miss: SHINE
-Configure miss: interface/mmal/mmal.h usability
-Configure miss: interface/mmal/mmal.h presence
-Configure miss: interface/mmal/mmal.h
 Configure miss: libcrystalhd/libcrystalhd_if.h
 Configure miss: libavutil variant
+Configure miss: dxgidebug.h usability
+Configure miss: dxgidebug.h presence
+Configure miss: dxgidebug.h
+Configure miss: dxgi1_6.h usability
+Configure miss: dxgi1_6.h presence
+Configure miss: dxgi1_6.h
 Configure miss: POSTPROC
-Configure miss: faad.h usability
-Configure miss: faad.h presence
-Configure miss: faad.h
+Configure miss: neaacdec.h usability
+Configure miss: neaacdec.h presence
+Configure miss: neaacdec.h
+Configure miss: AOM
 Configure miss: TWOLAME
 Configure miss: DCA
 Configure miss: LIBMPEG2
 Configure miss: OPUS
+Configure miss: SPATIALAUDIO
 Configure miss: SCHROEDINGER
+Configure miss: libbpg.h usability
+Configure miss: libbpg.h presence
+Configure miss: libbpg.h
 Configure miss: X262
 Configure miss: X265
 Configure miss: X26410B
 Configure miss: X264
 Configure miss: MFX
 Configure miss: FLUIDSYNTH
+Configure miss: FLUIDLITE
+Configure miss: fluidlite.h usability
+Configure miss: fluidlite.h presence
+Configure miss: fluidlite.h
 Configure miss: ZVBI
 Configure miss: LIBASS
+Configure miss: ARIBB24
+Configure miss: ARIBB25
 Configure miss: KATE
 Configure miss: TIGER
 Configure miss: VDPAU
-Configure miss: Carbon/Carbon.h usability
-Configure miss: Carbon/Carbon.h presence
-Configure miss: Carbon/Carbon.h
+Configure miss: ISpObjectToken
 Configure miss: CACA
 Configure miss: kva.h usability
 Configure miss: kva.h presence
 Configure miss: kva.h
+Configure miss: interface/mmal/mmal.h usability
+Configure miss: interface/mmal/mmal.h presence
+Configure miss: interface/mmal/mmal.h
 Configure miss: sndio.h usability
 Configure miss: sndio.h presence
 Configure miss: sndio.h
@@ -92,20 +110,32 @@ Configure miss: audioclient.h presence
 Configure miss: audioclient.h
 Configure miss: JACK
 Configure miss: JACK
+Configure miss: SOXR
 Configure miss: kai.h usability
 Configure miss: kai.h presence
 Configure miss: kai.h
 Configure miss: CHROMAPRINT
+Configure miss: protoc
+Configure miss: CHROMECAST
 Configure miss: moc-qt5
 Configure miss: rcc-qt5
 Configure miss: uic-qt5
-Configure miss: whether Qt uses Xlib
 Configure miss: XINERAMA
+Configure miss: VideoToolbox/VideoToolbox.h usability
+Configure miss: VideoToolbox/VideoToolbox.h presence
+Configure miss: VideoToolbox/VideoToolbox.h
+Configure miss: AudioToolbox/AudioToolbox.h usability
+Configure miss: AudioToolbox/AudioToolbox.h presence
+Configure miss: AudioToolbox/AudioToolbox.h
+Configure miss: SRT
 Configure miss: GOOM
 Configure miss: PROJECTM
 Configure miss: VSXU
-Configure miss: BONJOUR
+Configure miss: AVAHI
 Configure miss: MTP
 Configure miss: UPNP
+Configure miss: MICRODNS
 Configure miss: TAGLIB
+Configure miss: SECRET
 Configure miss: NOTIFY
+Configure miss: LIBPLACEBO

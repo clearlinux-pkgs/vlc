@@ -4,3 +4,4 @@
 --disable-a52
 --disable-lua
 --disable-libgcrypt
+BUILDCC=/usr/bin/gcc

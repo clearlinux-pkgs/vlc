@@ -18,3 +18,5 @@ libtheora-dev
 libogg-dev
 flac-dev
 speex-dev
+bison
+flex
