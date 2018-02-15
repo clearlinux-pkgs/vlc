@@ -1,4 +1,3 @@
-Configure miss: whether C compiler accepts -Werror=unknown-warning-option
 Configure miss: whether C compiler accepts -Werror=invalid-command-line-argument
 Configure miss: an Android system
 Configure miss: Tizen
@@ -83,8 +82,6 @@ Configure miss: X26410B
 Configure miss: X264
 Configure miss: MFX
 Configure miss: FLUIDSYNTH
-Configure miss: FLUIDLITE
-Configure miss: fluidlite.h usability
 Configure miss: fluidlite.h presence
 Configure miss: fluidlite.h
 Configure miss: ZVBI
@@ -117,6 +114,7 @@ Configure miss: kai.h
 Configure miss: CHROMAPRINT
 Configure miss: protoc
 Configure miss: CHROMECAST
+Configure miss: QT5_X11
 Configure miss: moc-qt5
 Configure miss: rcc-qt5
 Configure miss: uic-qt5
