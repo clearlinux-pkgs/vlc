@@ -6,7 +6,7 @@
 #
 Name     : vlc
 Version  : 3.0.0
-Release  : 13
+Release  : 14
 URL      : http://get.videolan.org/vlc/3.0.0/vlc-3.0.0.tar.xz
 Source0  : http://get.videolan.org/vlc/3.0.0/vlc-3.0.0.tar.xz
 Source99 : http://get.videolan.org/vlc/3.0.0/vlc-3.0.0.tar.xz.asc
@@ -38,6 +38,7 @@ BuildRequires : pkgconfig(Qt5Core)
 BuildRequires : pkgconfig(Qt5Gui)
 BuildRequires : pkgconfig(Qt5Svg)
 BuildRequires : pkgconfig(Qt5Widgets)
+BuildRequires : pkgconfig(Qt5X11Extras)
 BuildRequires : pkgconfig(SDL_image)
 BuildRequires : pkgconfig(alsa)
 BuildRequires : pkgconfig(dbus-1)
@@ -143,7 +144,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1518730157
+export SOURCE_DATE_EPOCH=1518730995
 %configure --disable-static --disable-mad \
 --disable-avcodec \
 --disable-swscale \
@@ -161,7 +162,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1518730157
+export SOURCE_DATE_EPOCH=1518730995
 rm -rf %{buildroot}
 %make_install
 %find_lang vlc
