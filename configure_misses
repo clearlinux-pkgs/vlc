@@ -81,6 +81,8 @@ Configure miss: X265
 Configure miss: X26410B
 Configure miss: X264
 Configure miss: MFX
+Configure miss: FLUIDSYNTH
+Configure miss: FLUIDLITE
 Configure miss: fluidlite.h usability
 Configure miss: fluidlite.h presence
 Configure miss: fluidlite.h
@@ -118,6 +120,7 @@ Configure miss: moc-qt5
 Configure miss: rcc-qt5
 Configure miss: uic-qt5
 Configure miss: XINERAMA
+Configure miss: VideoToolbox/VideoToolbox.h usability
 Configure miss: VideoToolbox/VideoToolbox.h presence
 Configure miss: VideoToolbox/VideoToolbox.h
 Configure miss: AudioToolbox/AudioToolbox.h usability
