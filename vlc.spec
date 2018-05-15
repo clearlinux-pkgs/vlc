@@ -6,7 +6,7 @@
 #
 Name     : vlc
 Version  : 3.0.2
-Release  : 17
+Release  : 18
 URL      : http://get.videolan.org/vlc/3.0.2/vlc-3.0.2.tar.xz
 Source0  : http://get.videolan.org/vlc/3.0.2/vlc-3.0.2.tar.xz
 Source99 : http://get.videolan.org/vlc/3.0.2/vlc-3.0.2.tar.xz.asc
@@ -65,6 +65,7 @@ BuildRequires : pkgconfig(xcb-keysyms)
 BuildRequires : pkgconfig(xi)
 BuildRequires : pkgconfig(xpm)
 BuildRequires : qtbase-dev
+BuildRequires : qtbase-extras
 BuildRequires : speex-dev
 BuildRequires : unzip
 BuildRequires : yasm
@@ -144,7 +145,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1524793641
+export SOURCE_DATE_EPOCH=1526366402
 %configure --disable-static --disable-mad \
 --disable-avcodec \
 --disable-swscale \
@@ -162,7 +163,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1524793641
+export SOURCE_DATE_EPOCH=1526366402
 rm -rf %{buildroot}
 %make_install
 %find_lang vlc
