@@ -23,7 +23,6 @@ Configure miss: LINSYS_SDI
 Configure miss: DVDREAD
 Configure miss: DVDNAV
 Configure miss: BLURAY
-Configure miss: SMBCLIENT
 Configure miss: DSM
 Configure miss: SFTP
 Configure miss: NFS
@@ -70,7 +69,6 @@ Configure miss: AOM
 Configure miss: TWOLAME
 Configure miss: DCA
 Configure miss: LIBMPEG2
-Configure miss: OPUS
 Configure miss: SPATIALAUDIO
 Configure miss: SCHROEDINGER
 Configure miss: libbpg.h usability

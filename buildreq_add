@@ -20,3 +20,8 @@ flac-dev
 speex-dev
 bison
 flex
+samba-dev
+fribidi-dev
+libnotify-dev
+qtbase-extras
+opus-dev

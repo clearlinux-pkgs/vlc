@@ -16,17 +16,20 @@ License  : GPL-2.0 LGPL-2.1 WTFPL
 Requires: vlc-bin
 Requires: vlc-lib
 Requires: vlc-data
-Requires: vlc-doc
+Requires: vlc-license
 Requires: vlc-locales
+Requires: vlc-man
 BuildRequires : SDL2_image-dev
 BuildRequires : SDL_image-dev
 BuildRequires : bison
 BuildRequires : desktop-file-utils
 BuildRequires : flac-dev
 BuildRequires : flex
+BuildRequires : fribidi-dev
 BuildRequires : libgcrypt-dev
 BuildRequires : libidn-dev
 BuildRequires : libjpeg-turbo-dev
+BuildRequires : libnotify-dev
 BuildRequires : libogg-dev
 BuildRequires : librsvg-dev
 BuildRequires : libsamplerate-dev
@@ -34,6 +37,7 @@ BuildRequires : libtheora-dev
 BuildRequires : libxml2-dev
 BuildRequires : mpg123-dev
 BuildRequires : opencv-dev
+BuildRequires : opus-dev
 BuildRequires : pkgconfig(Qt5Core)
 BuildRequires : pkgconfig(Qt5Gui)
 BuildRequires : pkgconfig(Qt5Svg)
@@ -50,6 +54,7 @@ BuildRequires : pkgconfig(gnutls)
 BuildRequires : pkgconfig(gstreamer-app-1.0)
 BuildRequires : pkgconfig(ice)
 BuildRequires : pkgconfig(libpulse)
+BuildRequires : pkgconfig(libsystemd)
 BuildRequires : pkgconfig(libva)
 BuildRequires : pkgconfig(lua)
 BuildRequires : pkgconfig(ncursesw)
@@ -66,9 +71,11 @@ BuildRequires : pkgconfig(xi)
 BuildRequires : pkgconfig(xpm)
 BuildRequires : qtbase-dev
 BuildRequires : qtbase-extras
+BuildRequires : samba-dev
 BuildRequires : speex-dev
 BuildRequires : unzip
 BuildRequires : yasm
+Patch1: build.patch
 
 %description
 ===============================
@@ -87,6 +94,8 @@ been downloaded close to one billion times.
 Summary: bin components for the vlc package.
 Group: Binaries
 Requires: vlc-data
+Requires: vlc-license
+Requires: vlc-man
 
 %description bin
 bin components for the vlc package.
@@ -115,6 +124,7 @@ dev components for the vlc package.
 %package doc
 Summary: doc components for the vlc package.
 Group: Documentation
+Requires: vlc-man
 
 %description doc
 doc components for the vlc package.
@@ -124,9 +134,18 @@ doc components for the vlc package.
 Summary: lib components for the vlc package.
 Group: Libraries
 Requires: vlc-data
+Requires: vlc-license
 
 %description lib
 lib components for the vlc package.
+
+
+%package license
+Summary: license components for the vlc package.
+Group: Default
+
+%description license
+license components for the vlc package.
 
 
 %package locales
@@ -137,21 +156,31 @@ Group: Default
 locales components for the vlc package.
 
 
+%package man
+Summary: man components for the vlc package.
+Group: Default
+
+%description man
+man components for the vlc package.
+
+
 %prep
 %setup -q -n vlc-3.0.2
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1526366402
+export SOURCE_DATE_EPOCH=1527167848
 %configure --disable-static --disable-mad \
 --disable-avcodec \
 --disable-swscale \
 --disable-a52 \
 --disable-lua \
 --disable-libgcrypt \
+--enable-smbclient \
 BUILDCC=/usr/bin/gcc
 make  %{?_smp_mflags}
 
@@ -163,7 +192,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1526366402
+export SOURCE_DATE_EPOCH=1527167848
 rm -rf %{buildroot}
 %make_install
 %find_lang vlc
@@ -314,7 +343,6 @@ rm -rf %{buildroot}
 %files doc
 %defattr(-,root,root,-)
 %doc /usr/share/doc/vlc/*
-%doc /usr/share/man/man1/*
 
 %files lib
 %defattr(-,root,root,-)
@@ -347,6 +375,7 @@ rm -rf %{buildroot}
 /usr/lib64/vlc/plugins/access/libsatip_plugin.so
 /usr/lib64/vlc/plugins/access/libsdp_plugin.so
 /usr/lib64/vlc/plugins/access/libshm_plugin.so
+/usr/lib64/vlc/plugins/access/libsmb_plugin.so
 /usr/lib64/vlc/plugins/access/libtcp_plugin.so
 /usr/lib64/vlc/plugins/access/libtimecode_plugin.so
 /usr/lib64/vlc/plugins/access/libudp_plugin.so
@@ -404,6 +433,7 @@ rm -rf %{buildroot}
 /usr/lib64/vlc/plugins/codec/liblpcm_plugin.so
 /usr/lib64/vlc/plugins/codec/libmpg123_plugin.so
 /usr/lib64/vlc/plugins/codec/liboggspots_plugin.so
+/usr/lib64/vlc/plugins/codec/libopus_plugin.so
 /usr/lib64/vlc/plugins/codec/libpng_plugin.so
 /usr/lib64/vlc/plugins/codec/librawvideo_plugin.so
 /usr/lib64/vlc/plugins/codec/librtpvideo_plugin.so
@@ -646,6 +676,15 @@ rm -rf %{buildroot}
 /usr/lib64/vlc/plugins/video_splitter/libwall_plugin.so
 /usr/lib64/vlc/plugins/visualization/libglspectrum_plugin.so
 /usr/lib64/vlc/plugins/visualization/libvisual_plugin.so
+
+%files license
+%defattr(-,root,root,-)
+/usr/share/doc/vlc/libvlc/QtPlayer/LICENSE
+
+%files man
+%defattr(-,root,root,-)
+/usr/share/man/man1/vlc-wrapper.1
+/usr/share/man/man1/vlc.1
 
 %files locales -f vlc.lang
 %defattr(-,root,root,-)

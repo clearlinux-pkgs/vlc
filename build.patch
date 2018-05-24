@@ -1,0 +1,11 @@
+--- vlc-3.0.2/modules/text_renderer/freetype/text_layout.c~	2017-12-22 19:05:34.000000000 +0000
++++ vlc-3.0.2/modules/text_renderer/freetype/text_layout.c	2018-05-24 13:11:01.151270790 +0000
+@@ -52,7 +52,7 @@
+ 
+ /* RTL */
+ #if defined(HAVE_FRIBIDI)
+-# define FRIBIDI_NO_DEPRECATED 1
++#
+ # include <fribidi.h>
+ #endif
+ 

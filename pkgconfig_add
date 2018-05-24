@@ -10,3 +10,4 @@ udev
 sm
 vpx
 Qt5X11Extras
+libsystemd
