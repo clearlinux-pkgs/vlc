@@ -17,12 +17,8 @@ Configure miss: unzip.h
 Configure miss: ARCHIVE
 Configure miss: LIVE555
 Configure miss: live555 version 1324598400 or later
-Configure miss: DC1394
-Configure miss: DV1394
 Configure miss: LINSYS_SDI
 Configure miss: DVDREAD
-Configure miss: DVDNAV
-Configure miss: BLURAY
 Configure miss: DSM
 Configure miss: SFTP
 Configure miss: NFS
@@ -36,7 +32,6 @@ Configure miss: scsireq in sys/scsiio.h
 Configure miss: ioc_toc_header in sys/cdio.h
 Configure miss: LIBCDDB
 Configure miss: VNC
-Configure miss: FREERDP
 Configure miss: ASDCP
 Configure miss: DVBPSI
 Configure miss: gme/gme.h usability
@@ -44,8 +39,6 @@ Configure miss: gme/gme.h presence
 Configure miss: gme/gme.h
 Configure miss: SID
 Configure miss: SHOUT
-Configure miss: MATROSKA
-Configure miss: LIBMODPLUG
 Configure miss: mpc/mpcdec.h usability
 Configure miss: mpc/mpcdec.h presence
 Configure miss: mpc/mpcdec.h
@@ -53,7 +46,6 @@ Configure miss: mpcdec/mpcdec.h usability
 Configure miss: mpcdec/mpcdec.h presence
 Configure miss: mpcdec/mpcdec.h
 Configure miss: SHINE
-Configure miss: libcrystalhd/libcrystalhd_if.h
 Configure miss: libavutil variant
 Configure miss: dxgidebug.h usability
 Configure miss: dxgidebug.h presence
@@ -108,7 +100,6 @@ Configure miss: audioclient.h
 Configure miss: JACK
 Configure miss: JACK
 Configure miss: SOXR
-Configure miss: kai.h usability
 Configure miss: kai.h presence
 Configure miss: kai.h
 Configure miss: CHROMAPRINT
@@ -126,13 +117,8 @@ Configure miss: AudioToolbox/AudioToolbox.h presence
 Configure miss: AudioToolbox/AudioToolbox.h
 Configure miss: SRT
 Configure miss: GOOM
-Configure miss: PROJECTM
-Configure miss: VSXU
 Configure miss: AVAHI
 Configure miss: MTP
-Configure miss: UPNP
-Configure miss: MICRODNS
 Configure miss: TAGLIB
 Configure miss: SECRET
-Configure miss: NOTIFY
 Configure miss: LIBPLACEBO

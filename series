@@ -1,1 +1,2 @@
 build.patch
+0001-qt-fix-build-against-Qt-5.11.patch
