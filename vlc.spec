@@ -5,22 +5,24 @@
 # Source0 file verified with key 0x7180713BE58D1ADC
 #
 Name     : vlc
-Version  : 3.0.3
-Release  : 22
-URL      : http://get.videolan.org/vlc/3.0.3/vlc-3.0.3.tar.xz
-Source0  : http://get.videolan.org/vlc/3.0.3/vlc-3.0.3.tar.xz
-Source99 : http://get.videolan.org/vlc/3.0.3/vlc-3.0.3.tar.xz.asc
+Version  : 3.0.3.1
+Release  : 23
+URL      : http://get.videolan.org/vlc/3.0.3/vlc-3.0.3-1.tar.xz
+Source0  : http://get.videolan.org/vlc/3.0.3/vlc-3.0.3-1.tar.xz
+Source99 : http://get.videolan.org/vlc/3.0.3/vlc-3.0.3-1.tar.xz.asc
 Summary  : VLC media player external control library
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1 WTFPL
 Requires: vlc-bin
 Requires: vlc-lib
 Requires: vlc-data
-Requires: vlc-doc
+Requires: vlc-license
 Requires: vlc-locales
+Requires: vlc-man
 BuildRequires : SDL2_image-dev
 BuildRequires : SDL_image-dev
 BuildRequires : bison
+BuildRequires : buildreq-qmake
 BuildRequires : desktop-file-utils
 BuildRequires : flac-dev
 BuildRequires : flex
@@ -68,7 +70,6 @@ BuildRequires : pkgconfig(xcb)
 BuildRequires : pkgconfig(xcb-keysyms)
 BuildRequires : pkgconfig(xi)
 BuildRequires : pkgconfig(xpm)
-BuildRequires : qtbase-dev
 BuildRequires : qtbase-extras
 BuildRequires : samba-dev
 BuildRequires : speex-dev
@@ -94,6 +95,8 @@ been downloaded close to one billion times.
 Summary: bin components for the vlc package.
 Group: Binaries
 Requires: vlc-data
+Requires: vlc-license
+Requires: vlc-man
 
 %description bin
 bin components for the vlc package.
@@ -122,6 +125,7 @@ dev components for the vlc package.
 %package doc
 Summary: doc components for the vlc package.
 Group: Documentation
+Requires: vlc-man
 
 %description doc
 doc components for the vlc package.
@@ -131,9 +135,18 @@ doc components for the vlc package.
 Summary: lib components for the vlc package.
 Group: Libraries
 Requires: vlc-data
+Requires: vlc-license
 
 %description lib
 lib components for the vlc package.
+
+
+%package license
+Summary: license components for the vlc package.
+Group: Default
+
+%description license
+license components for the vlc package.
 
 
 %package locales
@@ -142,6 +155,14 @@ Group: Default
 
 %description locales
 locales components for the vlc package.
+
+
+%package man
+Summary: man components for the vlc package.
+Group: Default
+
+%description man
+man components for the vlc package.
 
 
 %prep
@@ -154,7 +175,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1528496350
+export SOURCE_DATE_EPOCH=1533660649
 %configure --disable-static --disable-mad \
 --disable-avcodec \
 --disable-swscale \
@@ -173,8 +194,12 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1528496350
+export SOURCE_DATE_EPOCH=1533660649
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/doc/vlc
+cp COPYING %{buildroot}/usr/share/doc/vlc/COPYING
+cp COPYING.LIB %{buildroot}/usr/share/doc/vlc/COPYING.LIB
+cp doc/libvlc/QtPlayer/LICENSE %{buildroot}/usr/share/doc/vlc/doc_libvlc_QtPlayer_LICENSE
 %make_install
 %find_lang vlc
 
@@ -322,9 +347,8 @@ rm -rf %{buildroot}
 /usr/lib64/pkgconfig/vlc-plugin.pc
 
 %files doc
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 %doc /usr/share/doc/vlc/*
-%doc /usr/share/man/man1/*
 
 %files lib
 %defattr(-,root,root,-)
@@ -658,6 +682,18 @@ rm -rf %{buildroot}
 /usr/lib64/vlc/plugins/video_splitter/libwall_plugin.so
 /usr/lib64/vlc/plugins/visualization/libglspectrum_plugin.so
 /usr/lib64/vlc/plugins/visualization/libvisual_plugin.so
+
+%files license
+%defattr(-,root,root,-)
+/usr/share/doc/vlc/COPYING
+/usr/share/doc/vlc/COPYING.LIB
+/usr/share/doc/vlc/doc_libvlc_QtPlayer_LICENSE
+/usr/share/doc/vlc/libvlc/QtPlayer/LICENSE
+
+%files man
+%defattr(-,root,root,-)
+/usr/share/man/man1/vlc-wrapper.1
+/usr/share/man/man1/vlc.1
 
 %files locales -f vlc.lang
 %defattr(-,root,root,-)
