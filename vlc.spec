@@ -6,7 +6,7 @@
 #
 Name     : vlc
 Version  : 3.0.3.1
-Release  : 23
+Release  : 24
 URL      : http://get.videolan.org/vlc/3.0.3/vlc-3.0.3-1.tar.xz
 Source0  : http://get.videolan.org/vlc/3.0.3/vlc-3.0.3-1.tar.xz
 Source99 : http://get.videolan.org/vlc/3.0.3/vlc-3.0.3-1.tar.xz.asc
@@ -61,6 +61,7 @@ BuildRequires : pkgconfig(lua)
 BuildRequires : pkgconfig(ncursesw)
 BuildRequires : pkgconfig(sm)
 BuildRequires : pkgconfig(speexdsp)
+BuildRequires : pkgconfig(taglib)
 BuildRequires : pkgconfig(udev)
 BuildRequires : pkgconfig(vorbis)
 BuildRequires : pkgconfig(vpx)
@@ -175,7 +176,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1533660649
+export SOURCE_DATE_EPOCH=1534699924
 %configure --disable-static --disable-mad \
 --disable-avcodec \
 --disable-swscale \
@@ -194,7 +195,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1533660649
+export SOURCE_DATE_EPOCH=1534699924
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/vlc
 cp COPYING %{buildroot}/usr/share/doc/vlc/COPYING
@@ -522,6 +523,7 @@ cp doc/libvlc/QtPlayer/LICENSE %{buildroot}/usr/share/doc/vlc/doc_libvlc_QtPlaye
 /usr/lib64/vlc/plugins/logger/libsd_journal_plugin.so
 /usr/lib64/vlc/plugins/logger/libsyslog_plugin.so
 /usr/lib64/vlc/plugins/meta_engine/libfolder_plugin.so
+/usr/lib64/vlc/plugins/meta_engine/libtaglib_plugin.so
 /usr/lib64/vlc/plugins/misc/libaddonsfsstorage_plugin.so
 /usr/lib64/vlc/plugins/misc/libaddonsvorepository_plugin.so
 /usr/lib64/vlc/plugins/misc/libaudioscrobbler_plugin.so

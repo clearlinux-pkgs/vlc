@@ -4,9 +4,6 @@ Configure miss: Tizen
 Configure miss: 3rd party libraries path
 Configure miss: buggy GNU/libc versions
 Configure miss: strnstr
-Configure miss: threads.h usability
-Configure miss: threads.h presence
-Configure miss: threads.h
 Configure miss: netinet/udplite.h usability
 Configure miss: netinet/udplite.h presence
 Configure miss: netinet/udplite.h
@@ -132,7 +129,6 @@ Configure miss: AVAHI
 Configure miss: MTP
 Configure miss: UPNP
 Configure miss: MICRODNS
-Configure miss: TAGLIB
 Configure miss: SECRET
 Configure miss: NOTIFY
 Configure miss: LIBPLACEBO
