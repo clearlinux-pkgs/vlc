@@ -11,3 +11,4 @@ sm
 vpx
 Qt5X11Extras
 libsystemd
+gtk+-3.0

@@ -6,7 +6,7 @@
 #
 Name     : vlc
 Version  : 3.0.3.1
-Release  : 24
+Release  : 25
 URL      : http://get.videolan.org/vlc/3.0.3/vlc-3.0.3-1.tar.xz
 Source0  : http://get.videolan.org/vlc/3.0.3/vlc-3.0.3-1.tar.xz
 Source99 : http://get.videolan.org/vlc/3.0.3/vlc-3.0.3-1.tar.xz.asc
@@ -22,11 +22,13 @@ Requires: vlc-man
 BuildRequires : SDL2_image-dev
 BuildRequires : SDL_image-dev
 BuildRequires : bison
+BuildRequires : buildreq-kde
 BuildRequires : buildreq-qmake
 BuildRequires : desktop-file-utils
 BuildRequires : flac-dev
 BuildRequires : flex
 BuildRequires : fribidi-dev
+BuildRequires : libXinerama-dev
 BuildRequires : libgcrypt-dev
 BuildRequires : libidn-dev
 BuildRequires : libjpeg-turbo-dev
@@ -34,6 +36,7 @@ BuildRequires : libnotify-dev
 BuildRequires : libogg-dev
 BuildRequires : librsvg-dev
 BuildRequires : libsamplerate-dev
+BuildRequires : libsecret-dev
 BuildRequires : libtheora-dev
 BuildRequires : libxml2-dev
 BuildRequires : mpg123-dev
@@ -53,6 +56,7 @@ BuildRequires : pkgconfig(fribidi)
 BuildRequires : pkgconfig(gl)
 BuildRequires : pkgconfig(gnutls)
 BuildRequires : pkgconfig(gstreamer-app-1.0)
+BuildRequires : pkgconfig(gtk+-3.0)
 BuildRequires : pkgconfig(ice)
 BuildRequires : pkgconfig(libpulse)
 BuildRequires : pkgconfig(libsystemd)
@@ -176,7 +180,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1534699924
+export SOURCE_DATE_EPOCH=1534700401
 %configure --disable-static --disable-mad \
 --disable-avcodec \
 --disable-swscale \
@@ -195,7 +199,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1534699924
+export SOURCE_DATE_EPOCH=1534700401
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/vlc
 cp COPYING %{buildroot}/usr/share/doc/vlc/COPYING
@@ -215,6 +219,7 @@ cp doc/libvlc/QtPlayer/LICENSE %{buildroot}/usr/share/doc/vlc/doc_libvlc_QtPlaye
 /usr/bin/nvlc
 /usr/bin/qvlc
 /usr/bin/rvlc
+/usr/bin/svlc
 /usr/bin/vlc
 /usr/bin/vlc-wrapper
 
@@ -237,6 +242,12 @@ cp doc/libvlc/QtPlayer/LICENSE %{buildroot}/usr/share/doc/vlc/doc_libvlc_QtPlaye
 /usr/share/kde4/apps/solid/actions/vlc-opendvd.desktop
 /usr/share/kde4/apps/solid/actions/vlc-openvcd.desktop
 /usr/share/metainfo/vlc.appdata.xml
+/usr/share/vlc/skins2/default.vlt
+/usr/share/vlc/skins2/fonts/FreeSans.ttf
+/usr/share/vlc/skins2/fonts/FreeSansBold.ttf
+/usr/share/vlc/skins2/skin.catalog
+/usr/share/vlc/skins2/skin.dtd
+/usr/share/vlc/skins2/winamp2.xml
 /usr/share/vlc/utils/audio-vlc-default.sh
 /usr/share/vlc/utils/gnome-vlc-default.sh
 /usr/share/vlc/utils/video-vlc-default.sh
@@ -515,9 +526,11 @@ cp doc/libvlc/QtPlayer/LICENSE %{buildroot}/usr/share/doc/vlc/doc_libvlc_QtPlaye
 /usr/lib64/vlc/plugins/demux/libxa_plugin.so
 /usr/lib64/vlc/plugins/gui/libncurses_plugin.so
 /usr/lib64/vlc/plugins/gui/libqt_plugin.so
+/usr/lib64/vlc/plugins/gui/libskins2_plugin.so
 /usr/lib64/vlc/plugins/keystore/libfile_keystore_plugin.so
 /usr/lib64/vlc/plugins/keystore/libkwallet_plugin.so
 /usr/lib64/vlc/plugins/keystore/libmemory_keystore_plugin.so
+/usr/lib64/vlc/plugins/keystore/libsecret_plugin.so
 /usr/lib64/vlc/plugins/logger/libconsole_logger_plugin.so
 /usr/lib64/vlc/plugins/logger/libfile_logger_plugin.so
 /usr/lib64/vlc/plugins/logger/libsd_journal_plugin.so
@@ -544,6 +557,7 @@ cp doc/libvlc/QtPlayer/LICENSE %{buildroot}/usr/share/doc/vlc/doc_libvlc_QtPlaye
 /usr/lib64/vlc/plugins/mux/libmux_ogg_plugin.so
 /usr/lib64/vlc/plugins/mux/libmux_ps_plugin.so
 /usr/lib64/vlc/plugins/mux/libmux_wav_plugin.so
+/usr/lib64/vlc/plugins/notify/libnotify_plugin.so
 /usr/lib64/vlc/plugins/packetizer/libpacketizer_a52_plugin.so
 /usr/lib64/vlc/plugins/packetizer/libpacketizer_copy_plugin.so
 /usr/lib64/vlc/plugins/packetizer/libpacketizer_dirac_plugin.so

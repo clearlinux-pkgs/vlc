@@ -1,5 +1,6 @@
 # This file contains additional build requirements that did not get
 # picked up automatically. One name per line, no whitespace.
+buildreq-kde
 desktop-file-utils
 libidn-dev
 libgcrypt-dev
@@ -25,3 +26,6 @@ fribidi-dev
 libnotify-dev
 qtbase-extras
 opus-dev
+libsecret-dev
+libnotify-dev
+libXinerama-dev

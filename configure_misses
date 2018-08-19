@@ -114,7 +114,9 @@ Configure miss: CHROMECAST
 Configure miss: moc-qt5
 Configure miss: rcc-qt5
 Configure miss: uic-qt5
-Configure miss: XINERAMA
+Configure miss: libtar.h usability
+Configure miss: libtar.h presence
+Configure miss: libtar.h
 Configure miss: VideoToolbox/VideoToolbox.h usability
 Configure miss: VideoToolbox/VideoToolbox.h presence
 Configure miss: VideoToolbox/VideoToolbox.h
@@ -129,6 +131,4 @@ Configure miss: AVAHI
 Configure miss: MTP
 Configure miss: UPNP
 Configure miss: MICRODNS
-Configure miss: SECRET
-Configure miss: NOTIFY
 Configure miss: LIBPLACEBO
