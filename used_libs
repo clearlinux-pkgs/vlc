@@ -82,14 +82,11 @@ libtheoraenc.so.1
 libtinfow.so.6
 libudev.so.1
 libva-drm.so.2
-libva-wayland.so.2
 libva-x11.so.2
 libva.so.2
 libvorbis.so.0
 libvorbisenc.so.2
 libvpx.so.5
-libwayland-client.so.0
-libwayland-egl.so.1
 libxcb-composite.so.0
 libxcb-keysyms.so.1
 libxcb-randr.so.0

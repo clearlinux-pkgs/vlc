@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x7180713BE58D1ADC
 #
 Name     : vlc
-Version  : 3.0.3.1
-Release  : 25
-URL      : http://get.videolan.org/vlc/3.0.3/vlc-3.0.3-1.tar.xz
-Source0  : http://get.videolan.org/vlc/3.0.3/vlc-3.0.3-1.tar.xz
-Source99 : http://get.videolan.org/vlc/3.0.3/vlc-3.0.3-1.tar.xz.asc
+Version  : 3.0.4
+Release  : 26
+URL      : http://get.videolan.org/vlc/3.0.4/vlc-3.0.4.tar.xz
+Source0  : http://get.videolan.org/vlc/3.0.4/vlc-3.0.4.tar.xz
+Source99 : http://get.videolan.org/vlc/3.0.4/vlc-3.0.4.tar.xz.asc
 Summary  : VLC media player external control library
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1 WTFPL
@@ -81,7 +81,6 @@ BuildRequires : speex-dev
 BuildRequires : unzip
 BuildRequires : yasm
 Patch1: build.patch
-Patch2: 0001-qt-fix-build-against-Qt-5.11.patch
 
 %description
 ===============================
@@ -171,16 +170,15 @@ man components for the vlc package.
 
 
 %prep
-%setup -q -n vlc-3.0.3
+%setup -q -n vlc-3.0.4
 %patch1 -p1
-%patch2 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1534700401
+export SOURCE_DATE_EPOCH=1535826390
 %configure --disable-static --disable-mad \
 --disable-avcodec \
 --disable-swscale \
@@ -199,7 +197,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1534700401
+export SOURCE_DATE_EPOCH=1535826390
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/vlc
 cp COPYING %{buildroot}/usr/share/doc/vlc/COPYING
@@ -675,23 +673,18 @@ cp doc/libvlc/QtPlayer/LICENSE %{buildroot}/usr/share/doc/vlc/doc_libvlc_QtPlaye
 /usr/lib64/vlc/plugins/video_filter/libtransform_plugin.so
 /usr/lib64/vlc/plugins/video_filter/libvhs_plugin.so
 /usr/lib64/vlc/plugins/video_filter/libwave_plugin.so
-/usr/lib64/vlc/plugins/video_output/libegl_wl_plugin.so
 /usr/lib64/vlc/plugins/video_output/libegl_x11_plugin.so
 /usr/lib64/vlc/plugins/video_output/libfb_plugin.so
 /usr/lib64/vlc/plugins/video_output/libflaschen_plugin.so
 /usr/lib64/vlc/plugins/video_output/libgl_plugin.so
 /usr/lib64/vlc/plugins/video_output/libglconv_vaapi_drm_plugin.so
-/usr/lib64/vlc/plugins/video_output/libglconv_vaapi_wl_plugin.so
 /usr/lib64/vlc/plugins/video_output/libglconv_vaapi_x11_plugin.so
 /usr/lib64/vlc/plugins/video_output/libglx_plugin.so
 /usr/lib64/vlc/plugins/video_output/libvdummy_plugin.so
 /usr/lib64/vlc/plugins/video_output/libvmem_plugin.so
-/usr/lib64/vlc/plugins/video_output/libwl_shell_plugin.so
-/usr/lib64/vlc/plugins/video_output/libwl_shm_plugin.so
 /usr/lib64/vlc/plugins/video_output/libxcb_window_plugin.so
 /usr/lib64/vlc/plugins/video_output/libxcb_x11_plugin.so
 /usr/lib64/vlc/plugins/video_output/libxcb_xv_plugin.so
-/usr/lib64/vlc/plugins/video_output/libxdg_shell_plugin.so
 /usr/lib64/vlc/plugins/video_output/libyuv_plugin.so
 /usr/lib64/vlc/plugins/video_splitter/libclone_plugin.so
 /usr/lib64/vlc/plugins/video_splitter/libpanoramix_plugin.so
