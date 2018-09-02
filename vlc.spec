@@ -6,7 +6,7 @@
 #
 Name     : vlc
 Version  : 3.0.4
-Release  : 26
+Release  : 27
 URL      : http://get.videolan.org/vlc/3.0.4/vlc-3.0.4.tar.xz
 Source0  : http://get.videolan.org/vlc/3.0.4/vlc-3.0.4.tar.xz
 Source99 : http://get.videolan.org/vlc/3.0.4/vlc-3.0.4.tar.xz.asc
