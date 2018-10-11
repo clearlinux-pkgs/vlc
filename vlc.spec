@@ -6,19 +6,19 @@
 #
 Name     : vlc
 Version  : 3.0.4
-Release  : 27
+Release  : 28
 URL      : http://get.videolan.org/vlc/3.0.4/vlc-3.0.4.tar.xz
 Source0  : http://get.videolan.org/vlc/3.0.4/vlc-3.0.4.tar.xz
 Source99 : http://get.videolan.org/vlc/3.0.4/vlc-3.0.4.tar.xz.asc
 Summary  : VLC media player external control library
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1 WTFPL
-Requires: vlc-bin
-Requires: vlc-lib
-Requires: vlc-data
-Requires: vlc-license
-Requires: vlc-locales
-Requires: vlc-man
+Requires: vlc-bin = %{version}-%{release}
+Requires: vlc-data = %{version}-%{release}
+Requires: vlc-lib = %{version}-%{release}
+Requires: vlc-license = %{version}-%{release}
+Requires: vlc-locales = %{version}-%{release}
+Requires: vlc-man = %{version}-%{release}
 BuildRequires : SDL2_image-dev
 BuildRequires : SDL_image-dev
 BuildRequires : bison
@@ -98,9 +98,9 @@ been downloaded close to one billion times.
 %package bin
 Summary: bin components for the vlc package.
 Group: Binaries
-Requires: vlc-data
-Requires: vlc-license
-Requires: vlc-man
+Requires: vlc-data = %{version}-%{release}
+Requires: vlc-license = %{version}-%{release}
+Requires: vlc-man = %{version}-%{release}
 
 %description bin
 bin components for the vlc package.
@@ -117,10 +117,10 @@ data components for the vlc package.
 %package dev
 Summary: dev components for the vlc package.
 Group: Development
-Requires: vlc-lib
-Requires: vlc-bin
-Requires: vlc-data
-Provides: vlc-devel
+Requires: vlc-lib = %{version}-%{release}
+Requires: vlc-bin = %{version}-%{release}
+Requires: vlc-data = %{version}-%{release}
+Provides: vlc-devel = %{version}-%{release}
 
 %description dev
 dev components for the vlc package.
@@ -129,7 +129,7 @@ dev components for the vlc package.
 %package doc
 Summary: doc components for the vlc package.
 Group: Documentation
-Requires: vlc-man
+Requires: vlc-man = %{version}-%{release}
 
 %description doc
 doc components for the vlc package.
@@ -138,8 +138,8 @@ doc components for the vlc package.
 %package lib
 Summary: lib components for the vlc package.
 Group: Libraries
-Requires: vlc-data
-Requires: vlc-license
+Requires: vlc-data = %{version}-%{release}
+Requires: vlc-license = %{version}-%{release}
 
 %description lib
 lib components for the vlc package.
@@ -178,7 +178,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1535826390
+export SOURCE_DATE_EPOCH=1539292501
 %configure --disable-static --disable-mad \
 --disable-avcodec \
 --disable-swscale \
@@ -197,18 +197,18 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1535826390
+export SOURCE_DATE_EPOCH=1539292501
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/vlc
-cp COPYING %{buildroot}/usr/share/doc/vlc/COPYING
-cp COPYING.LIB %{buildroot}/usr/share/doc/vlc/COPYING.LIB
-cp doc/libvlc/QtPlayer/LICENSE %{buildroot}/usr/share/doc/vlc/doc_libvlc_QtPlayer_LICENSE
+mkdir -p %{buildroot}/usr/share/package-licenses/vlc
+cp COPYING %{buildroot}/usr/share/package-licenses/vlc/COPYING
+cp COPYING.LIB %{buildroot}/usr/share/package-licenses/vlc/COPYING.LIB
+cp doc/libvlc/QtPlayer/LICENSE %{buildroot}/usr/share/package-licenses/vlc/doc_libvlc_QtPlayer_LICENSE
 %make_install
 %find_lang vlc
 
 %files
 %defattr(-,root,root,-)
-/usr/lib64/vlc/plugins/plugins.dat
+%exclude /usr/lib64/vlc/plugins/plugins.dat
 /usr/lib64/vlc/vlc-cache-gen
 
 %files bin
@@ -693,14 +693,13 @@ cp doc/libvlc/QtPlayer/LICENSE %{buildroot}/usr/share/doc/vlc/doc_libvlc_QtPlaye
 /usr/lib64/vlc/plugins/visualization/libvisual_plugin.so
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/vlc/COPYING
-/usr/share/doc/vlc/COPYING.LIB
-/usr/share/doc/vlc/doc_libvlc_QtPlayer_LICENSE
-/usr/share/doc/vlc/libvlc/QtPlayer/LICENSE
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/vlc/COPYING
+/usr/share/package-licenses/vlc/COPYING.LIB
+/usr/share/package-licenses/vlc/doc_libvlc_QtPlayer_LICENSE
 
 %files man
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 /usr/share/man/man1/vlc-wrapper.1
 /usr/share/man/man1/vlc.1
 
