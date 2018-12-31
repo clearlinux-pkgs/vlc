@@ -4,5 +4,6 @@
 --disable-a52
 --disable-lua
 --disable-libgcrypt
+--disable-opencv
 --enable-smbclient
 BUILDCC=/usr/bin/gcc
