@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x7180713BE58D1ADC
 #
 Name     : vlc
-Version  : 3.0.4
-Release  : 28
-URL      : http://get.videolan.org/vlc/3.0.4/vlc-3.0.4.tar.xz
-Source0  : http://get.videolan.org/vlc/3.0.4/vlc-3.0.4.tar.xz
-Source99 : http://get.videolan.org/vlc/3.0.4/vlc-3.0.4.tar.xz.asc
+Version  : 3.0.5
+Release  : 29
+URL      : http://get.videolan.org/vlc/3.0.5/vlc-3.0.5.tar.xz
+Source0  : http://get.videolan.org/vlc/3.0.5/vlc-3.0.5.tar.xz
+Source99 : http://get.videolan.org/vlc/3.0.5/vlc-3.0.5.tar.xz.asc
 Summary  : VLC media player external control library
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1 WTFPL
@@ -40,7 +40,6 @@ BuildRequires : libsecret-dev
 BuildRequires : libtheora-dev
 BuildRequires : libxml2-dev
 BuildRequires : mpg123-dev
-BuildRequires : opencv-dev
 BuildRequires : opus-dev
 BuildRequires : pkgconfig(Qt5Core)
 BuildRequires : pkgconfig(Qt5Gui)
@@ -170,7 +169,7 @@ man components for the vlc package.
 
 
 %prep
-%setup -q -n vlc-3.0.4
+%setup -q -n vlc-3.0.5
 %patch1 -p1
 
 %build
@@ -178,13 +177,14 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1539292501
+export SOURCE_DATE_EPOCH=1546269539
 %configure --disable-static --disable-mad \
 --disable-avcodec \
 --disable-swscale \
 --disable-a52 \
 --disable-lua \
 --disable-libgcrypt \
+--disable-opencv \
 --enable-smbclient \
 BUILDCC=/usr/bin/gcc
 make  %{?_smp_mflags}
@@ -197,7 +197,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1539292501
+export SOURCE_DATE_EPOCH=1546269539
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/vlc
 cp COPYING %{buildroot}/usr/share/package-licenses/vlc/COPYING
@@ -557,6 +557,7 @@ cp doc/libvlc/QtPlayer/LICENSE %{buildroot}/usr/share/package-licenses/vlc/doc_l
 /usr/lib64/vlc/plugins/mux/libmux_wav_plugin.so
 /usr/lib64/vlc/plugins/notify/libnotify_plugin.so
 /usr/lib64/vlc/plugins/packetizer/libpacketizer_a52_plugin.so
+/usr/lib64/vlc/plugins/packetizer/libpacketizer_av1_plugin.so
 /usr/lib64/vlc/plugins/packetizer/libpacketizer_copy_plugin.so
 /usr/lib64/vlc/plugins/packetizer/libpacketizer_dirac_plugin.so
 /usr/lib64/vlc/plugins/packetizer/libpacketizer_dts_plugin.so
@@ -659,8 +660,6 @@ cp doc/libvlc/QtPlayer/LICENSE %{buildroot}/usr/share/package-licenses/vlc/doc_l
 /usr/lib64/vlc/plugins/video_filter/libmotionblur_plugin.so
 /usr/lib64/vlc/plugins/video_filter/libmotiondetect_plugin.so
 /usr/lib64/vlc/plugins/video_filter/liboldmovie_plugin.so
-/usr/lib64/vlc/plugins/video_filter/libopencv_example_plugin.so
-/usr/lib64/vlc/plugins/video_filter/libopencv_wrapper_plugin.so
 /usr/lib64/vlc/plugins/video_filter/libposterize_plugin.so
 /usr/lib64/vlc/plugins/video_filter/libpsychedelic_plugin.so
 /usr/lib64/vlc/plugins/video_filter/libpuzzle_plugin.so

@@ -63,6 +63,7 @@ Configure miss: neaacdec.h usability
 Configure miss: neaacdec.h presence
 Configure miss: neaacdec.h
 Configure miss: AOM
+Configure miss: DAV1D
 Configure miss: TWOLAME
 Configure miss: DCA
 Configure miss: LIBMPEG2
@@ -73,8 +74,8 @@ Configure miss: libbpg.h presence
 Configure miss: libbpg.h
 Configure miss: X262
 Configure miss: X265
-Configure miss: X26410B
 Configure miss: X264
+Configure miss: X26410b
 Configure miss: MFX
 Configure miss: FLUIDSYNTH
 Configure miss: FLUIDLITE
@@ -102,6 +103,7 @@ Configure miss: sndio.h
 Configure miss: audioclient.h usability
 Configure miss: audioclient.h presence
 Configure miss: audioclient.h
+Configure miss: JACK
 Configure miss: JACK
 Configure miss: SOXR
 Configure miss: kai.h usability
