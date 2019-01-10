@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x7180713BE58D1ADC
 #
 Name     : vlc
-Version  : 3.0.5
-Release  : 29
-URL      : http://get.videolan.org/vlc/3.0.5/vlc-3.0.5.tar.xz
-Source0  : http://get.videolan.org/vlc/3.0.5/vlc-3.0.5.tar.xz
-Source99 : http://get.videolan.org/vlc/3.0.5/vlc-3.0.5.tar.xz.asc
+Version  : 3.0.6
+Release  : 30
+URL      : http://get.videolan.org/vlc/3.0.6/vlc-3.0.6.tar.xz
+Source0  : http://get.videolan.org/vlc/3.0.6/vlc-3.0.6.tar.xz
+Source99 : http://get.videolan.org/vlc/3.0.6/vlc-3.0.6.tar.xz.asc
 Summary  : VLC media player external control library
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1 WTFPL
@@ -74,6 +74,7 @@ BuildRequires : pkgconfig(xcb)
 BuildRequires : pkgconfig(xcb-keysyms)
 BuildRequires : pkgconfig(xi)
 BuildRequires : pkgconfig(xpm)
+BuildRequires : protobuf-dev
 BuildRequires : qtbase-extras
 BuildRequires : samba-dev
 BuildRequires : speex-dev
@@ -169,7 +170,7 @@ man components for the vlc package.
 
 
 %prep
-%setup -q -n vlc-3.0.5
+%setup -q -n vlc-3.0.6
 %patch1 -p1
 
 %build
@@ -177,7 +178,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1546269539
+export SOURCE_DATE_EPOCH=1547160907
 %configure --disable-static --disable-mad \
 --disable-avcodec \
 --disable-swscale \
@@ -197,7 +198,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1546269539
+export SOURCE_DATE_EPOCH=1547160907
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/vlc
 cp COPYING %{buildroot}/usr/share/package-licenses/vlc/COPYING
@@ -490,6 +491,7 @@ cp doc/libvlc/QtPlayer/LICENSE %{buildroot}/usr/share/package-licenses/vlc/doc_l
 /usr/lib64/vlc/plugins/demux/libavi_plugin.so
 /usr/lib64/vlc/plugins/demux/libcaf_plugin.so
 /usr/lib64/vlc/plugins/demux/libdemux_cdg_plugin.so
+/usr/lib64/vlc/plugins/demux/libdemux_chromecast_plugin.so
 /usr/lib64/vlc/plugins/demux/libdemux_stl_plugin.so
 /usr/lib64/vlc/plugins/demux/libdemuxdump_plugin.so
 /usr/lib64/vlc/plugins/demux/libdiracsys_plugin.so
@@ -594,6 +596,7 @@ cp doc/libvlc/QtPlayer/LICENSE %{buildroot}/usr/share/package-licenses/vlc/doc_l
 /usr/lib64/vlc/plugins/stream_filter/libskiptags_plugin.so
 /usr/lib64/vlc/plugins/stream_out/libstream_out_autodel_plugin.so
 /usr/lib64/vlc/plugins/stream_out/libstream_out_bridge_plugin.so
+/usr/lib64/vlc/plugins/stream_out/libstream_out_chromecast_plugin.so
 /usr/lib64/vlc/plugins/stream_out/libstream_out_cycle_plugin.so
 /usr/lib64/vlc/plugins/stream_out/libstream_out_delay_plugin.so
 /usr/lib64/vlc/plugins/stream_out/libstream_out_description_plugin.so

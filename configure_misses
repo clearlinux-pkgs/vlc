@@ -104,14 +104,11 @@ Configure miss: audioclient.h usability
 Configure miss: audioclient.h presence
 Configure miss: audioclient.h
 Configure miss: JACK
-Configure miss: JACK
 Configure miss: SOXR
 Configure miss: kai.h usability
 Configure miss: kai.h presence
 Configure miss: kai.h
 Configure miss: CHROMAPRINT
-Configure miss: protoc
-Configure miss: CHROMECAST
 Configure miss: moc-qt5
 Configure miss: rcc-qt5
 Configure miss: uic-qt5

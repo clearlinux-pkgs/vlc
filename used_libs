@@ -49,6 +49,7 @@ libopus.so.0
 libpango-1.0.so.0
 libpangocairo-1.0.so.0
 libpng16.so.16
+libprotobuf-lite.so.17
 libpthread.so.0
 libpulse.so.0
 librsvg-2.so.2
