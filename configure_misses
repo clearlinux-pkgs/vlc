@@ -51,7 +51,6 @@ Configure miss: mpcdec/mpcdec.h presence
 Configure miss: mpcdec/mpcdec.h
 Configure miss: SHINE
 Configure miss: libcrystalhd/libcrystalhd_if.h
-Configure miss: libavutil variant
 Configure miss: dxgidebug.h usability
 Configure miss: dxgidebug.h presence
 Configure miss: dxgidebug.h

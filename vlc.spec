@@ -6,11 +6,11 @@
 #
 Name     : vlc
 Version  : 3.0.6
-Release  : 33
+Release  : 34
 URL      : http://get.videolan.org/vlc/3.0.6/vlc-3.0.6.tar.xz
 Source0  : http://get.videolan.org/vlc/3.0.6/vlc-3.0.6.tar.xz
 Source99 : http://get.videolan.org/vlc/3.0.6/vlc-3.0.6.tar.xz.asc
-Summary  : VLC media player external control library
+Summary  : Multi-platform MPEG, VCD/DVD, and DivX player
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1 WTFPL
 Requires: vlc-bin = %{version}-%{release}
@@ -57,6 +57,7 @@ BuildRequires : pkgconfig(gnutls)
 BuildRequires : pkgconfig(gstreamer-app-1.0)
 BuildRequires : pkgconfig(gtk+-3.0)
 BuildRequires : pkgconfig(ice)
+BuildRequires : pkgconfig(libavutil)
 BuildRequires : pkgconfig(libpulse)
 BuildRequires : pkgconfig(libsystemd)
 BuildRequires : pkgconfig(libva)
@@ -121,6 +122,7 @@ Requires: vlc-lib = %{version}-%{release}
 Requires: vlc-bin = %{version}-%{release}
 Requires: vlc-data = %{version}-%{release}
 Provides: vlc-devel = %{version}-%{release}
+Requires: vlc = %{version}-%{release}
 
 %description dev
 dev components for the vlc package.
@@ -179,11 +181,8 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1552720976
-export LDFLAGS="${LDFLAGS} -fno-lto"
+export SOURCE_DATE_EPOCH=1556387080
 %configure --disable-static --disable-mad \
---disable-avcodec \
---disable-swscale \
 --disable-a52 \
 --disable-lua \
 --disable-libgcrypt \
@@ -200,7 +199,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1552720976
+export SOURCE_DATE_EPOCH=1556387080
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/vlc
 cp COPYING %{buildroot}/usr/share/package-licenses/vlc/COPYING
@@ -380,6 +379,7 @@ cp doc/libvlc/QtPlayer/LICENSE %{buildroot}/usr/share/package-licenses/vlc/doc_l
 /usr/lib64/vlc/plugins/access/libaccess_imem_plugin.so
 /usr/lib64/vlc/plugins/access/libaccess_mms_plugin.so
 /usr/lib64/vlc/plugins/access/libattachment_plugin.so
+/usr/lib64/vlc/plugins/access/libavio_plugin.so
 /usr/lib64/vlc/plugins/access/libcdda_plugin.so
 /usr/lib64/vlc/plugins/access/libdtv_plugin.so
 /usr/lib64/vlc/plugins/access/libfilesystem_plugin.so
@@ -439,6 +439,7 @@ cp doc/libvlc/QtPlayer/LICENSE %{buildroot}/usr/share/package-licenses/vlc/doc_l
 /usr/lib64/vlc/plugins/codec/libadpcm_plugin.so
 /usr/lib64/vlc/plugins/codec/libaes3_plugin.so
 /usr/lib64/vlc/plugins/codec/libaraw_plugin.so
+/usr/lib64/vlc/plugins/codec/libavcodec_plugin.so
 /usr/lib64/vlc/plugins/codec/libcc_plugin.so
 /usr/lib64/vlc/plugins/codec/libcdg_plugin.so
 /usr/lib64/vlc/plugins/codec/libcvdsub_plugin.so
@@ -474,6 +475,8 @@ cp doc/libvlc/QtPlayer/LICENSE %{buildroot}/usr/share/package-licenses/vlc/doc_l
 /usr/lib64/vlc/plugins/codec/libtheora_plugin.so
 /usr/lib64/vlc/plugins/codec/libttml_plugin.so
 /usr/lib64/vlc/plugins/codec/libuleaddvaudio_plugin.so
+/usr/lib64/vlc/plugins/codec/libvaapi_drm_plugin.so
+/usr/lib64/vlc/plugins/codec/libvaapi_plugin.so
 /usr/lib64/vlc/plugins/codec/libvorbis_plugin.so
 /usr/lib64/vlc/plugins/codec/libvpx_plugin.so
 /usr/lib64/vlc/plugins/codec/libwebvtt_plugin.so
@@ -490,6 +493,7 @@ cp doc/libvlc/QtPlayer/LICENSE %{buildroot}/usr/share/package-licenses/vlc/doc_l
 /usr/lib64/vlc/plugins/demux/libaiff_plugin.so
 /usr/lib64/vlc/plugins/demux/libasf_plugin.so
 /usr/lib64/vlc/plugins/demux/libau_plugin.so
+/usr/lib64/vlc/plugins/demux/libavformat_plugin.so
 /usr/lib64/vlc/plugins/demux/libavi_plugin.so
 /usr/lib64/vlc/plugins/demux/libcaf_plugin.so
 /usr/lib64/vlc/plugins/demux/libdemux_cdg_plugin.so
@@ -562,6 +566,7 @@ cp doc/libvlc/QtPlayer/LICENSE %{buildroot}/usr/share/package-licenses/vlc/doc_l
 /usr/lib64/vlc/plugins/notify/libnotify_plugin.so
 /usr/lib64/vlc/plugins/packetizer/libpacketizer_a52_plugin.so
 /usr/lib64/vlc/plugins/packetizer/libpacketizer_av1_plugin.so
+/usr/lib64/vlc/plugins/packetizer/libpacketizer_avparser_plugin.so
 /usr/lib64/vlc/plugins/packetizer/libpacketizer_copy_plugin.so
 /usr/lib64/vlc/plugins/packetizer/libpacketizer_dirac_plugin.so
 /usr/lib64/vlc/plugins/packetizer/libpacketizer_dts_plugin.so
@@ -634,6 +639,7 @@ cp doc/libvlc/QtPlayer/LICENSE %{buildroot}/usr/share/package-licenses/vlc/doc_l
 /usr/lib64/vlc/plugins/video_chroma/libi422_yuy2_plugin.so
 /usr/lib64/vlc/plugins/video_chroma/libi422_yuy2_sse2_plugin.so
 /usr/lib64/vlc/plugins/video_chroma/librv32_plugin.so
+/usr/lib64/vlc/plugins/video_chroma/libswscale_plugin.so
 /usr/lib64/vlc/plugins/video_chroma/libyuvp_plugin.so
 /usr/lib64/vlc/plugins/video_chroma/libyuy2_i420_plugin.so
 /usr/lib64/vlc/plugins/video_chroma/libyuy2_i422_plugin.so

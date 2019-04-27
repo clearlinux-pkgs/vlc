@@ -11,7 +11,6 @@ vdpau
 libmodplug
 libavcodec
 libavformat
-libavutil
 libsidplay2
 x264
 x26410b
