@@ -6,11 +6,11 @@
 #
 Name     : vlc
 Version  : 3.0.6
-Release  : 34
+Release  : 35
 URL      : http://get.videolan.org/vlc/3.0.6/vlc-3.0.6.tar.xz
 Source0  : http://get.videolan.org/vlc/3.0.6/vlc-3.0.6.tar.xz
 Source99 : http://get.videolan.org/vlc/3.0.6/vlc-3.0.6.tar.xz.asc
-Summary  : Multi-platform MPEG, VCD/DVD, and DivX player
+Summary  : VLC media player external control library
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1 WTFPL
 Requires: vlc-bin = %{version}-%{release}
@@ -38,8 +38,11 @@ BuildRequires : librsvg-dev
 BuildRequires : libsamplerate-dev
 BuildRequires : libsecret-dev
 BuildRequires : libtheora-dev
+BuildRequires : libva-dev
 BuildRequires : libxml2-dev
+BuildRequires : mediasdk-dev
 BuildRequires : mpg123-dev
+BuildRequires : not-ffmpeg-dev
 BuildRequires : opus-dev
 BuildRequires : pkgconfig(Qt5Core)
 BuildRequires : pkgconfig(Qt5Gui)
@@ -57,6 +60,8 @@ BuildRequires : pkgconfig(gnutls)
 BuildRequires : pkgconfig(gstreamer-app-1.0)
 BuildRequires : pkgconfig(gtk+-3.0)
 BuildRequires : pkgconfig(ice)
+BuildRequires : pkgconfig(libavcodec)
+BuildRequires : pkgconfig(libavformat)
 BuildRequires : pkgconfig(libavutil)
 BuildRequires : pkgconfig(libpulse)
 BuildRequires : pkgconfig(libsystemd)
@@ -181,12 +186,20 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1556387080
+export SOURCE_DATE_EPOCH=1556568634
+export LDFLAGS="${LDFLAGS} -fno-lto"
 %configure --disable-static --disable-mad \
 --disable-a52 \
 --disable-lua \
 --disable-libgcrypt \
 --disable-opencv \
+--disable-postproc \
+--enable-avcodec \
+--enable-merge-ffmpeg \
+--enable-libva \
+--enable-gst-decode \
+--enable-wayland \
+--enable-shared \
 --enable-smbclient \
 BUILDCC=/usr/bin/gcc
 make  %{?_smp_mflags}
@@ -199,7 +212,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1556387080
+export SOURCE_DATE_EPOCH=1556568634
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/vlc
 cp COPYING %{buildroot}/usr/share/package-licenses/vlc/COPYING
@@ -379,7 +392,6 @@ cp doc/libvlc/QtPlayer/LICENSE %{buildroot}/usr/share/package-licenses/vlc/doc_l
 /usr/lib64/vlc/plugins/access/libaccess_imem_plugin.so
 /usr/lib64/vlc/plugins/access/libaccess_mms_plugin.so
 /usr/lib64/vlc/plugins/access/libattachment_plugin.so
-/usr/lib64/vlc/plugins/access/libavio_plugin.so
 /usr/lib64/vlc/plugins/access/libcdda_plugin.so
 /usr/lib64/vlc/plugins/access/libdtv_plugin.so
 /usr/lib64/vlc/plugins/access/libfilesystem_plugin.so
@@ -455,6 +467,7 @@ cp doc/libvlc/QtPlayer/LICENSE %{buildroot}/usr/share/package-licenses/vlc/doc_l
 /usr/lib64/vlc/plugins/codec/liboggspots_plugin.so
 /usr/lib64/vlc/plugins/codec/libopus_plugin.so
 /usr/lib64/vlc/plugins/codec/libpng_plugin.so
+/usr/lib64/vlc/plugins/codec/libqsv_plugin.so
 /usr/lib64/vlc/plugins/codec/librawvideo_plugin.so
 /usr/lib64/vlc/plugins/codec/librtpvideo_plugin.so
 /usr/lib64/vlc/plugins/codec/libscte18_plugin.so
@@ -493,7 +506,6 @@ cp doc/libvlc/QtPlayer/LICENSE %{buildroot}/usr/share/package-licenses/vlc/doc_l
 /usr/lib64/vlc/plugins/demux/libaiff_plugin.so
 /usr/lib64/vlc/plugins/demux/libasf_plugin.so
 /usr/lib64/vlc/plugins/demux/libau_plugin.so
-/usr/lib64/vlc/plugins/demux/libavformat_plugin.so
 /usr/lib64/vlc/plugins/demux/libavi_plugin.so
 /usr/lib64/vlc/plugins/demux/libcaf_plugin.so
 /usr/lib64/vlc/plugins/demux/libdemux_cdg_plugin.so
@@ -566,7 +578,6 @@ cp doc/libvlc/QtPlayer/LICENSE %{buildroot}/usr/share/package-licenses/vlc/doc_l
 /usr/lib64/vlc/plugins/notify/libnotify_plugin.so
 /usr/lib64/vlc/plugins/packetizer/libpacketizer_a52_plugin.so
 /usr/lib64/vlc/plugins/packetizer/libpacketizer_av1_plugin.so
-/usr/lib64/vlc/plugins/packetizer/libpacketizer_avparser_plugin.so
 /usr/lib64/vlc/plugins/packetizer/libpacketizer_copy_plugin.so
 /usr/lib64/vlc/plugins/packetizer/libpacketizer_dirac_plugin.so
 /usr/lib64/vlc/plugins/packetizer/libpacketizer_dts_plugin.so
@@ -683,18 +694,23 @@ cp doc/libvlc/QtPlayer/LICENSE %{buildroot}/usr/share/package-licenses/vlc/doc_l
 /usr/lib64/vlc/plugins/video_filter/libtransform_plugin.so
 /usr/lib64/vlc/plugins/video_filter/libvhs_plugin.so
 /usr/lib64/vlc/plugins/video_filter/libwave_plugin.so
+/usr/lib64/vlc/plugins/video_output/libegl_wl_plugin.so
 /usr/lib64/vlc/plugins/video_output/libegl_x11_plugin.so
 /usr/lib64/vlc/plugins/video_output/libfb_plugin.so
 /usr/lib64/vlc/plugins/video_output/libflaschen_plugin.so
 /usr/lib64/vlc/plugins/video_output/libgl_plugin.so
 /usr/lib64/vlc/plugins/video_output/libglconv_vaapi_drm_plugin.so
+/usr/lib64/vlc/plugins/video_output/libglconv_vaapi_wl_plugin.so
 /usr/lib64/vlc/plugins/video_output/libglconv_vaapi_x11_plugin.so
 /usr/lib64/vlc/plugins/video_output/libglx_plugin.so
 /usr/lib64/vlc/plugins/video_output/libvdummy_plugin.so
 /usr/lib64/vlc/plugins/video_output/libvmem_plugin.so
+/usr/lib64/vlc/plugins/video_output/libwl_shell_plugin.so
+/usr/lib64/vlc/plugins/video_output/libwl_shm_plugin.so
 /usr/lib64/vlc/plugins/video_output/libxcb_window_plugin.so
 /usr/lib64/vlc/plugins/video_output/libxcb_x11_plugin.so
 /usr/lib64/vlc/plugins/video_output/libxcb_xv_plugin.so
+/usr/lib64/vlc/plugins/video_output/libxdg_shell_plugin.so
 /usr/lib64/vlc/plugins/video_output/libyuv_plugin.so
 /usr/lib64/vlc/plugins/video_splitter/libclone_plugin.so
 /usr/lib64/vlc/plugins/video_splitter/libpanoramix_plugin.so

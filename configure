@@ -3,5 +3,12 @@
 --disable-lua
 --disable-libgcrypt
 --disable-opencv
+--disable-postproc
+--enable-avcodec
+--enable-merge-ffmpeg
+--enable-libva
+--enable-gst-decode
+--enable-wayland
+--enable-shared
 --enable-smbclient
 BUILDCC=/usr/bin/gcc

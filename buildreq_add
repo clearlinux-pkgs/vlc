@@ -27,4 +27,7 @@ qtbase-extras
 opus-dev
 libsecret-dev
 libnotify-dev
+libva-dev
 libXinerama-dev
+mediasdk-dev
+not-ffmpeg-dev

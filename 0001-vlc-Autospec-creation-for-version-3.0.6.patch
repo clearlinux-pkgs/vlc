@@ -1,0 +1,288 @@
+From b1927ef4d141959e9408551fc90a5d9b9d6e3324 Mon Sep 17 00:00:00 2001
+From: Daniel Charles <daniel.charles@intel.com>
+Date: Mon, 15 Apr 2019 20:53:52 +0000
+Subject: [PATCH vlc] vlc: Autospec creation for version 3.0.6
+
+Signed-off-by: Daniel Charles <daniel.charles@intel.com>
+
+Enable ffmpeg for vlc, avcodec, avutils and avformat.
+VLC defaults to hardware acceleration when available
+---
+ buildreq_add     |  3 +++
+ configure        |  9 +++++++--
+ configure_misses |  3 ---
+ pkgconfig_ban    |  5 +----
+ release          |  2 +-
+ used_libs        |  8 ++++++++
+ vlc.spec         | 31 ++++++++++++++++++++++++++-----
+ 7 files changed, 46 insertions(+), 15 deletions(-)
+
+diff --git a/buildreq_add b/buildreq_add
+index 4a75384..c86424a 100644
+--- a/buildreq_add
++++ b/buildreq_add
+@@ -25,6 +25,9 @@ fribidi-dev
+ libnotify-dev
+ qtbase-extras
+ opus-dev
++libva-dev
+ libsecret-dev
+ libnotify-dev
+ libXinerama-dev
++mediasdk-dev
++ffmpeg-dev
+diff --git a/configure b/configure
+index 321ab54..8be9fca 100644
+--- a/configure
++++ b/configure
+@@ -1,9 +1,14 @@
+ --disable-mad
+---disable-avcodec
+---disable-swscale
+ --disable-a52
+ --disable-lua
+ --disable-libgcrypt
+ --disable-opencv
++--disable-postproc
++--enable-avcodec
++--enable-merge-ffmpeg
+ --enable-smbclient
++--enable-libva
++--enable-gst-decode
++--enable-wayland
++--enable-shared
+ BUILDCC=/usr/bin/gcc
+diff --git a/configure_misses b/configure_misses
+index 21afff5..547b0a8 100644
+--- a/configure_misses
++++ b/configure_misses
+@@ -51,14 +51,12 @@ Configure miss: mpcdec/mpcdec.h presence
+ Configure miss: mpcdec/mpcdec.h
+ Configure miss: SHINE
+ Configure miss: libcrystalhd/libcrystalhd_if.h
+-Configure miss: libavutil variant
+ Configure miss: dxgidebug.h usability
+ Configure miss: dxgidebug.h presence
+ Configure miss: dxgidebug.h
+ Configure miss: dxgi1_6.h usability
+ Configure miss: dxgi1_6.h presence
+ Configure miss: dxgi1_6.h
+-Configure miss: POSTPROC
+ Configure miss: neaacdec.h usability
+ Configure miss: neaacdec.h presence
+ Configure miss: neaacdec.h
+@@ -76,7 +74,6 @@ Configure miss: X262
+ Configure miss: X265
+ Configure miss: X264
+ Configure miss: X26410b
+-Configure miss: MFX
+ Configure miss: FLUIDSYNTH
+ Configure miss: FLUIDLITE
+ Configure miss: fluidlite.h usability
+diff --git a/pkgconfig_ban b/pkgconfig_ban
+index d52036e..02779cf 100644
+--- a/pkgconfig_ban
++++ b/pkgconfig_ban
+@@ -9,9 +9,6 @@ live555
+ tiger
+ vdpau
+ libmodplug
+-libavcodec
+-libavformat
+-libavutil
+ libsidplay2
+ x264
+ x26410b
+@@ -24,4 +21,4 @@ libplacebo
+ aribb24
+ breakpad-client
+ ecore
+-evas
+\ No newline at end of file
++evas
+diff --git a/release b/release
+index bb95160..a787364 100644
+--- a/release
++++ b/release
+@@ -1 +1 @@
+-33
++34
+diff --git a/used_libs b/used_libs
+index 205f983..f6db22a 100644
+--- a/used_libs
++++ b/used_libs
+@@ -13,6 +13,9 @@ libX11.so.6
+ libXpm.so.4
+ libasound.so.2
+ libatk-1.0.so.0
++libavcodec.so.58
++libavformat.so.58
++libavutil.so.56
+ libc.so.6
+ libcairo-gobject.so.2
+ libcairo.so.2
+@@ -37,6 +40,7 @@ libharfbuzz.so.0
+ libidn.so.12
+ libjpeg.so.62
+ libm.so.6
++libmfx.so.1
+ libmpg123.so.0
+ libncursesw.so.6
+ libnotify.so.4
+@@ -55,6 +59,7 @@ libsmbclient.so.0
+ libspeex.so.1
+ libspeexdsp.so.1
+ libstdc++.so.6
++libswscale.so.5
+ libsystemd.so.0
+ libtag.so.1
+ libtheoradec.so.1
+@@ -62,10 +67,13 @@ libtheoraenc.so.1
+ libtinfow.so.6
+ libudev.so.1
+ libva-drm.so.2
++libva-wayland.so.2
+ libva-x11.so.2
+ libva.so.2
+ libvorbis.so.0
+ libvorbisenc.so.2
+ libvpx.so.6
++libwayland-client.so.0
++libwayland-egl.so.1
+ libxml2.so.2
+ libz.so.1
+diff --git a/vlc.spec b/vlc.spec
+index 280ffb5..738a4ef 100644
+--- a/vlc.spec
++++ b/vlc.spec
+@@ -6,7 +6,7 @@
+ #
+ Name     : vlc
+ Version  : 3.0.6
+-Release  : 33
++Release  : 34
+ URL      : http://get.videolan.org/vlc/3.0.6/vlc-3.0.6.tar.xz
+ Source0  : http://get.videolan.org/vlc/3.0.6/vlc-3.0.6.tar.xz
+ Source99 : http://get.videolan.org/vlc/3.0.6/vlc-3.0.6.tar.xz.asc
+@@ -25,6 +25,7 @@ BuildRequires : bison
+ BuildRequires : buildreq-kde
+ BuildRequires : buildreq-qmake
+ BuildRequires : desktop-file-utils
++BuildRequires : ffmpeg-dev
+ BuildRequires : flac-dev
+ BuildRequires : flex
+ BuildRequires : fribidi-dev
+@@ -38,7 +39,9 @@ BuildRequires : librsvg-dev
+ BuildRequires : libsamplerate-dev
+ BuildRequires : libsecret-dev
+ BuildRequires : libtheora-dev
++BuildRequires : libva-dev
+ BuildRequires : libxml2-dev
++BuildRequires : mediasdk-dev
+ BuildRequires : mpg123-dev
+ BuildRequires : opus-dev
+ BuildRequires : pkgconfig(Qt5Core)
+@@ -57,6 +60,9 @@ BuildRequires : pkgconfig(gnutls)
+ BuildRequires : pkgconfig(gstreamer-app-1.0)
+ BuildRequires : pkgconfig(gtk+-3.0)
+ BuildRequires : pkgconfig(ice)
++BuildRequires : pkgconfig(libavcodec)
++BuildRequires : pkgconfig(libavformat)
++BuildRequires : pkgconfig(libavutil)
+ BuildRequires : pkgconfig(libpulse)
+ BuildRequires : pkgconfig(libsystemd)
+ BuildRequires : pkgconfig(libva)
+@@ -179,16 +185,21 @@ export http_proxy=http://127.0.0.1:9/
+ export https_proxy=http://127.0.0.1:9/
+ export no_proxy=localhost,127.0.0.1,0.0.0.0
+ export LANG=C
+-export SOURCE_DATE_EPOCH=1552720976
++export SOURCE_DATE_EPOCH=1555360863
+ export LDFLAGS="${LDFLAGS} -fno-lto"
+ %configure --disable-static --disable-mad \
+---disable-avcodec \
+---disable-swscale \
+ --disable-a52 \
+ --disable-lua \
+ --disable-libgcrypt \
+ --disable-opencv \
++--disable-postproc \
++--enable-avcodec \
++--enable-merge-ffmpeg \
+ --enable-smbclient \
++--enable-libva \
++--enable-gst-decode \
++--enable-wayland \
++--enable-shared \
+ BUILDCC=/usr/bin/gcc
+ make  %{?_smp_mflags}
+ 
+@@ -200,7 +211,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
+ make VERBOSE=1 V=1 %{?_smp_mflags} check || :
+ 
+ %install
+-export SOURCE_DATE_EPOCH=1552720976
++export SOURCE_DATE_EPOCH=1555360863
+ rm -rf %{buildroot}
+ mkdir -p %{buildroot}/usr/share/package-licenses/vlc
+ cp COPYING %{buildroot}/usr/share/package-licenses/vlc/COPYING
+@@ -439,6 +450,7 @@ cp doc/libvlc/QtPlayer/LICENSE %{buildroot}/usr/share/package-licenses/vlc/doc_l
+ /usr/lib64/vlc/plugins/codec/libadpcm_plugin.so
+ /usr/lib64/vlc/plugins/codec/libaes3_plugin.so
+ /usr/lib64/vlc/plugins/codec/libaraw_plugin.so
++/usr/lib64/vlc/plugins/codec/libavcodec_plugin.so
+ /usr/lib64/vlc/plugins/codec/libcc_plugin.so
+ /usr/lib64/vlc/plugins/codec/libcdg_plugin.so
+ /usr/lib64/vlc/plugins/codec/libcvdsub_plugin.so
+@@ -454,6 +466,7 @@ cp doc/libvlc/QtPlayer/LICENSE %{buildroot}/usr/share/package-licenses/vlc/doc_l
+ /usr/lib64/vlc/plugins/codec/liboggspots_plugin.so
+ /usr/lib64/vlc/plugins/codec/libopus_plugin.so
+ /usr/lib64/vlc/plugins/codec/libpng_plugin.so
++/usr/lib64/vlc/plugins/codec/libqsv_plugin.so
+ /usr/lib64/vlc/plugins/codec/librawvideo_plugin.so
+ /usr/lib64/vlc/plugins/codec/librtpvideo_plugin.so
+ /usr/lib64/vlc/plugins/codec/libscte18_plugin.so
+@@ -474,6 +487,8 @@ cp doc/libvlc/QtPlayer/LICENSE %{buildroot}/usr/share/package-licenses/vlc/doc_l
+ /usr/lib64/vlc/plugins/codec/libtheora_plugin.so
+ /usr/lib64/vlc/plugins/codec/libttml_plugin.so
+ /usr/lib64/vlc/plugins/codec/libuleaddvaudio_plugin.so
++/usr/lib64/vlc/plugins/codec/libvaapi_drm_plugin.so
++/usr/lib64/vlc/plugins/codec/libvaapi_plugin.so
+ /usr/lib64/vlc/plugins/codec/libvorbis_plugin.so
+ /usr/lib64/vlc/plugins/codec/libvpx_plugin.so
+ /usr/lib64/vlc/plugins/codec/libwebvtt_plugin.so
+@@ -634,6 +649,7 @@ cp doc/libvlc/QtPlayer/LICENSE %{buildroot}/usr/share/package-licenses/vlc/doc_l
+ /usr/lib64/vlc/plugins/video_chroma/libi422_yuy2_plugin.so
+ /usr/lib64/vlc/plugins/video_chroma/libi422_yuy2_sse2_plugin.so
+ /usr/lib64/vlc/plugins/video_chroma/librv32_plugin.so
++/usr/lib64/vlc/plugins/video_chroma/libswscale_plugin.so
+ /usr/lib64/vlc/plugins/video_chroma/libyuvp_plugin.so
+ /usr/lib64/vlc/plugins/video_chroma/libyuy2_i420_plugin.so
+ /usr/lib64/vlc/plugins/video_chroma/libyuy2_i422_plugin.so
+@@ -677,18 +693,23 @@ cp doc/libvlc/QtPlayer/LICENSE %{buildroot}/usr/share/package-licenses/vlc/doc_l
+ /usr/lib64/vlc/plugins/video_filter/libtransform_plugin.so
+ /usr/lib64/vlc/plugins/video_filter/libvhs_plugin.so
+ /usr/lib64/vlc/plugins/video_filter/libwave_plugin.so
++/usr/lib64/vlc/plugins/video_output/libegl_wl_plugin.so
+ /usr/lib64/vlc/plugins/video_output/libegl_x11_plugin.so
+ /usr/lib64/vlc/plugins/video_output/libfb_plugin.so
+ /usr/lib64/vlc/plugins/video_output/libflaschen_plugin.so
+ /usr/lib64/vlc/plugins/video_output/libgl_plugin.so
+ /usr/lib64/vlc/plugins/video_output/libglconv_vaapi_drm_plugin.so
++/usr/lib64/vlc/plugins/video_output/libglconv_vaapi_wl_plugin.so
+ /usr/lib64/vlc/plugins/video_output/libglconv_vaapi_x11_plugin.so
+ /usr/lib64/vlc/plugins/video_output/libglx_plugin.so
+ /usr/lib64/vlc/plugins/video_output/libvdummy_plugin.so
+ /usr/lib64/vlc/plugins/video_output/libvmem_plugin.so
++/usr/lib64/vlc/plugins/video_output/libwl_shell_plugin.so
++/usr/lib64/vlc/plugins/video_output/libwl_shm_plugin.so
+ /usr/lib64/vlc/plugins/video_output/libxcb_window_plugin.so
+ /usr/lib64/vlc/plugins/video_output/libxcb_x11_plugin.so
+ /usr/lib64/vlc/plugins/video_output/libxcb_xv_plugin.so
++/usr/lib64/vlc/plugins/video_output/libxdg_shell_plugin.so
+ /usr/lib64/vlc/plugins/video_output/libyuv_plugin.so
+ /usr/lib64/vlc/plugins/video_splitter/libclone_plugin.so
+ /usr/lib64/vlc/plugins/video_splitter/libpanoramix_plugin.so
+-- 
+2.21.0
+

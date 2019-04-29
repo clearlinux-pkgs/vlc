@@ -40,6 +40,7 @@ libharfbuzz.so.0
 libidn.so.12
 libjpeg.so.62
 libm.so.6
+libmfx.so.1
 libmpg123.so.0
 libncursesw.so.6
 libnotify.so.4
@@ -66,10 +67,13 @@ libtheoraenc.so.1
 libtinfow.so.6
 libudev.so.1
 libva-drm.so.2
+libva-wayland.so.2
 libva-x11.so.2
 libva.so.2
 libvorbis.so.0
 libvorbisenc.so.2
 libvpx.so.6
+libwayland-client.so.0
+libwayland-egl.so.1
 libxml2.so.2
 libz.so.1

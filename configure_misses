@@ -57,7 +57,6 @@ Configure miss: dxgidebug.h
 Configure miss: dxgi1_6.h usability
 Configure miss: dxgi1_6.h presence
 Configure miss: dxgi1_6.h
-Configure miss: POSTPROC
 Configure miss: neaacdec.h usability
 Configure miss: neaacdec.h presence
 Configure miss: neaacdec.h
@@ -75,7 +74,6 @@ Configure miss: X262
 Configure miss: X265
 Configure miss: X264
 Configure miss: X26410b
-Configure miss: MFX
 Configure miss: FLUIDSYNTH
 Configure miss: FLUIDLITE
 Configure miss: fluidlite.h usability
