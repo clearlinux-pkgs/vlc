@@ -6,7 +6,7 @@
 #
 Name     : vlc
 Version  : 3.0.6
-Release  : 35
+Release  : 36
 URL      : http://get.videolan.org/vlc/3.0.6/vlc-3.0.6.tar.xz
 Source0  : http://get.videolan.org/vlc/3.0.6/vlc-3.0.6.tar.xz
 Source99 : http://get.videolan.org/vlc/3.0.6/vlc-3.0.6.tar.xz.asc
@@ -60,6 +60,7 @@ BuildRequires : pkgconfig(gnutls)
 BuildRequires : pkgconfig(gstreamer-app-1.0)
 BuildRequires : pkgconfig(gtk+-3.0)
 BuildRequires : pkgconfig(ice)
+BuildRequires : pkgconfig(libass)
 BuildRequires : pkgconfig(libavcodec)
 BuildRequires : pkgconfig(libavformat)
 BuildRequires : pkgconfig(libavutil)
@@ -186,8 +187,12 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1556568634
-export LDFLAGS="${LDFLAGS} -fno-lto"
+export SOURCE_DATE_EPOCH=1559239408
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$CFLAGS -fno-lto "
+export FFLAGS="$CFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 %configure --disable-static --disable-mad \
 --disable-a52 \
 --disable-lua \
@@ -212,7 +217,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1556568634
+export SOURCE_DATE_EPOCH=1559239408
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/vlc
 cp COPYING %{buildroot}/usr/share/package-licenses/vlc/COPYING
@@ -462,6 +467,7 @@ cp doc/libvlc/QtPlayer/LICENSE %{buildroot}/usr/share/package-licenses/vlc/doc_l
 /usr/lib64/vlc/plugins/codec/libg711_plugin.so
 /usr/lib64/vlc/plugins/codec/libgstdecode_plugin.so
 /usr/lib64/vlc/plugins/codec/libjpeg_plugin.so
+/usr/lib64/vlc/plugins/codec/liblibass_plugin.so
 /usr/lib64/vlc/plugins/codec/liblpcm_plugin.so
 /usr/lib64/vlc/plugins/codec/libmpg123_plugin.so
 /usr/lib64/vlc/plugins/codec/liboggspots_plugin.so

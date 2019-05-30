@@ -12,6 +12,7 @@ libSDL_image-1.2.so.0
 libX11.so.6
 libXpm.so.4
 libasound.so.2
+libass.so.9
 libatk-1.0.so.0
 libavcodec.so.58
 libavformat.so.58
