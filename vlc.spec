@@ -6,7 +6,7 @@
 #
 Name     : vlc
 Version  : 3.0.7
-Release  : 37
+Release  : 38
 URL      : http://get.videolan.org/vlc/3.0.7/vlc-3.0.7.tar.xz
 Source0  : http://get.videolan.org/vlc/3.0.7/vlc-3.0.7.tar.xz
 Source99 : http://get.videolan.org/vlc/3.0.7/vlc-3.0.7.tar.xz.asc
