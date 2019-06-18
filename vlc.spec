@@ -5,12 +5,12 @@
 # Source0 file verified with key 0x7180713BE58D1ADC
 #
 Name     : vlc
-Version  : 3.0.7
-Release  : 38
-URL      : http://get.videolan.org/vlc/3.0.7/vlc-3.0.7.tar.xz
-Source0  : http://get.videolan.org/vlc/3.0.7/vlc-3.0.7.tar.xz
-Source99 : http://get.videolan.org/vlc/3.0.7/vlc-3.0.7.tar.xz.asc
-Summary  : Multi-platform MPEG, VCD/DVD, and DivX player
+Version  : 3.0.7.1
+Release  : 39
+URL      : http://get.videolan.org/vlc/3.0.7.1/vlc-3.0.7.1.tar.xz
+Source0  : http://get.videolan.org/vlc/3.0.7.1/vlc-3.0.7.1.tar.xz
+Source99 : http://get.videolan.org/vlc/3.0.7.1/vlc-3.0.7.1.tar.xz.asc
+Summary  : VLC media player external control library
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1 WTFPL
 Requires: vlc-bin = %{version}-%{release}
@@ -128,7 +128,6 @@ Requires: vlc-bin = %{version}-%{release}
 Requires: vlc-data = %{version}-%{release}
 Provides: vlc-devel = %{version}-%{release}
 Requires: vlc = %{version}-%{release}
-Requires: vlc = %{version}-%{release}
 
 %description dev
 dev components for the vlc package.
@@ -178,7 +177,7 @@ man components for the vlc package.
 
 
 %prep
-%setup -q -n vlc-3.0.7
+%setup -q -n vlc-3.0.7.1
 %patch1 -p1
 
 %build
@@ -186,7 +185,8 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1559946910
+export SOURCE_DATE_EPOCH=1560890797
+export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -218,7 +218,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1559946910
+export SOURCE_DATE_EPOCH=1560890797
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/vlc
 cp COPYING %{buildroot}/usr/share/package-licenses/vlc/COPYING
