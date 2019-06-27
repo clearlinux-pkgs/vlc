@@ -6,7 +6,7 @@
 #
 Name     : vlc
 Version  : 3.0.7.1
-Release  : 39
+Release  : 21
 URL      : http://get.videolan.org/vlc/3.0.7.1/vlc-3.0.7.1.tar.xz
 Source0  : http://get.videolan.org/vlc/3.0.7.1/vlc-3.0.7.1.tar.xz
 Source99 : http://get.videolan.org/vlc/3.0.7.1/vlc-3.0.7.1.tar.xz.asc
@@ -88,6 +88,7 @@ BuildRequires : speex-dev
 BuildRequires : unzip
 BuildRequires : yasm
 Patch1: build.patch
+Patch2: mp4:fix-integer-underflow.patch
 
 %description
 ===============================
@@ -179,13 +180,14 @@ man components for the vlc package.
 %prep
 %setup -q -n vlc-3.0.7.1
 %patch1 -p1
+%patch2 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1560890797
+export SOURCE_DATE_EPOCH=1561669034
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -218,7 +220,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1560890797
+export SOURCE_DATE_EPOCH=1561669034
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/vlc
 cp COPYING %{buildroot}/usr/share/package-licenses/vlc/COPYING
