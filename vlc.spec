@@ -6,7 +6,7 @@
 #
 Name     : vlc
 Version  : 3.0.7.1
-Release  : 21
+Release  : 22
 URL      : http://get.videolan.org/vlc/3.0.7.1/vlc-3.0.7.1.tar.xz
 Source0  : http://get.videolan.org/vlc/3.0.7.1/vlc-3.0.7.1.tar.xz
 Source99 : http://get.videolan.org/vlc/3.0.7.1/vlc-3.0.7.1.tar.xz.asc
@@ -89,6 +89,7 @@ BuildRequires : unzip
 BuildRequires : yasm
 Patch1: build.patch
 Patch2: mp4:fix-integer-underflow.patch
+Patch3: CVE-2019-13962.patch
 
 %description
 ===============================
@@ -99,7 +100,7 @@ ported to most computing platforms, including GNU/Linux, Windows, Mac OS X,
 BSD, iOS and Android.
 VLC can play most multimedia files, discs, streams, allows playback from
 devices, and is able to convert to or stream in various formats.
-The VideoLAN project was started at the university Ãcole Centrale Paris who
+The VideoLAN project was started at the university École Centrale Paris who
 relicensed VLC under the GPLv2 license in February 2001. Since then, VLC has
 been downloaded close to one billion times.
 
@@ -181,21 +182,22 @@ man components for the vlc package.
 %setup -q -n vlc-3.0.7.1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1561669034
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1563847752
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
 %configure --disable-static --disable-mad \
 --disable-a52 \
 --disable-lua \
@@ -213,14 +215,14 @@ BUILDCC=/usr/bin/gcc
 make  %{?_smp_mflags}
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1561669034
+export SOURCE_DATE_EPOCH=1563847752
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/vlc
 cp COPYING %{buildroot}/usr/share/package-licenses/vlc/COPYING
