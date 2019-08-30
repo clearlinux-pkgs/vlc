@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x7180713BE58D1ADC
 #
 Name     : vlc
-Version  : 3.0.7.1
-Release  : 23
-URL      : http://get.videolan.org/vlc/3.0.7.1/vlc-3.0.7.1.tar.xz
-Source0  : http://get.videolan.org/vlc/3.0.7.1/vlc-3.0.7.1.tar.xz
-Source1 : http://get.videolan.org/vlc/3.0.7.1/vlc-3.0.7.1.tar.xz.asc
+Version  : 3.0.8
+Release  : 24
+URL      : https://get.videolan.org/vlc/3.0.8/vlc-3.0.8.tar.xz
+Source0  : https://get.videolan.org/vlc/3.0.8/vlc-3.0.8.tar.xz
+Source1 : https://get.videolan.org/vlc/3.0.8/vlc-3.0.8.tar.xz.asc
 Summary  : VLC media player external control library
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1 WTFPL
@@ -88,9 +88,7 @@ BuildRequires : speex-dev
 BuildRequires : unzip
 BuildRequires : yasm
 Patch1: build.patch
-Patch2: mp4:fix-integer-underflow.patch
-Patch3: CVE-2019-13962.patch
-Patch4: CVE-2019-13615.patch
+Patch2: CVE-2019-13615.patch
 
 %description
 ===============================
@@ -180,18 +178,16 @@ man components for the vlc package.
 
 
 %prep
-%setup -q -n vlc-3.0.7.1
+%setup -q -n vlc-3.0.8
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
-%patch4 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1564075293
+export SOURCE_DATE_EPOCH=1567181467
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -224,7 +220,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1564075293
+export SOURCE_DATE_EPOCH=1567181467
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/vlc
 cp COPYING %{buildroot}/usr/share/package-licenses/vlc/COPYING
@@ -232,10 +228,11 @@ cp COPYING.LIB %{buildroot}/usr/share/package-licenses/vlc/COPYING.LIB
 cp doc/libvlc/QtPlayer/LICENSE %{buildroot}/usr/share/package-licenses/vlc/doc_libvlc_QtPlayer_LICENSE
 %make_install
 %find_lang vlc
+## Remove excluded files
+rm -f %{buildroot}/usr/lib64/vlc/plugins/plugins.dat
 
 %files
 %defattr(-,root,root,-)
-%exclude /usr/lib64/vlc/plugins/plugins.dat
 /usr/lib64/vlc/vlc-cache-gen
 
 %files bin

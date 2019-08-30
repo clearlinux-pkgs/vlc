@@ -1,5 +1,5 @@
 PKG_NAME := vlc
-URL = http://get.videolan.org/vlc/3.0.7.1/vlc-3.0.7.1.tar.xz
+URL = https://get.videolan.org/vlc/3.0.8/vlc-3.0.8.tar.xz
 ARCHIVES = 
 
 include ../common/Makefile.common
