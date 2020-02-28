@@ -6,10 +6,10 @@
 #
 Name     : vlc
 Version  : 3.0.8
-Release  : 27
+Release  : 28
 URL      : https://get.videolan.org/vlc/3.0.8/vlc-3.0.8.tar.xz
 Source0  : https://get.videolan.org/vlc/3.0.8/vlc-3.0.8.tar.xz
-Source1 : https://get.videolan.org/vlc/3.0.8/vlc-3.0.8.tar.xz.asc
+Source1  : https://get.videolan.org/vlc/3.0.8/vlc-3.0.8.tar.xz.asc
 Summary  : VLC media player external control library
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1 WTFPL
@@ -179,6 +179,7 @@ man components for the vlc package.
 
 %prep
 %setup -q -n vlc-3.0.8
+cd %{_builddir}/vlc-3.0.8
 %patch1 -p1
 %patch2 -p1
 
@@ -187,7 +188,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1567181467
+export SOURCE_DATE_EPOCH=1582865502
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -220,12 +221,12 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1567181467
+export SOURCE_DATE_EPOCH=1582865502
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/vlc
-cp COPYING %{buildroot}/usr/share/package-licenses/vlc/COPYING
-cp COPYING.LIB %{buildroot}/usr/share/package-licenses/vlc/COPYING.LIB
-cp doc/libvlc/QtPlayer/LICENSE %{buildroot}/usr/share/package-licenses/vlc/doc_libvlc_QtPlayer_LICENSE
+cp %{_builddir}/vlc-3.0.8/COPYING %{buildroot}/usr/share/package-licenses/vlc/4cc77b90af91e615a64ae04893fdffa7939db84c
+cp %{_builddir}/vlc-3.0.8/COPYING.LIB %{buildroot}/usr/share/package-licenses/vlc/01a6b4bf79aca9b556822601186afab86e8c4fbf
+cp %{_builddir}/vlc-3.0.8/doc/libvlc/QtPlayer/LICENSE %{buildroot}/usr/share/package-licenses/vlc/6f86a73e06b7329f05554e65f2ae5cfa18cade0f
 %make_install
 %find_lang vlc
 ## Remove excluded files
@@ -730,9 +731,9 @@ rm -f %{buildroot}/usr/lib64/vlc/plugins/plugins.dat
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/vlc/COPYING
-/usr/share/package-licenses/vlc/COPYING.LIB
-/usr/share/package-licenses/vlc/doc_libvlc_QtPlayer_LICENSE
+/usr/share/package-licenses/vlc/01a6b4bf79aca9b556822601186afab86e8c4fbf
+/usr/share/package-licenses/vlc/4cc77b90af91e615a64ae04893fdffa7939db84c
+/usr/share/package-licenses/vlc/6f86a73e06b7329f05554e65f2ae5cfa18cade0f
 
 %files man
 %defattr(0644,root,root,0755)

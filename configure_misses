@@ -2,6 +2,7 @@ Configure miss: whether C compiler accepts -Werror=invalid-command-line-argument
 Configure miss: an Android system
 Configure miss: Tizen
 Configure miss: 3rd party libraries path
+Configure miss: windres
 Configure miss: buggy GNU/libc versions
 Configure miss: strnstr
 Configure miss: netinet/udplite.h usability
@@ -99,6 +100,7 @@ Configure miss: sndio.h
 Configure miss: audioclient.h usability
 Configure miss: audioclient.h presence
 Configure miss: audioclient.h
+Configure miss: JACK
 Configure miss: JACK
 Configure miss: SOXR
 Configure miss: kai.h usability
