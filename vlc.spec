@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x7180713BE58D1ADC
 #
 Name     : vlc
-Version  : 3.0.8
-Release  : 28
-URL      : https://get.videolan.org/vlc/3.0.8/vlc-3.0.8.tar.xz
-Source0  : https://get.videolan.org/vlc/3.0.8/vlc-3.0.8.tar.xz
-Source1  : https://get.videolan.org/vlc/3.0.8/vlc-3.0.8.tar.xz.asc
+Version  : 3.0.10
+Release  : 29
+URL      : https://get.videolan.org/vlc/3.0.10/vlc-3.0.10.tar.xz
+Source0  : https://get.videolan.org/vlc/3.0.10/vlc-3.0.10.tar.xz
+Source1  : https://get.videolan.org/vlc/3.0.10/vlc-3.0.10.tar.xz.asc
 Summary  : VLC media player external control library
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1 WTFPL
@@ -88,7 +88,6 @@ BuildRequires : speex-dev
 BuildRequires : unzip
 BuildRequires : yasm
 Patch1: build.patch
-Patch2: CVE-2019-13615.patch
 
 %description
 ===============================
@@ -178,24 +177,23 @@ man components for the vlc package.
 
 
 %prep
-%setup -q -n vlc-3.0.8
-cd %{_builddir}/vlc-3.0.8
+%setup -q -n vlc-3.0.10
+cd %{_builddir}/vlc-3.0.10
 %patch1 -p1
-%patch2 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1582865502
+export SOURCE_DATE_EPOCH=1589238817
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
 %configure --disable-static --disable-mad \
 --disable-a52 \
@@ -221,12 +219,12 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1582865502
+export SOURCE_DATE_EPOCH=1589238817
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/vlc
-cp %{_builddir}/vlc-3.0.8/COPYING %{buildroot}/usr/share/package-licenses/vlc/4cc77b90af91e615a64ae04893fdffa7939db84c
-cp %{_builddir}/vlc-3.0.8/COPYING.LIB %{buildroot}/usr/share/package-licenses/vlc/01a6b4bf79aca9b556822601186afab86e8c4fbf
-cp %{_builddir}/vlc-3.0.8/doc/libvlc/QtPlayer/LICENSE %{buildroot}/usr/share/package-licenses/vlc/6f86a73e06b7329f05554e65f2ae5cfa18cade0f
+cp %{_builddir}/vlc-3.0.10/COPYING %{buildroot}/usr/share/package-licenses/vlc/4cc77b90af91e615a64ae04893fdffa7939db84c
+cp %{_builddir}/vlc-3.0.10/COPYING.LIB %{buildroot}/usr/share/package-licenses/vlc/01a6b4bf79aca9b556822601186afab86e8c4fbf
+cp %{_builddir}/vlc-3.0.10/doc/libvlc/QtPlayer/LICENSE %{buildroot}/usr/share/package-licenses/vlc/6f86a73e06b7329f05554e65f2ae5cfa18cade0f
 %make_install
 %find_lang vlc
 ## Remove excluded files
