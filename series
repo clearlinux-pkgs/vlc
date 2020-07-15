@@ -1,6 +1,1 @@
 build.patch
-#0001-qt-fix-build-against-Qt-5.11.patch
-#0001-codec_vpx_Detect_libvpx_1_8_0__and.patch
-#mp4:fix-integer-underflow.patch
-#CVE-2019-13962.patch
-#CVE-2019-13615.patch
