@@ -6,7 +6,7 @@
 #
 Name     : vlc
 Version  : 3.0.11
-Release  : 30
+Release  : 31
 URL      : https://get.videolan.org/vlc/3.0.11/vlc-3.0.11.tar.xz
 Source0  : https://get.videolan.org/vlc/3.0.11/vlc-3.0.11.tar.xz
 Source1  : https://get.videolan.org/vlc/3.0.11/vlc-3.0.11.tar.xz.asc
