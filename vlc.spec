@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x7180713BE58D1ADC
 #
 Name     : vlc
-Version  : 3.0.11.1
-Release  : 32
-URL      : https://get.videolan.org/vlc/3.0.11.1/vlc-3.0.11.1.tar.xz
-Source0  : https://get.videolan.org/vlc/3.0.11.1/vlc-3.0.11.1.tar.xz
-Source1  : https://get.videolan.org/vlc/3.0.11.1/vlc-3.0.11.1.tar.xz.asc
+Version  : 3.0.12
+Release  : 33
+URL      : https://get.videolan.org/vlc/3.0.12/vlc-3.0.12.tar.xz
+Source0  : https://get.videolan.org/vlc/3.0.12/vlc-3.0.12.tar.xz
+Source1  : https://get.videolan.org/vlc/3.0.12/vlc-3.0.12.tar.xz.asc
 Summary  : VLC media player external control library
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1 WTFPL
@@ -88,7 +88,6 @@ BuildRequires : speex-dev
 BuildRequires : unzip
 BuildRequires : yasm
 Patch1: build.patch
-Patch2: qt_5_15.patch
 
 %description
 ===============================
@@ -178,17 +177,16 @@ man components for the vlc package.
 
 
 %prep
-%setup -q -n vlc-3.0.11.1
-cd %{_builddir}/vlc-3.0.11.1
+%setup -q -n vlc-3.0.12
+cd %{_builddir}/vlc-3.0.12
 %patch1 -p1
-%patch2 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1605727012
+export SOURCE_DATE_EPOCH=1611730163
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -221,12 +219,12 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1605727012
+export SOURCE_DATE_EPOCH=1611730163
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/vlc
-cp %{_builddir}/vlc-3.0.11.1/COPYING %{buildroot}/usr/share/package-licenses/vlc/4cc77b90af91e615a64ae04893fdffa7939db84c
-cp %{_builddir}/vlc-3.0.11.1/COPYING.LIB %{buildroot}/usr/share/package-licenses/vlc/01a6b4bf79aca9b556822601186afab86e8c4fbf
-cp %{_builddir}/vlc-3.0.11.1/doc/libvlc/QtPlayer/LICENSE %{buildroot}/usr/share/package-licenses/vlc/6f86a73e06b7329f05554e65f2ae5cfa18cade0f
+cp %{_builddir}/vlc-3.0.12/COPYING %{buildroot}/usr/share/package-licenses/vlc/4cc77b90af91e615a64ae04893fdffa7939db84c
+cp %{_builddir}/vlc-3.0.12/COPYING.LIB %{buildroot}/usr/share/package-licenses/vlc/01a6b4bf79aca9b556822601186afab86e8c4fbf
+cp %{_builddir}/vlc-3.0.12/doc/libvlc/QtPlayer/LICENSE %{buildroot}/usr/share/package-licenses/vlc/6f86a73e06b7329f05554e65f2ae5cfa18cade0f
 %make_install
 %find_lang vlc
 ## Remove excluded files
@@ -412,6 +410,7 @@ rm -f %{buildroot}/usr/lib64/vlc/plugins/plugins.dat
 /usr/lib64/vlc/plugins/access/libimem_plugin.so
 /usr/lib64/vlc/plugins/access/liblinsys_hdsdi_plugin.so
 /usr/lib64/vlc/plugins/access/libpulsesrc_plugin.so
+/usr/lib64/vlc/plugins/access/librist_plugin.so
 /usr/lib64/vlc/plugins/access/librtp_plugin.so
 /usr/lib64/vlc/plugins/access/libsatip_plugin.so
 /usr/lib64/vlc/plugins/access/libsdp_plugin.so
@@ -427,6 +426,7 @@ rm -f %{buildroot}/usr/lib64/vlc/plugins/plugins.dat
 /usr/lib64/vlc/plugins/access_output/libaccess_output_dummy_plugin.so
 /usr/lib64/vlc/plugins/access_output/libaccess_output_file_plugin.so
 /usr/lib64/vlc/plugins/access_output/libaccess_output_http_plugin.so
+/usr/lib64/vlc/plugins/access_output/libaccess_output_rist_plugin.so
 /usr/lib64/vlc/plugins/access_output/libaccess_output_udp_plugin.so
 /usr/lib64/vlc/plugins/audio_filter/libaudio_format_plugin.so
 /usr/lib64/vlc/plugins/audio_filter/libaudiobargraph_a_plugin.so
