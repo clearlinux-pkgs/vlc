@@ -6,7 +6,6 @@ fribidi
 gtk+-3.0
 ice
 libsystemd
-lua
 sm
 udev
 vpx

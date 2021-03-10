@@ -13,7 +13,9 @@ libsidplay2
 libswscale
 libvsxu
 live555
+lua
 lua5.2
+lua5.3
 minizip
 tiger
 vdpau

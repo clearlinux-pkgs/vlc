@@ -6,7 +6,7 @@
 #
 Name     : vlc
 Version  : 3.0.12
-Release  : 33
+Release  : 34
 URL      : https://get.videolan.org/vlc/3.0.12/vlc-3.0.12.tar.xz
 Source0  : https://get.videolan.org/vlc/3.0.12/vlc-3.0.12.tar.xz
 Source1  : https://get.videolan.org/vlc/3.0.12/vlc-3.0.12.tar.xz.asc
@@ -67,7 +67,6 @@ BuildRequires : pkgconfig(libavutil)
 BuildRequires : pkgconfig(libpulse)
 BuildRequires : pkgconfig(libsystemd)
 BuildRequires : pkgconfig(libva)
-BuildRequires : pkgconfig(lua)
 BuildRequires : pkgconfig(ncursesw)
 BuildRequires : pkgconfig(sm)
 BuildRequires : pkgconfig(speexdsp)
@@ -186,7 +185,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1611730163
+export SOURCE_DATE_EPOCH=1615406990
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -219,7 +218,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1611730163
+export SOURCE_DATE_EPOCH=1615406990
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/vlc
 cp %{_builddir}/vlc-3.0.12/COPYING %{buildroot}/usr/share/package-licenses/vlc/4cc77b90af91e615a64ae04893fdffa7939db84c
