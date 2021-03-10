@@ -1,14 +1,14 @@
 # This file contains additional pkgconfig build requirements that did
 # not get picked up automatically. One name per line, no whitespace.
-dbus-1
-lua
-xi
-xcb-keysyms
-ice
-fribidi
-udev
-sm
-vpx
 Qt5X11Extras
-libsystemd
+dbus-1
+fribidi
 gtk+-3.0
+ice
+libsystemd
+lua
+sm
+udev
+vpx
+xcb-keysyms
+xi
