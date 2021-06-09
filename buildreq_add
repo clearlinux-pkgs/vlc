@@ -31,3 +31,8 @@ libva-dev
 libXinerama-dev
 mediasdk-dev
 not-ffmpeg-dev
+libarchive-dev
+mpc-dev
+fluidsynth-dev
+sox-dev
+libplacebo-dev

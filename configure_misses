@@ -37,7 +37,6 @@ Configure miss: fluidlite
 Configure miss: fluidlite.h
 Configure miss: fluidlite.h presence
 Configure miss: fluidlite.h usability
-Configure miss: fluidsynth >= 1.1.2
 Configure miss: freerdp >= 1.0.1
 Configure miss: gme/gme.h
 Configure miss: gme/gme.h presence
@@ -55,7 +54,6 @@ Configure miss: kate >= 0.3.0
 Configure miss: kva.h
 Configure miss: kva.h presence
 Configure miss: kva.h usability
-Configure miss: libarchive >= 3.1.0
 Configure miss: libbluray >= 0.6.2
 Configure miss: libbpg.h
 Configure miss: libbpg.h presence

@@ -11,6 +11,7 @@ libSDL-1.2.so.0
 libSDL_image-1.2.so.0
 libX11.so.6
 libXpm.so.4
+libarchive.so.13
 libasound.so.2
 libass.so.9
 libatk-1.0.so.0
@@ -22,6 +23,7 @@ libcairo-gobject.so.2
 libcairo.so.2
 libdbus-1.so.3
 libdl.so.2
+libfluidsynth.so.3
 libfontconfig.so.1
 libfreetype.so.6
 libfribidi.so.0
