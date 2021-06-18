@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x7180713BE58D1ADC
 #
 Name     : vlc
-Version  : 3.0.15
-Release  : 38
-URL      : https://get.videolan.org/vlc/3.0.15/vlc-3.0.15.tar.xz
-Source0  : https://get.videolan.org/vlc/3.0.15/vlc-3.0.15.tar.xz
-Source1  : https://get.videolan.org/vlc/3.0.15/vlc-3.0.15.tar.xz.asc
+Version  : 3.0.16
+Release  : 39
+URL      : https://get.videolan.org/vlc/3.0.16/vlc-3.0.16.tar.xz
+Source0  : https://get.videolan.org/vlc/3.0.16/vlc-3.0.16.tar.xz
+Source1  : https://get.videolan.org/vlc/3.0.16/vlc-3.0.16.tar.xz.asc
 Summary  : VLC media player external control library
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1 WTFPL
@@ -36,6 +36,7 @@ BuildRequires : libidn-dev
 BuildRequires : libjpeg-turbo-dev
 BuildRequires : libnotify-dev
 BuildRequires : libogg-dev
+BuildRequires : libplacebo-dev
 BuildRequires : librsvg-dev
 BuildRequires : libsamplerate-dev
 BuildRequires : libsecret-dev
@@ -180,8 +181,8 @@ man components for the vlc package.
 
 
 %prep
-%setup -q -n vlc-3.0.15
-cd %{_builddir}/vlc-3.0.15
+%setup -q -n vlc-3.0.16
+cd %{_builddir}/vlc-3.0.16
 %patch1 -p1
 
 %build
@@ -189,7 +190,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1623259115
+export SOURCE_DATE_EPOCH=1624060466
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -222,12 +223,12 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1623259115
+export SOURCE_DATE_EPOCH=1624060466
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/vlc
-cp %{_builddir}/vlc-3.0.15/COPYING %{buildroot}/usr/share/package-licenses/vlc/4cc77b90af91e615a64ae04893fdffa7939db84c
-cp %{_builddir}/vlc-3.0.15/COPYING.LIB %{buildroot}/usr/share/package-licenses/vlc/01a6b4bf79aca9b556822601186afab86e8c4fbf
-cp %{_builddir}/vlc-3.0.15/doc/libvlc/QtPlayer/LICENSE %{buildroot}/usr/share/package-licenses/vlc/6f86a73e06b7329f05554e65f2ae5cfa18cade0f
+cp %{_builddir}/vlc-3.0.16/COPYING %{buildroot}/usr/share/package-licenses/vlc/4cc77b90af91e615a64ae04893fdffa7939db84c
+cp %{_builddir}/vlc-3.0.16/COPYING.LIB %{buildroot}/usr/share/package-licenses/vlc/01a6b4bf79aca9b556822601186afab86e8c4fbf
+cp %{_builddir}/vlc-3.0.16/doc/libvlc/QtPlayer/LICENSE %{buildroot}/usr/share/package-licenses/vlc/6f86a73e06b7329f05554e65f2ae5cfa18cade0f
 %make_install
 %find_lang vlc
 ## Remove excluded files
