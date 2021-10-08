@@ -6,7 +6,7 @@
 #
 Name     : vlc
 Version  : 3.0.16
-Release  : 40
+Release  : 41
 URL      : https://get.videolan.org/vlc/3.0.16/vlc-3.0.16.tar.xz
 Source0  : https://get.videolan.org/vlc/3.0.16/vlc-3.0.16.tar.xz
 Source1  : https://get.videolan.org/vlc/3.0.16/vlc-3.0.16.tar.xz.asc
@@ -15,6 +15,7 @@ Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1 WTFPL
 Requires: vlc-bin = %{version}-%{release}
 Requires: vlc-data = %{version}-%{release}
+Requires: vlc-filemap = %{version}-%{release}
 Requires: vlc-lib = %{version}-%{release}
 Requires: vlc-license = %{version}-%{release}
 Requires: vlc-locales = %{version}-%{release}
@@ -111,6 +112,7 @@ Summary: bin components for the vlc package.
 Group: Binaries
 Requires: vlc-data = %{version}-%{release}
 Requires: vlc-license = %{version}-%{release}
+Requires: vlc-filemap = %{version}-%{release}
 
 %description bin
 bin components for the vlc package.
@@ -146,11 +148,20 @@ Requires: vlc-man = %{version}-%{release}
 doc components for the vlc package.
 
 
+%package filemap
+Summary: filemap components for the vlc package.
+Group: Default
+
+%description filemap
+filemap components for the vlc package.
+
+
 %package lib
 Summary: lib components for the vlc package.
 Group: Libraries
 Requires: vlc-data = %{version}-%{release}
 Requires: vlc-license = %{version}-%{release}
+Requires: vlc-filemap = %{version}-%{release}
 
 %description lib
 lib components for the vlc package.
@@ -184,21 +195,24 @@ man components for the vlc package.
 %setup -q -n vlc-3.0.16
 cd %{_builddir}/vlc-3.0.16
 %patch1 -p1
+pushd ..
+cp -a vlc-3.0.16 buildavx2
+popd
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1624060466
+export SOURCE_DATE_EPOCH=1633722689
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -fzero-call-used-regs=used "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -fzero-call-used-regs=used "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -fzero-call-used-regs=used "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -fzero-call-used-regs=used "
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto -fstack-protector-strong -fzero-call-used-regs=used "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto -fstack-protector-strong -fzero-call-used-regs=used "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto -fstack-protector-strong -fzero-call-used-regs=used "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto -fstack-protector-strong -fzero-call-used-regs=used "
 %configure --disable-static --disable-mad \
 --disable-a52 \
 --disable-lua \
@@ -215,20 +229,49 @@ export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-stron
 BUILDCC=/usr/bin/gcc
 make  %{?_smp_mflags}
 
+unset PKG_CONFIG_PATH
+pushd ../buildavx2/
+export CFLAGS="$CFLAGS -m64 -march=x86-64-v3"
+export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3"
+export FFLAGS="$FFLAGS -m64 -march=x86-64-v3"
+export FCFLAGS="$FCFLAGS -m64 -march=x86-64-v3"
+export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3"
+%configure --disable-static --disable-mad \
+--disable-a52 \
+--disable-lua \
+--disable-libgcrypt \
+--disable-opencv \
+--disable-postproc \
+--enable-avcodec \
+--enable-merge-ffmpeg \
+--enable-libva \
+--enable-gst-decode \
+--enable-wayland \
+--enable-shared \
+--enable-smbclient \
+BUILDCC=/usr/bin/gcc
+make  %{?_smp_mflags}
+popd
 %check
 export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check || :
+cd ../buildavx2;
+make %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1624060466
+export SOURCE_DATE_EPOCH=1633722689
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/vlc
 cp %{_builddir}/vlc-3.0.16/COPYING %{buildroot}/usr/share/package-licenses/vlc/4cc77b90af91e615a64ae04893fdffa7939db84c
 cp %{_builddir}/vlc-3.0.16/COPYING.LIB %{buildroot}/usr/share/package-licenses/vlc/01a6b4bf79aca9b556822601186afab86e8c4fbf
 cp %{_builddir}/vlc-3.0.16/doc/libvlc/QtPlayer/LICENSE %{buildroot}/usr/share/package-licenses/vlc/6f86a73e06b7329f05554e65f2ae5cfa18cade0f
+pushd ../buildavx2/
+%make_install_v3
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
+popd
 %make_install
 %find_lang vlc
 ## Remove excluded files
@@ -247,6 +290,7 @@ rm -f %{buildroot}/usr/lib64/vlc/plugins/plugins.dat
 /usr/bin/svlc
 /usr/bin/vlc
 /usr/bin/vlc-wrapper
+/usr/share/clear/optimized-elf/bin*
 
 %files data
 %defattr(-,root,root,-)
@@ -386,6 +430,10 @@ rm -f %{buildroot}/usr/lib64/vlc/plugins/plugins.dat
 %files doc
 %defattr(0644,root,root,0755)
 %doc /usr/share/doc/vlc/*
+
+%files filemap
+%defattr(-,root,root,-)
+/usr/share/clear/filemap/filemap-vlc
 
 %files lib
 %defattr(-,root,root,-)
@@ -734,6 +782,7 @@ rm -f %{buildroot}/usr/lib64/vlc/plugins/plugins.dat
 /usr/lib64/vlc/plugins/video_splitter/libwall_plugin.so
 /usr/lib64/vlc/plugins/visualization/libglspectrum_plugin.so
 /usr/lib64/vlc/plugins/visualization/libvisual_plugin.so
+/usr/share/clear/optimized-elf/lib*
 
 %files license
 %defattr(0644,root,root,0755)

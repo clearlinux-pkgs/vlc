@@ -1,129 +1,243 @@
 Configure miss: 3rd party libraries path
+Configure miss: 3rd party libraries path
+Configure miss: AudioToolbox/AudioToolbox.h
 Configure miss: AudioToolbox/AudioToolbox.h
 Configure miss: AudioToolbox/AudioToolbox.h presence
+Configure miss: AudioToolbox/AudioToolbox.h presence
+Configure miss: AudioToolbox/AudioToolbox.h usability
 Configure miss: AudioToolbox/AudioToolbox.h usability
 Configure miss: DeckLinkAPIDispatch.cpp
+Configure miss: DeckLinkAPIDispatch.cpp
+Configure miss: DeckLinkAPIDispatch.cpp presence
 Configure miss: DeckLinkAPIDispatch.cpp presence
 Configure miss: DeckLinkAPIDispatch.cpp usability
+Configure miss: DeckLinkAPIDispatch.cpp usability
+Configure miss: ISpObjectToken
 Configure miss: ISpObjectToken
 Configure miss: Tizen
+Configure miss: Tizen
+Configure miss: VideoToolbox/VideoToolbox.h
 Configure miss: VideoToolbox/VideoToolbox.h
 Configure miss: VideoToolbox/VideoToolbox.h presence
+Configure miss: VideoToolbox/VideoToolbox.h presence
+Configure miss: VideoToolbox/VideoToolbox.h usability
 Configure miss: VideoToolbox/VideoToolbox.h usability
 Configure miss: an Android system
+Configure miss: an Android system
+Configure miss: aom
 Configure miss: aom
 Configure miss: aribb24 >= 1.0.1
+Configure miss: aribb24 >= 1.0.1
+Configure miss: aribb25 >= 0.2.6
 Configure miss: aribb25 >= 0.2.6
 Configure miss: asdcplib
+Configure miss: asdcplib
+Configure miss: audioclient.h
 Configure miss: audioclient.h
 Configure miss: audioclient.h presence
+Configure miss: audioclient.h presence
+Configure miss: audioclient.h usability
 Configure miss: audioclient.h usability
 Configure miss: avahi-client >= 0.6
+Configure miss: avahi-client >= 0.6
+Configure miss: buggy GNU/libc versions
 Configure miss: buggy GNU/libc versions
 Configure miss: caca >= 0.99.beta14
+Configure miss: caca >= 0.99.beta14
+Configure miss: d3d11_4.h
 Configure miss: d3d11_4.h
 Configure miss: d3d11_4.h presence
+Configure miss: d3d11_4.h presence
+Configure miss: d3d11_4.h usability
 Configure miss: d3d11_4.h usability
 Configure miss: dav1d
 Configure miss: dvdnav > 4.9.0
 Configure miss: dvdread > 4.9.0
 Configure miss: dxgi1_6.h
+Configure miss: dxgi1_6.h
+Configure miss: dxgi1_6.h presence
 Configure miss: dxgi1_6.h presence
 Configure miss: dxgi1_6.h usability
+Configure miss: dxgi1_6.h usability
+Configure miss: dxgidebug.h
 Configure miss: dxgidebug.h
 Configure miss: dxgidebug.h presence
+Configure miss: dxgidebug.h presence
+Configure miss: dxgidebug.h usability
 Configure miss: dxgidebug.h usability
 Configure miss: fluidlite
+Configure miss: fluidlite
 Configure miss: fluidlite.h
+Configure miss: fluidlite.h
+Configure miss: fluidlite.h presence
 Configure miss: fluidlite.h presence
 Configure miss: fluidlite.h usability
 Configure miss: freerdp >= 1.0.1
+Configure miss: freerdp >= 1.0.1
+Configure miss: gme/gme.h
 Configure miss: gme/gme.h
 Configure miss: gme/gme.h presence
+Configure miss: gme/gme.h presence
+Configure miss: gme/gme.h usability
 Configure miss: gme/gme.h usability
 Configure miss: interface/mmal/mmal.h
+Configure miss: interface/mmal/mmal.h
+Configure miss: interface/mmal/mmal.h presence
 Configure miss: interface/mmal/mmal.h presence
 Configure miss: interface/mmal/mmal.h usability
+Configure miss: interface/mmal/mmal.h usability
+Configure miss: ioc_toc_header in sys/cdio.h
 Configure miss: ioc_toc_header in sys/cdio.h
 Configure miss: jack >= 1.9.7
+Configure miss: jack >= 1.9.7
+Configure miss: kai.h
 Configure miss: kai.h
 Configure miss: kai.h presence
+Configure miss: kai.h presence
+Configure miss: kai.h usability
 Configure miss: kai.h usability
 Configure miss: kate >= 0.3.0
+Configure miss: kate >= 0.3.0
 Configure miss: kva.h
+Configure miss: kva.h
+Configure miss: kva.h presence
 Configure miss: kva.h presence
 Configure miss: kva.h usability
 Configure miss: libbluray >= 0.6.2
 Configure miss: libbpg.h
+Configure miss: libbpg.h
+Configure miss: libbpg.h presence
 Configure miss: libbpg.h presence
 Configure miss: libbpg.h usability
+Configure miss: libbpg.h usability
 Configure miss: libcddb >= 0.9.5
+Configure miss: libcddb >= 0.9.5
+Configure miss: libchromaprint >= 0.6.0
 Configure miss: libchromaprint >= 0.6.0
 Configure miss: libcrystalhd/libcrystalhd_if.h
 Configure miss: libdc1394-2 >= 2.1.0
+Configure miss: libdc1394-2 >= 2.1.0
+Configure miss: libdca >= 0.0.5
 Configure miss: libdca >= 0.0.5
 Configure miss: libdsm >= 0.2.0
+Configure miss: libdsm >= 0.2.0
+Configure miss: libdvbpsi >= 1.2.0
 Configure miss: libdvbpsi >= 1.2.0
 Configure miss: libebml >= 1.3.6 libmatroska
+Configure miss: libebml >= 1.3.6 libmatroska
+Configure miss: libgoom2
 Configure miss: libgoom2
 Configure miss: libmodplug >= 0.8.9.0
 Configure miss: libmpeg2 > 0.3.2
+Configure miss: libmpeg2 > 0.3.2
 Configure miss: libmtp >= 1.0.0
+Configure miss: libmtp >= 1.0.0
+Configure miss: libnfs >= 1.10.0
 Configure miss: libnfs >= 1.10.0
 Configure miss: libprojectM
 Configure miss: libraw1394 >= 2.0.1 libavc1394 >= 0.5.3
+Configure miss: libraw1394 >= 2.0.1 libavc1394 >= 0.5.3
+Configure miss: libsidplay2
 Configure miss: libsidplay2
 Configure miss: libssh2
+Configure miss: libssh2
+Configure miss: libtar.h
 Configure miss: libtar.h
 Configure miss: libtar.h presence
+Configure miss: libtar.h presence
+Configure miss: libtar.h usability
 Configure miss: libtar.h usability
 Configure miss: libupnp
+Configure miss: libupnp
+Configure miss: libvncclient >= 0.9.9
 Configure miss: libvncclient >= 0.9.9
 Configure miss: libvsxu
+Configure miss: live555
 Configure miss: live555
 Configure miss: live555 version 1324598400 or later
 Configure miss: microdns >= 0.1.2
 Configure miss: minizip 
+Configure miss: minizip 
+Configure miss: moc-qt5
 Configure miss: moc-qt5
 Configure miss: mpc/mpcdec.h
+Configure miss: mpc/mpcdec.h
+Configure miss: mpc/mpcdec.h presence
 Configure miss: mpc/mpcdec.h presence
 Configure miss: mpc/mpcdec.h usability
 Configure miss: mpcdec/mpcdec.h
+Configure miss: mpcdec/mpcdec.h
+Configure miss: mpcdec/mpcdec.h presence
 Configure miss: mpcdec/mpcdec.h presence
 Configure miss: mpcdec/mpcdec.h usability
+Configure miss: mpcdec/mpcdec.h usability
+Configure miss: neaacdec.h
 Configure miss: neaacdec.h
 Configure miss: neaacdec.h presence
+Configure miss: neaacdec.h presence
+Configure miss: neaacdec.h usability
 Configure miss: neaacdec.h usability
 Configure miss: netinet/udplite.h
+Configure miss: netinet/udplite.h
+Configure miss: netinet/udplite.h presence
 Configure miss: netinet/udplite.h presence
 Configure miss: netinet/udplite.h usability
+Configure miss: netinet/udplite.h usability
+Configure miss: rcc-qt5
 Configure miss: rcc-qt5
 Configure miss: schroedinger-1.0 >= 1.0.10
+Configure miss: schroedinger-1.0 >= 1.0.10
+Configure miss: scsireq in sys/scsiio.h
 Configure miss: scsireq in sys/scsiio.h
 Configure miss: shine >= 3.0.0
+Configure miss: shine >= 3.0.0
+Configure miss: shout >= 2.1
 Configure miss: shout >= 2.1
 Configure miss: sndio.h
+Configure miss: sndio.h
+Configure miss: sndio.h presence
 Configure miss: sndio.h presence
 Configure miss: sndio.h usability
+Configure miss: sndio.h usability
+Configure miss: soxr >= 0.1.2
 Configure miss: soxr >= 0.1.2
 Configure miss: spatialaudio
+Configure miss: spatialaudio
+Configure miss: srt >= 1.2.2 srt < 1.3.0
 Configure miss: srt >= 1.2.2 srt < 1.3.0
 Configure miss: strnstr
+Configure miss: strnstr
+Configure miss: sys/videoio.h
 Configure miss: sys/videoio.h
 Configure miss: sys/videoio.h presence
+Configure miss: sys/videoio.h presence
+Configure miss: sys/videoio.h usability
 Configure miss: sys/videoio.h usability
 Configure miss: tiger >= 0.3.1
 Configure miss: twolame
+Configure miss: twolame
+Configure miss: uic-qt5
 Configure miss: uic-qt5
 Configure miss: unzip.h
+Configure miss: unzip.h
+Configure miss: unzip.h presence
 Configure miss: unzip.h presence
 Configure miss: unzip.h usability
+Configure miss: unzip.h usability
+Configure miss: vdpau >= 0.6
 Configure miss: vdpau >= 0.6
 Configure miss: whether C compiler accepts -Werror=invalid-command-line-argument
+Configure miss: whether C compiler accepts -Werror=invalid-command-line-argument
 Configure miss: windres
+Configure miss: windres
+Configure miss: x262
 Configure miss: x262
 Configure miss: x264 >= 0.148
 Configure miss: x264 >= 0.153
+Configure miss: x264 >= 0.153
 Configure miss: x265
+Configure miss: x265
+Configure miss: zvbi-0.2 >= 0.2.28
+Configure miss: zvbi-0.2 >= 0.2.28
 Configure miss: zvbi-0.2 >= 0.2.28
 Configure miss: zvbi-0.2 >= 0.2.28
