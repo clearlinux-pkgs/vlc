@@ -6,7 +6,7 @@
 #
 Name     : vlc
 Version  : 3.0.16
-Release  : 41
+Release  : 42
 URL      : https://get.videolan.org/vlc/3.0.16/vlc-3.0.16.tar.xz
 Source0  : https://get.videolan.org/vlc/3.0.16/vlc-3.0.16.tar.xz
 Source1  : https://get.videolan.org/vlc/3.0.16/vlc-3.0.16.tar.xz.asc
@@ -204,7 +204,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1633722689
+export SOURCE_DATE_EPOCH=1633811384
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -262,7 +262,7 @@ cd ../buildavx2;
 make %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1633722689
+export SOURCE_DATE_EPOCH=1633811384
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/vlc
 cp %{_builddir}/vlc-3.0.16/COPYING %{buildroot}/usr/share/package-licenses/vlc/4cc77b90af91e615a64ae04893fdffa7939db84c

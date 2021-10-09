@@ -51,7 +51,10 @@ Configure miss: d3d11_4.h presence
 Configure miss: d3d11_4.h usability
 Configure miss: d3d11_4.h usability
 Configure miss: dav1d
+Configure miss: dav1d
 Configure miss: dvdnav > 4.9.0
+Configure miss: dvdnav > 4.9.0
+Configure miss: dvdread > 4.9.0
 Configure miss: dvdread > 4.9.0
 Configure miss: dxgi1_6.h
 Configure miss: dxgi1_6.h
@@ -72,6 +75,7 @@ Configure miss: fluidlite.h
 Configure miss: fluidlite.h presence
 Configure miss: fluidlite.h presence
 Configure miss: fluidlite.h usability
+Configure miss: fluidlite.h usability
 Configure miss: freerdp >= 1.0.1
 Configure miss: freerdp >= 1.0.1
 Configure miss: gme/gme.h
@@ -88,6 +92,7 @@ Configure miss: interface/mmal/mmal.h usability
 Configure miss: interface/mmal/mmal.h usability
 Configure miss: ioc_toc_header in sys/cdio.h
 Configure miss: ioc_toc_header in sys/cdio.h
+Configure miss: jack >= 0.120.1 jack < 1.0
 Configure miss: jack >= 1.9.7
 Configure miss: jack >= 1.9.7
 Configure miss: kai.h
@@ -103,6 +108,8 @@ Configure miss: kva.h
 Configure miss: kva.h presence
 Configure miss: kva.h presence
 Configure miss: kva.h usability
+Configure miss: kva.h usability
+Configure miss: libbluray >= 0.6.2
 Configure miss: libbluray >= 0.6.2
 Configure miss: libbpg.h
 Configure miss: libbpg.h
@@ -114,6 +121,7 @@ Configure miss: libcddb >= 0.9.5
 Configure miss: libcddb >= 0.9.5
 Configure miss: libchromaprint >= 0.6.0
 Configure miss: libchromaprint >= 0.6.0
+Configure miss: libcrystalhd/libcrystalhd_if.h
 Configure miss: libcrystalhd/libcrystalhd_if.h
 Configure miss: libdc1394-2 >= 2.1.0
 Configure miss: libdc1394-2 >= 2.1.0
@@ -128,12 +136,14 @@ Configure miss: libebml >= 1.3.6 libmatroska
 Configure miss: libgoom2
 Configure miss: libgoom2
 Configure miss: libmodplug >= 0.8.9.0
+Configure miss: libmodplug >= 0.8.9.0
 Configure miss: libmpeg2 > 0.3.2
 Configure miss: libmpeg2 > 0.3.2
 Configure miss: libmtp >= 1.0.0
 Configure miss: libmtp >= 1.0.0
 Configure miss: libnfs >= 1.10.0
 Configure miss: libnfs >= 1.10.0
+Configure miss: libprojectM
 Configure miss: libprojectM
 Configure miss: libraw1394 >= 2.0.1 libavc1394 >= 0.5.3
 Configure miss: libraw1394 >= 2.0.1 libavc1394 >= 0.5.3
@@ -152,9 +162,12 @@ Configure miss: libupnp
 Configure miss: libvncclient >= 0.9.9
 Configure miss: libvncclient >= 0.9.9
 Configure miss: libvsxu
+Configure miss: libvsxu
 Configure miss: live555
 Configure miss: live555
 Configure miss: live555 version 1324598400 or later
+Configure miss: live555 version 1324598400 or later
+Configure miss: microdns >= 0.1.2
 Configure miss: microdns >= 0.1.2
 Configure miss: minizip 
 Configure miss: minizip 
@@ -164,6 +177,7 @@ Configure miss: mpc/mpcdec.h
 Configure miss: mpc/mpcdec.h
 Configure miss: mpc/mpcdec.h presence
 Configure miss: mpc/mpcdec.h presence
+Configure miss: mpc/mpcdec.h usability
 Configure miss: mpc/mpcdec.h usability
 Configure miss: mpcdec/mpcdec.h
 Configure miss: mpcdec/mpcdec.h
@@ -214,6 +228,7 @@ Configure miss: sys/videoio.h presence
 Configure miss: sys/videoio.h usability
 Configure miss: sys/videoio.h usability
 Configure miss: tiger >= 0.3.1
+Configure miss: tiger >= 0.3.1
 Configure miss: twolame
 Configure miss: twolame
 Configure miss: uic-qt5
@@ -232,6 +247,7 @@ Configure miss: windres
 Configure miss: windres
 Configure miss: x262
 Configure miss: x262
+Configure miss: x264 >= 0.148
 Configure miss: x264 >= 0.148
 Configure miss: x264 >= 0.153
 Configure miss: x264 >= 0.153
