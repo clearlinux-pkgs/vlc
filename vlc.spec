@@ -6,7 +6,7 @@
 #
 Name     : vlc
 Version  : 3.0.16
-Release  : 47
+Release  : 48
 URL      : https://get.videolan.org/vlc/3.0.16/vlc-3.0.16.tar.xz
 Source0  : https://get.videolan.org/vlc/3.0.16/vlc-3.0.16.tar.xz
 Source1  : https://get.videolan.org/vlc/3.0.16/vlc-3.0.16.tar.xz.asc
