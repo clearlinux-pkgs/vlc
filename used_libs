@@ -50,9 +50,9 @@ libogg.so.0
 libopus.so.0
 libpango-1.0.so.0
 libpangocairo-1.0.so.0
-libplacebo.so.120
+libplacebo.so.192
 libpng16.so.16
-libprotobuf-lite.so.23
+libprotobuf-lite.so.29
 libpulse.so.0
 librsvg-2.so.2
 libsamplerate.so.0

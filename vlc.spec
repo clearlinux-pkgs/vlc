@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x7180713BE58D1ADC
 #
 Name     : vlc
-Version  : 3.0.16
-Release  : 48
-URL      : https://get.videolan.org/vlc/3.0.16/vlc-3.0.16.tar.xz
-Source0  : https://get.videolan.org/vlc/3.0.16/vlc-3.0.16.tar.xz
-Source1  : https://get.videolan.org/vlc/3.0.16/vlc-3.0.16.tar.xz.asc
+Version  : 3.0.17
+Release  : 49
+URL      : https://get.videolan.org/vlc/3.0.17/vlc-3.0.17.tar.xz
+Source0  : https://get.videolan.org/vlc/3.0.17/vlc-3.0.17.tar.xz
+Source1  : https://get.videolan.org/vlc/3.0.17/vlc-3.0.17.tar.xz.asc
 Summary  : VLC media player external control library
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1 WTFPL
@@ -44,6 +44,7 @@ BuildRequires : libsecret-dev
 BuildRequires : libtheora-dev
 BuildRequires : libva-dev
 BuildRequires : libxml2-dev
+BuildRequires : llvm
 BuildRequires : mediasdk-dev
 BuildRequires : mpc-dev
 BuildRequires : mpg123-dev
@@ -192,11 +193,11 @@ man components for the vlc package.
 
 
 %prep
-%setup -q -n vlc-3.0.16
-cd %{_builddir}/vlc-3.0.16
+%setup -q -n vlc-3.0.17
+cd %{_builddir}/vlc-3.0.17
 %patch1 -p1
 pushd ..
-cp -a vlc-3.0.16 buildavx2
+cp -a vlc-3.0.17 buildavx2
 popd
 
 %build
@@ -204,7 +205,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1633811384
+export SOURCE_DATE_EPOCH=1646670407
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -231,9 +232,9 @@ make  %{?_smp_mflags}
 
 unset PKG_CONFIG_PATH
 pushd ../buildavx2/
-export CFLAGS="$CFLAGS -m64 -march=x86-64-v3"
-export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3"
-export FFLAGS="$FFLAGS -m64 -march=x86-64-v3"
+export CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3"
+export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3"
+export FFLAGS="$FFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3"
 export FCFLAGS="$FCFLAGS -m64 -march=x86-64-v3"
 export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3"
 %configure --disable-static --disable-mad \
@@ -262,20 +263,20 @@ cd ../buildavx2;
 make %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1633811384
+export SOURCE_DATE_EPOCH=1646670407
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/vlc
-cp %{_builddir}/vlc-3.0.16/COPYING %{buildroot}/usr/share/package-licenses/vlc/4cc77b90af91e615a64ae04893fdffa7939db84c
-cp %{_builddir}/vlc-3.0.16/COPYING.LIB %{buildroot}/usr/share/package-licenses/vlc/01a6b4bf79aca9b556822601186afab86e8c4fbf
-cp %{_builddir}/vlc-3.0.16/doc/libvlc/QtPlayer/LICENSE %{buildroot}/usr/share/package-licenses/vlc/6f86a73e06b7329f05554e65f2ae5cfa18cade0f
+cp %{_builddir}/vlc-3.0.17/COPYING %{buildroot}/usr/share/package-licenses/vlc/4cc77b90af91e615a64ae04893fdffa7939db84c
+cp %{_builddir}/vlc-3.0.17/COPYING.LIB %{buildroot}/usr/share/package-licenses/vlc/01a6b4bf79aca9b556822601186afab86e8c4fbf
+cp %{_builddir}/vlc-3.0.17/doc/libvlc/QtPlayer/LICENSE %{buildroot}/usr/share/package-licenses/vlc/6f86a73e06b7329f05554e65f2ae5cfa18cade0f
 pushd ../buildavx2/
 %make_install_v3
-/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 popd
 %make_install
 %find_lang vlc
 ## Remove excluded files
-rm -f %{buildroot}/usr/lib64/vlc/plugins/plugins.dat
+rm -f %{buildroot}*/usr/lib64/vlc/plugins/plugins.dat
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
