@@ -6,7 +6,7 @@
 #
 Name     : vlc
 Version  : 3.0.17.4
-Release  : 51
+Release  : 52
 URL      : https://get.videolan.org/vlc/3.0.17.4/vlc-3.0.17.4.tar.xz
 Source0  : https://get.videolan.org/vlc/3.0.17.4/vlc-3.0.17.4.tar.xz
 Source1  : https://get.videolan.org/vlc/3.0.17.4/vlc-3.0.17.4.tar.xz.asc
@@ -205,7 +205,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1650390208
+export SOURCE_DATE_EPOCH=1656398157
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -263,7 +263,7 @@ cd ../buildavx2;
 make %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1650390208
+export SOURCE_DATE_EPOCH=1656398157
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/vlc
 cp %{_builddir}/vlc-3.0.17.4/COPYING %{buildroot}/usr/share/package-licenses/vlc/4cc77b90af91e615a64ae04893fdffa7939db84c
@@ -276,7 +276,7 @@ popd
 %find_lang vlc
 ## Remove excluded files
 rm -f %{buildroot}*/usr/lib64/vlc/plugins/plugins.dat
-/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
@@ -423,6 +423,8 @@ rm -f %{buildroot}*/usr/lib64/vlc/plugins/plugins.dat
 /usr/include/vlc/plugins/vlc_xlib.h
 /usr/include/vlc/plugins/vlc_xml.h
 /usr/include/vlc/vlc.h
+/usr/lib64/glibc-hwcaps/x86-64-v3/libvlc.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libvlccore.so
 /usr/lib64/libvlc.so
 /usr/lib64/libvlccore.so
 /usr/lib64/pkgconfig/libvlc.pc
@@ -438,6 +440,10 @@ rm -f %{buildroot}*/usr/lib64/vlc/plugins/plugins.dat
 
 %files lib
 %defattr(-,root,root,-)
+/usr/lib64/glibc-hwcaps/x86-64-v3/libvlc.so.5
+/usr/lib64/glibc-hwcaps/x86-64-v3/libvlc.so.5.6.0
+/usr/lib64/glibc-hwcaps/x86-64-v3/libvlccore.so.9
+/usr/lib64/glibc-hwcaps/x86-64-v3/libvlccore.so.9.0.0
 /usr/lib64/libvlc.so.5
 /usr/lib64/libvlc.so.5.6.0
 /usr/lib64/libvlccore.so.9
@@ -783,7 +789,6 @@ rm -f %{buildroot}*/usr/lib64/vlc/plugins/plugins.dat
 /usr/lib64/vlc/plugins/video_splitter/libwall_plugin.so
 /usr/lib64/vlc/plugins/visualization/libglspectrum_plugin.so
 /usr/lib64/vlc/plugins/visualization/libvisual_plugin.so
-/usr/share/clear/optimized-elf/lib*
 
 %files license
 %defattr(0644,root,root,0755)
