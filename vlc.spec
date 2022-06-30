@@ -6,7 +6,7 @@
 #
 Name     : vlc
 Version  : 3.0.17.4
-Release  : 52
+Release  : 53
 URL      : https://get.videolan.org/vlc/3.0.17.4/vlc-3.0.17.4.tar.xz
 Source0  : https://get.videolan.org/vlc/3.0.17.4/vlc-3.0.17.4.tar.xz
 Source1  : https://get.videolan.org/vlc/3.0.17.4/vlc-3.0.17.4.tar.xz.asc
@@ -205,7 +205,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1656398157
+export SOURCE_DATE_EPOCH=1656614643
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -263,7 +263,7 @@ cd ../buildavx2;
 make %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1656398157
+export SOURCE_DATE_EPOCH=1656614643
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/vlc
 cp %{_builddir}/vlc-3.0.17.4/COPYING %{buildroot}/usr/share/package-licenses/vlc/4cc77b90af91e615a64ae04893fdffa7939db84c
@@ -789,6 +789,7 @@ rm -f %{buildroot}*/usr/lib64/vlc/plugins/plugins.dat
 /usr/lib64/vlc/plugins/video_splitter/libwall_plugin.so
 /usr/lib64/vlc/plugins/visualization/libglspectrum_plugin.so
 /usr/lib64/vlc/plugins/visualization/libvisual_plugin.so
+/usr/share/clear/optimized-elf/other*
 
 %files license
 %defattr(0644,root,root,0755)
