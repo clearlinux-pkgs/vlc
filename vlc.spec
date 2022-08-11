@@ -6,7 +6,7 @@
 #
 Name     : vlc
 Version  : 3.0.17.4
-Release  : 55
+Release  : 56
 URL      : https://get.videolan.org/vlc/3.0.17.4/vlc-3.0.17.4.tar.xz
 Source0  : https://get.videolan.org/vlc/3.0.17.4/vlc-3.0.17.4.tar.xz
 Source1  : https://get.videolan.org/vlc/3.0.17.4/vlc-3.0.17.4.tar.xz.asc
