@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x7180713BE58D1ADC
 #
 Name     : vlc
-Version  : 3.0.17.4
-Release  : 66
-URL      : https://get.videolan.org/vlc/3.0.17.4/vlc-3.0.17.4.tar.xz
-Source0  : https://get.videolan.org/vlc/3.0.17.4/vlc-3.0.17.4.tar.xz
-Source1  : https://get.videolan.org/vlc/3.0.17.4/vlc-3.0.17.4.tar.xz.asc
+Version  : 3.0.18
+Release  : 67
+URL      : https://get.videolan.org/vlc/3.0.18/vlc-3.0.18.tar.xz
+Source0  : https://get.videolan.org/vlc/3.0.18/vlc-3.0.18.tar.xz
+Source1  : https://get.videolan.org/vlc/3.0.18/vlc-3.0.18.tar.xz.asc
 Summary  : VLC media player external control library
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1 WTFPL
@@ -23,6 +23,7 @@ Requires: vlc-man = %{version}-%{release}
 BuildRequires : SDL2_image-dev
 BuildRequires : SDL_image-dev
 BuildRequires : bison
+BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : buildreq-qmake
 BuildRequires : desktop-file-utils
@@ -93,6 +94,9 @@ BuildRequires : sox-dev
 BuildRequires : speex-dev
 BuildRequires : unzip
 BuildRequires : yasm
+# Suppress stripping binaries
+%define __strip /bin/true
+%define debug_package %{nil}
 Patch1: build.patch
 
 %description
@@ -193,11 +197,11 @@ man components for the vlc package.
 
 
 %prep
-%setup -q -n vlc-3.0.17.4
-cd %{_builddir}/vlc-3.0.17.4
+%setup -q -n vlc-3.0.18
+cd %{_builddir}/vlc-3.0.18
 %patch1 -p1
 pushd ..
-cp -a vlc-3.0.17.4 buildavx2
+cp -a vlc-3.0.18 buildavx2
 popd
 
 %build
@@ -205,15 +209,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1664897863
+export SOURCE_DATE_EPOCH=1672940056
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
 %configure --disable-static --disable-mad \
 --disable-a52 \
 --disable-lua \
@@ -263,7 +267,7 @@ cd ../buildavx2;
 make %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1664897863
+export SOURCE_DATE_EPOCH=1672940056
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/vlc
 cp %{_builddir}/vlc-%{version}/COPYING %{buildroot}/usr/share/package-licenses/vlc/4cc77b90af91e615a64ae04893fdffa7939db84c || :
@@ -441,13 +445,13 @@ rm -f %{buildroot}*/usr/lib64/vlc/plugins/plugins.dat
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/glibc-hwcaps/x86-64-v3/libvlc.so.5
-/usr/lib64/glibc-hwcaps/x86-64-v3/libvlc.so.5.6.0
+/usr/lib64/glibc-hwcaps/x86-64-v3/libvlc.so.5.6.1
 /usr/lib64/glibc-hwcaps/x86-64-v3/libvlccore.so.9
-/usr/lib64/glibc-hwcaps/x86-64-v3/libvlccore.so.9.0.0
+/usr/lib64/glibc-hwcaps/x86-64-v3/libvlccore.so.9.0.1
 /usr/lib64/libvlc.so.5
-/usr/lib64/libvlc.so.5.6.0
+/usr/lib64/libvlc.so.5.6.1
 /usr/lib64/libvlccore.so.9
-/usr/lib64/libvlccore.so.9.0.0
+/usr/lib64/libvlccore.so.9.0.1
 /usr/lib64/vlc/libvlc_pulse.so
 /usr/lib64/vlc/libvlc_pulse.so.0
 /usr/lib64/vlc/libvlc_pulse.so.0.0.0
