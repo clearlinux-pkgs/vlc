@@ -11,4 +11,5 @@
 --enable-wayland
 --enable-shared
 --enable-smbclient
+--disable-libplacebo
 BUILDCC=/usr/bin/gcc
