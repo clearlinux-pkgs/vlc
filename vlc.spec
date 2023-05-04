@@ -7,7 +7,7 @@
 #
 Name     : vlc
 Version  : 3.0.18
-Release  : 80
+Release  : 81
 URL      : https://get.videolan.org/vlc/3.0.18/vlc-3.0.18.tar.xz
 Source0  : https://get.videolan.org/vlc/3.0.18/vlc-3.0.18.tar.xz
 Source1  : https://get.videolan.org/vlc/3.0.18/vlc-3.0.18.tar.xz.asc
@@ -16,7 +16,6 @@ Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1 WTFPL
 Requires: vlc-bin = %{version}-%{release}
 Requires: vlc-data = %{version}-%{release}
-Requires: vlc-filemap = %{version}-%{release}
 Requires: vlc-lib = %{version}-%{release}
 Requires: vlc-license = %{version}-%{release}
 Requires: vlc-locales = %{version}-%{release}
@@ -24,9 +23,8 @@ Requires: vlc-man = %{version}-%{release}
 BuildRequires : SDL2_image-dev
 BuildRequires : SDL_image-dev
 BuildRequires : bison
-BuildRequires : buildreq-cmake
+BuildRequires : buildreq-configure
 BuildRequires : buildreq-kde
-BuildRequires : buildreq-qmake
 BuildRequires : desktop-file-utils
 BuildRequires : flac-dev
 BuildRequires : flex
@@ -118,7 +116,6 @@ Summary: bin components for the vlc package.
 Group: Binaries
 Requires: vlc-data = %{version}-%{release}
 Requires: vlc-license = %{version}-%{release}
-Requires: vlc-filemap = %{version}-%{release}
 
 %description bin
 bin components for the vlc package.
@@ -154,20 +151,11 @@ Requires: vlc-man = %{version}-%{release}
 doc components for the vlc package.
 
 
-%package filemap
-Summary: filemap components for the vlc package.
-Group: Default
-
-%description filemap
-filemap components for the vlc package.
-
-
 %package lib
 Summary: lib components for the vlc package.
 Group: Libraries
 Requires: vlc-data = %{version}-%{release}
 Requires: vlc-license = %{version}-%{release}
-Requires: vlc-filemap = %{version}-%{release}
 
 %description lib
 lib components for the vlc package.
@@ -210,15 +198,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1679501041
+export SOURCE_DATE_EPOCH=1683238018
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 %configure --disable-static --disable-mad \
 --disable-a52 \
 --disable-lua \
@@ -270,7 +258,7 @@ cd ../buildavx2;
 make %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1679501041
+export SOURCE_DATE_EPOCH=1683238018
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/vlc
 cp %{_builddir}/vlc-%{version}/COPYING %{buildroot}/usr/share/package-licenses/vlc/4cc77b90af91e615a64ae04893fdffa7939db84c || :
@@ -287,10 +275,13 @@ rm -f %{buildroot}*/usr/lib64/vlc/plugins/plugins.dat
 
 %files
 %defattr(-,root,root,-)
+/V3/usr/lib64/vlc/vlc-cache-gen
 /usr/lib64/vlc/vlc-cache-gen
 
 %files bin
 %defattr(-,root,root,-)
+/V3/usr/bin/vlc
+/V3/usr/bin/vlc-wrapper
 /usr/bin/cvlc
 /usr/bin/nvlc
 /usr/bin/qvlc
@@ -298,7 +289,6 @@ rm -f %{buildroot}*/usr/lib64/vlc/plugins/plugins.dat
 /usr/bin/svlc
 /usr/bin/vlc
 /usr/bin/vlc-wrapper
-/usr/share/clear/optimized-elf/bin*
 
 %files data
 %defattr(-,root,root,-)
@@ -332,6 +322,8 @@ rm -f %{buildroot}*/usr/lib64/vlc/plugins/plugins.dat
 
 %files dev
 %defattr(-,root,root,-)
+/V3/usr/lib64/libvlc.so
+/V3/usr/lib64/libvlccore.so
 /usr/include/vlc/deprecated.h
 /usr/include/vlc/libvlc.h
 /usr/include/vlc/libvlc_dialog.h
@@ -430,8 +422,6 @@ rm -f %{buildroot}*/usr/lib64/vlc/plugins/plugins.dat
 /usr/include/vlc/plugins/vlc_xlib.h
 /usr/include/vlc/plugins/vlc_xml.h
 /usr/include/vlc/vlc.h
-/usr/lib64/glibc-hwcaps/x86-64-v3/libvlc.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libvlccore.so
 /usr/lib64/libvlc.so
 /usr/lib64/libvlccore.so
 /usr/lib64/pkgconfig/libvlc.pc
@@ -439,18 +429,355 @@ rm -f %{buildroot}*/usr/lib64/vlc/plugins/plugins.dat
 
 %files doc
 %defattr(0644,root,root,0755)
-%doc /usr/share/doc/vlc/*
-
-%files filemap
-%defattr(-,root,root,-)
-/usr/share/clear/filemap/filemap-vlc
+/usr/share/doc/vlc/*
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/glibc-hwcaps/x86-64-v3/libvlc.so.5
-/usr/lib64/glibc-hwcaps/x86-64-v3/libvlc.so.5.6.1
-/usr/lib64/glibc-hwcaps/x86-64-v3/libvlccore.so.9
-/usr/lib64/glibc-hwcaps/x86-64-v3/libvlccore.so.9.0.1
+/V3/usr/lib64/libvlc.so.5
+/V3/usr/lib64/libvlc.so.5.6.1
+/V3/usr/lib64/libvlccore.so.9
+/V3/usr/lib64/libvlccore.so.9.0.1
+/V3/usr/lib64/vlc/libvlc_pulse.so
+/V3/usr/lib64/vlc/libvlc_pulse.so.0
+/V3/usr/lib64/vlc/libvlc_pulse.so.0.0.0
+/V3/usr/lib64/vlc/libvlc_xcb_events.so
+/V3/usr/lib64/vlc/libvlc_xcb_events.so.0
+/V3/usr/lib64/vlc/libvlc_xcb_events.so.0.0.0
+/V3/usr/lib64/vlc/plugins/access/libaccess_alsa_plugin.so
+/V3/usr/lib64/vlc/plugins/access/libaccess_concat_plugin.so
+/V3/usr/lib64/vlc/plugins/access/libaccess_imem_plugin.so
+/V3/usr/lib64/vlc/plugins/access/libaccess_mms_plugin.so
+/V3/usr/lib64/vlc/plugins/access/libattachment_plugin.so
+/V3/usr/lib64/vlc/plugins/access/libcdda_plugin.so
+/V3/usr/lib64/vlc/plugins/access/libdtv_plugin.so
+/V3/usr/lib64/vlc/plugins/access/libfilesystem_plugin.so
+/V3/usr/lib64/vlc/plugins/access/libftp_plugin.so
+/V3/usr/lib64/vlc/plugins/access/libhttp_plugin.so
+/V3/usr/lib64/vlc/plugins/access/libhttps_plugin.so
+/V3/usr/lib64/vlc/plugins/access/libidummy_plugin.so
+/V3/usr/lib64/vlc/plugins/access/libimem_plugin.so
+/V3/usr/lib64/vlc/plugins/access/liblinsys_hdsdi_plugin.so
+/V3/usr/lib64/vlc/plugins/access/libpulsesrc_plugin.so
+/V3/usr/lib64/vlc/plugins/access/librist_plugin.so
+/V3/usr/lib64/vlc/plugins/access/librtp_plugin.so
+/V3/usr/lib64/vlc/plugins/access/libsatip_plugin.so
+/V3/usr/lib64/vlc/plugins/access/libsdp_plugin.so
+/V3/usr/lib64/vlc/plugins/access/libshm_plugin.so
+/V3/usr/lib64/vlc/plugins/access/libsmb_plugin.so
+/V3/usr/lib64/vlc/plugins/access/libtcp_plugin.so
+/V3/usr/lib64/vlc/plugins/access/libtimecode_plugin.so
+/V3/usr/lib64/vlc/plugins/access/libudp_plugin.so
+/V3/usr/lib64/vlc/plugins/access/libv4l2_plugin.so
+/V3/usr/lib64/vlc/plugins/access/libvcd_plugin.so
+/V3/usr/lib64/vlc/plugins/access/libvdr_plugin.so
+/V3/usr/lib64/vlc/plugins/access/libxcb_screen_plugin.so
+/V3/usr/lib64/vlc/plugins/access_output/libaccess_output_dummy_plugin.so
+/V3/usr/lib64/vlc/plugins/access_output/libaccess_output_file_plugin.so
+/V3/usr/lib64/vlc/plugins/access_output/libaccess_output_http_plugin.so
+/V3/usr/lib64/vlc/plugins/access_output/libaccess_output_rist_plugin.so
+/V3/usr/lib64/vlc/plugins/access_output/libaccess_output_udp_plugin.so
+/V3/usr/lib64/vlc/plugins/audio_filter/libaudio_format_plugin.so
+/V3/usr/lib64/vlc/plugins/audio_filter/libaudiobargraph_a_plugin.so
+/V3/usr/lib64/vlc/plugins/audio_filter/libchorus_flanger_plugin.so
+/V3/usr/lib64/vlc/plugins/audio_filter/libcompressor_plugin.so
+/V3/usr/lib64/vlc/plugins/audio_filter/libdolby_surround_decoder_plugin.so
+/V3/usr/lib64/vlc/plugins/audio_filter/libequalizer_plugin.so
+/V3/usr/lib64/vlc/plugins/audio_filter/libgain_plugin.so
+/V3/usr/lib64/vlc/plugins/audio_filter/libheadphone_channel_mixer_plugin.so
+/V3/usr/lib64/vlc/plugins/audio_filter/libkaraoke_plugin.so
+/V3/usr/lib64/vlc/plugins/audio_filter/libmono_plugin.so
+/V3/usr/lib64/vlc/plugins/audio_filter/libnormvol_plugin.so
+/V3/usr/lib64/vlc/plugins/audio_filter/libparam_eq_plugin.so
+/V3/usr/lib64/vlc/plugins/audio_filter/libremap_plugin.so
+/V3/usr/lib64/vlc/plugins/audio_filter/libsamplerate_plugin.so
+/V3/usr/lib64/vlc/plugins/audio_filter/libscaletempo_pitch_plugin.so
+/V3/usr/lib64/vlc/plugins/audio_filter/libscaletempo_plugin.so
+/V3/usr/lib64/vlc/plugins/audio_filter/libsimple_channel_mixer_plugin.so
+/V3/usr/lib64/vlc/plugins/audio_filter/libspatializer_plugin.so
+/V3/usr/lib64/vlc/plugins/audio_filter/libspeex_resampler_plugin.so
+/V3/usr/lib64/vlc/plugins/audio_filter/libstereo_widen_plugin.so
+/V3/usr/lib64/vlc/plugins/audio_filter/libtospdif_plugin.so
+/V3/usr/lib64/vlc/plugins/audio_filter/libtrivial_channel_mixer_plugin.so
+/V3/usr/lib64/vlc/plugins/audio_filter/libugly_resampler_plugin.so
+/V3/usr/lib64/vlc/plugins/audio_mixer/libfloat_mixer_plugin.so
+/V3/usr/lib64/vlc/plugins/audio_mixer/libinteger_mixer_plugin.so
+/V3/usr/lib64/vlc/plugins/audio_output/libadummy_plugin.so
+/V3/usr/lib64/vlc/plugins/audio_output/libafile_plugin.so
+/V3/usr/lib64/vlc/plugins/audio_output/libalsa_plugin.so
+/V3/usr/lib64/vlc/plugins/audio_output/libamem_plugin.so
+/V3/usr/lib64/vlc/plugins/audio_output/libpulse_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/libadpcm_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/libaes3_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/libaraw_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/libavcodec_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/libcc_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/libcdg_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/libcvdsub_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/libddummy_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/libdvbsub_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/libedummy_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/libflac_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/libfluidsynth_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/libg711_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/libgstdecode_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/libjpeg_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/liblibass_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/liblpcm_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/libmpg123_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/liboggspots_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/libopus_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/libpng_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/libqsv_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/librawvideo_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/librtpvideo_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/libscte18_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/libscte27_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/libsdl_image_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/libspdif_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/libspeex_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/libspudec_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/libstl_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/libsubsdec_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/libsubstx3g_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/libsubsusf_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/libsvcdsub_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/libsvgdec_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/libt140_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/libtelx_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/libtextst_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/libtheora_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/libttml_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/libuleaddvaudio_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/libvaapi_drm_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/libvaapi_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/libvorbis_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/libvpx_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/libwebvtt_plugin.so
+/V3/usr/lib64/vlc/plugins/codec/libxwd_plugin.so
+/V3/usr/lib64/vlc/plugins/control/libdbus_plugin.so
+/V3/usr/lib64/vlc/plugins/control/libdummy_plugin.so
+/V3/usr/lib64/vlc/plugins/control/libgestures_plugin.so
+/V3/usr/lib64/vlc/plugins/control/libhotkeys_plugin.so
+/V3/usr/lib64/vlc/plugins/control/libmotion_plugin.so
+/V3/usr/lib64/vlc/plugins/control/libnetsync_plugin.so
+/V3/usr/lib64/vlc/plugins/control/liboldrc_plugin.so
+/V3/usr/lib64/vlc/plugins/control/libxcb_hotkeys_plugin.so
+/V3/usr/lib64/vlc/plugins/demux/libadaptive_plugin.so
+/V3/usr/lib64/vlc/plugins/demux/libaiff_plugin.so
+/V3/usr/lib64/vlc/plugins/demux/libasf_plugin.so
+/V3/usr/lib64/vlc/plugins/demux/libau_plugin.so
+/V3/usr/lib64/vlc/plugins/demux/libavi_plugin.so
+/V3/usr/lib64/vlc/plugins/demux/libcaf_plugin.so
+/V3/usr/lib64/vlc/plugins/demux/libdemux_cdg_plugin.so
+/V3/usr/lib64/vlc/plugins/demux/libdemux_chromecast_plugin.so
+/V3/usr/lib64/vlc/plugins/demux/libdemux_stl_plugin.so
+/V3/usr/lib64/vlc/plugins/demux/libdemuxdump_plugin.so
+/V3/usr/lib64/vlc/plugins/demux/libdiracsys_plugin.so
+/V3/usr/lib64/vlc/plugins/demux/libdirectory_demux_plugin.so
+/V3/usr/lib64/vlc/plugins/demux/libes_plugin.so
+/V3/usr/lib64/vlc/plugins/demux/libflacsys_plugin.so
+/V3/usr/lib64/vlc/plugins/demux/libh26x_plugin.so
+/V3/usr/lib64/vlc/plugins/demux/libimage_plugin.so
+/V3/usr/lib64/vlc/plugins/demux/libmjpeg_plugin.so
+/V3/usr/lib64/vlc/plugins/demux/libmp4_plugin.so
+/V3/usr/lib64/vlc/plugins/demux/libmpgv_plugin.so
+/V3/usr/lib64/vlc/plugins/demux/libnoseek_plugin.so
+/V3/usr/lib64/vlc/plugins/demux/libnsc_plugin.so
+/V3/usr/lib64/vlc/plugins/demux/libnsv_plugin.so
+/V3/usr/lib64/vlc/plugins/demux/libnuv_plugin.so
+/V3/usr/lib64/vlc/plugins/demux/libogg_plugin.so
+/V3/usr/lib64/vlc/plugins/demux/libplaylist_plugin.so
+/V3/usr/lib64/vlc/plugins/demux/libps_plugin.so
+/V3/usr/lib64/vlc/plugins/demux/libpva_plugin.so
+/V3/usr/lib64/vlc/plugins/demux/librawaud_plugin.so
+/V3/usr/lib64/vlc/plugins/demux/librawdv_plugin.so
+/V3/usr/lib64/vlc/plugins/demux/librawvid_plugin.so
+/V3/usr/lib64/vlc/plugins/demux/libreal_plugin.so
+/V3/usr/lib64/vlc/plugins/demux/libsmf_plugin.so
+/V3/usr/lib64/vlc/plugins/demux/libsubtitle_plugin.so
+/V3/usr/lib64/vlc/plugins/demux/libtta_plugin.so
+/V3/usr/lib64/vlc/plugins/demux/libty_plugin.so
+/V3/usr/lib64/vlc/plugins/demux/libvc1_plugin.so
+/V3/usr/lib64/vlc/plugins/demux/libvobsub_plugin.so
+/V3/usr/lib64/vlc/plugins/demux/libvoc_plugin.so
+/V3/usr/lib64/vlc/plugins/demux/libwav_plugin.so
+/V3/usr/lib64/vlc/plugins/demux/libxa_plugin.so
+/V3/usr/lib64/vlc/plugins/gui/libncurses_plugin.so
+/V3/usr/lib64/vlc/plugins/gui/libqt_plugin.so
+/V3/usr/lib64/vlc/plugins/gui/libskins2_plugin.so
+/V3/usr/lib64/vlc/plugins/keystore/libfile_keystore_plugin.so
+/V3/usr/lib64/vlc/plugins/keystore/libkwallet_plugin.so
+/V3/usr/lib64/vlc/plugins/keystore/libmemory_keystore_plugin.so
+/V3/usr/lib64/vlc/plugins/keystore/libsecret_plugin.so
+/V3/usr/lib64/vlc/plugins/logger/libconsole_logger_plugin.so
+/V3/usr/lib64/vlc/plugins/logger/libfile_logger_plugin.so
+/V3/usr/lib64/vlc/plugins/logger/libsd_journal_plugin.so
+/V3/usr/lib64/vlc/plugins/logger/libsyslog_plugin.so
+/V3/usr/lib64/vlc/plugins/meta_engine/libfolder_plugin.so
+/V3/usr/lib64/vlc/plugins/meta_engine/libtaglib_plugin.so
+/V3/usr/lib64/vlc/plugins/misc/libaddonsfsstorage_plugin.so
+/V3/usr/lib64/vlc/plugins/misc/libaddonsvorepository_plugin.so
+/V3/usr/lib64/vlc/plugins/misc/libaudioscrobbler_plugin.so
+/V3/usr/lib64/vlc/plugins/misc/libdbus_screensaver_plugin.so
+/V3/usr/lib64/vlc/plugins/misc/libexport_plugin.so
+/V3/usr/lib64/vlc/plugins/misc/libfingerprinter_plugin.so
+/V3/usr/lib64/vlc/plugins/misc/libgnutls_plugin.so
+/V3/usr/lib64/vlc/plugins/misc/liblogger_plugin.so
+/V3/usr/lib64/vlc/plugins/misc/libstats_plugin.so
+/V3/usr/lib64/vlc/plugins/misc/libvod_rtsp_plugin.so
+/V3/usr/lib64/vlc/plugins/misc/libxdg_screensaver_plugin.so
+/V3/usr/lib64/vlc/plugins/misc/libxml_plugin.so
+/V3/usr/lib64/vlc/plugins/mux/libmux_asf_plugin.so
+/V3/usr/lib64/vlc/plugins/mux/libmux_avi_plugin.so
+/V3/usr/lib64/vlc/plugins/mux/libmux_dummy_plugin.so
+/V3/usr/lib64/vlc/plugins/mux/libmux_mp4_plugin.so
+/V3/usr/lib64/vlc/plugins/mux/libmux_mpjpeg_plugin.so
+/V3/usr/lib64/vlc/plugins/mux/libmux_ogg_plugin.so
+/V3/usr/lib64/vlc/plugins/mux/libmux_ps_plugin.so
+/V3/usr/lib64/vlc/plugins/mux/libmux_wav_plugin.so
+/V3/usr/lib64/vlc/plugins/notify/libnotify_plugin.so
+/V3/usr/lib64/vlc/plugins/packetizer/libpacketizer_a52_plugin.so
+/V3/usr/lib64/vlc/plugins/packetizer/libpacketizer_av1_plugin.so
+/V3/usr/lib64/vlc/plugins/packetizer/libpacketizer_copy_plugin.so
+/V3/usr/lib64/vlc/plugins/packetizer/libpacketizer_dirac_plugin.so
+/V3/usr/lib64/vlc/plugins/packetizer/libpacketizer_dts_plugin.so
+/V3/usr/lib64/vlc/plugins/packetizer/libpacketizer_flac_plugin.so
+/V3/usr/lib64/vlc/plugins/packetizer/libpacketizer_h264_plugin.so
+/V3/usr/lib64/vlc/plugins/packetizer/libpacketizer_hevc_plugin.so
+/V3/usr/lib64/vlc/plugins/packetizer/libpacketizer_mlp_plugin.so
+/V3/usr/lib64/vlc/plugins/packetizer/libpacketizer_mpeg4audio_plugin.so
+/V3/usr/lib64/vlc/plugins/packetizer/libpacketizer_mpeg4video_plugin.so
+/V3/usr/lib64/vlc/plugins/packetizer/libpacketizer_mpegaudio_plugin.so
+/V3/usr/lib64/vlc/plugins/packetizer/libpacketizer_mpegvideo_plugin.so
+/V3/usr/lib64/vlc/plugins/packetizer/libpacketizer_vc1_plugin.so
+/V3/usr/lib64/vlc/plugins/services_discovery/libmediadirs_plugin.so
+/V3/usr/lib64/vlc/plugins/services_discovery/libpodcast_plugin.so
+/V3/usr/lib64/vlc/plugins/services_discovery/libpulselist_plugin.so
+/V3/usr/lib64/vlc/plugins/services_discovery/libsap_plugin.so
+/V3/usr/lib64/vlc/plugins/services_discovery/libudev_plugin.so
+/V3/usr/lib64/vlc/plugins/services_discovery/libxcb_apps_plugin.so
+/V3/usr/lib64/vlc/plugins/spu/libaudiobargraph_v_plugin.so
+/V3/usr/lib64/vlc/plugins/spu/libdynamicoverlay_plugin.so
+/V3/usr/lib64/vlc/plugins/spu/liblogo_plugin.so
+/V3/usr/lib64/vlc/plugins/spu/libmarq_plugin.so
+/V3/usr/lib64/vlc/plugins/spu/libmosaic_plugin.so
+/V3/usr/lib64/vlc/plugins/spu/librss_plugin.so
+/V3/usr/lib64/vlc/plugins/spu/libsubsdelay_plugin.so
+/V3/usr/lib64/vlc/plugins/stream_extractor/libarchive_plugin.so
+/V3/usr/lib64/vlc/plugins/stream_filter/libadf_plugin.so
+/V3/usr/lib64/vlc/plugins/stream_filter/libcache_block_plugin.so
+/V3/usr/lib64/vlc/plugins/stream_filter/libcache_read_plugin.so
+/V3/usr/lib64/vlc/plugins/stream_filter/libdecomp_plugin.so
+/V3/usr/lib64/vlc/plugins/stream_filter/libhds_plugin.so
+/V3/usr/lib64/vlc/plugins/stream_filter/libinflate_plugin.so
+/V3/usr/lib64/vlc/plugins/stream_filter/libprefetch_plugin.so
+/V3/usr/lib64/vlc/plugins/stream_filter/librecord_plugin.so
+/V3/usr/lib64/vlc/plugins/stream_filter/libskiptags_plugin.so
+/V3/usr/lib64/vlc/plugins/stream_out/libstream_out_autodel_plugin.so
+/V3/usr/lib64/vlc/plugins/stream_out/libstream_out_bridge_plugin.so
+/V3/usr/lib64/vlc/plugins/stream_out/libstream_out_chromecast_plugin.so
+/V3/usr/lib64/vlc/plugins/stream_out/libstream_out_cycle_plugin.so
+/V3/usr/lib64/vlc/plugins/stream_out/libstream_out_delay_plugin.so
+/V3/usr/lib64/vlc/plugins/stream_out/libstream_out_description_plugin.so
+/V3/usr/lib64/vlc/plugins/stream_out/libstream_out_display_plugin.so
+/V3/usr/lib64/vlc/plugins/stream_out/libstream_out_dummy_plugin.so
+/V3/usr/lib64/vlc/plugins/stream_out/libstream_out_duplicate_plugin.so
+/V3/usr/lib64/vlc/plugins/stream_out/libstream_out_es_plugin.so
+/V3/usr/lib64/vlc/plugins/stream_out/libstream_out_gather_plugin.so
+/V3/usr/lib64/vlc/plugins/stream_out/libstream_out_mosaic_bridge_plugin.so
+/V3/usr/lib64/vlc/plugins/stream_out/libstream_out_record_plugin.so
+/V3/usr/lib64/vlc/plugins/stream_out/libstream_out_rtp_plugin.so
+/V3/usr/lib64/vlc/plugins/stream_out/libstream_out_setid_plugin.so
+/V3/usr/lib64/vlc/plugins/stream_out/libstream_out_smem_plugin.so
+/V3/usr/lib64/vlc/plugins/stream_out/libstream_out_standard_plugin.so
+/V3/usr/lib64/vlc/plugins/stream_out/libstream_out_stats_plugin.so
+/V3/usr/lib64/vlc/plugins/stream_out/libstream_out_transcode_plugin.so
+/V3/usr/lib64/vlc/plugins/text_renderer/libfreetype_plugin.so
+/V3/usr/lib64/vlc/plugins/text_renderer/libsvg_plugin.so
+/V3/usr/lib64/vlc/plugins/text_renderer/libtdummy_plugin.so
+/V3/usr/lib64/vlc/plugins/vaapi/libvaapi_filters_plugin.so
+/V3/usr/lib64/vlc/plugins/video_chroma/libchain_plugin.so
+/V3/usr/lib64/vlc/plugins/video_chroma/libgrey_yuv_plugin.so
+/V3/usr/lib64/vlc/plugins/video_chroma/libi420_10_p010_plugin.so
+/V3/usr/lib64/vlc/plugins/video_chroma/libi420_nv12_plugin.so
+/V3/usr/lib64/vlc/plugins/video_chroma/libi420_rgb_mmx_plugin.so
+/V3/usr/lib64/vlc/plugins/video_chroma/libi420_rgb_plugin.so
+/V3/usr/lib64/vlc/plugins/video_chroma/libi420_rgb_sse2_plugin.so
+/V3/usr/lib64/vlc/plugins/video_chroma/libi420_yuy2_mmx_plugin.so
+/V3/usr/lib64/vlc/plugins/video_chroma/libi420_yuy2_plugin.so
+/V3/usr/lib64/vlc/plugins/video_chroma/libi420_yuy2_sse2_plugin.so
+/V3/usr/lib64/vlc/plugins/video_chroma/libi422_i420_plugin.so
+/V3/usr/lib64/vlc/plugins/video_chroma/libi422_yuy2_mmx_plugin.so
+/V3/usr/lib64/vlc/plugins/video_chroma/libi422_yuy2_plugin.so
+/V3/usr/lib64/vlc/plugins/video_chroma/libi422_yuy2_sse2_plugin.so
+/V3/usr/lib64/vlc/plugins/video_chroma/librv32_plugin.so
+/V3/usr/lib64/vlc/plugins/video_chroma/libswscale_plugin.so
+/V3/usr/lib64/vlc/plugins/video_chroma/libyuvp_plugin.so
+/V3/usr/lib64/vlc/plugins/video_chroma/libyuy2_i420_plugin.so
+/V3/usr/lib64/vlc/plugins/video_chroma/libyuy2_i422_plugin.so
+/V3/usr/lib64/vlc/plugins/video_filter/libadjust_plugin.so
+/V3/usr/lib64/vlc/plugins/video_filter/libalphamask_plugin.so
+/V3/usr/lib64/vlc/plugins/video_filter/libanaglyph_plugin.so
+/V3/usr/lib64/vlc/plugins/video_filter/libantiflicker_plugin.so
+/V3/usr/lib64/vlc/plugins/video_filter/libball_plugin.so
+/V3/usr/lib64/vlc/plugins/video_filter/libblend_plugin.so
+/V3/usr/lib64/vlc/plugins/video_filter/libblendbench_plugin.so
+/V3/usr/lib64/vlc/plugins/video_filter/libbluescreen_plugin.so
+/V3/usr/lib64/vlc/plugins/video_filter/libcanvas_plugin.so
+/V3/usr/lib64/vlc/plugins/video_filter/libcolorthres_plugin.so
+/V3/usr/lib64/vlc/plugins/video_filter/libcroppadd_plugin.so
+/V3/usr/lib64/vlc/plugins/video_filter/libdeinterlace_plugin.so
+/V3/usr/lib64/vlc/plugins/video_filter/libedgedetection_plugin.so
+/V3/usr/lib64/vlc/plugins/video_filter/liberase_plugin.so
+/V3/usr/lib64/vlc/plugins/video_filter/libextract_plugin.so
+/V3/usr/lib64/vlc/plugins/video_filter/libfps_plugin.so
+/V3/usr/lib64/vlc/plugins/video_filter/libfreeze_plugin.so
+/V3/usr/lib64/vlc/plugins/video_filter/libgaussianblur_plugin.so
+/V3/usr/lib64/vlc/plugins/video_filter/libgradfun_plugin.so
+/V3/usr/lib64/vlc/plugins/video_filter/libgradient_plugin.so
+/V3/usr/lib64/vlc/plugins/video_filter/libgrain_plugin.so
+/V3/usr/lib64/vlc/plugins/video_filter/libhqdn3d_plugin.so
+/V3/usr/lib64/vlc/plugins/video_filter/libinvert_plugin.so
+/V3/usr/lib64/vlc/plugins/video_filter/libmagnify_plugin.so
+/V3/usr/lib64/vlc/plugins/video_filter/libmirror_plugin.so
+/V3/usr/lib64/vlc/plugins/video_filter/libmotionblur_plugin.so
+/V3/usr/lib64/vlc/plugins/video_filter/libmotiondetect_plugin.so
+/V3/usr/lib64/vlc/plugins/video_filter/liboldmovie_plugin.so
+/V3/usr/lib64/vlc/plugins/video_filter/libposterize_plugin.so
+/V3/usr/lib64/vlc/plugins/video_filter/libpsychedelic_plugin.so
+/V3/usr/lib64/vlc/plugins/video_filter/libpuzzle_plugin.so
+/V3/usr/lib64/vlc/plugins/video_filter/libripple_plugin.so
+/V3/usr/lib64/vlc/plugins/video_filter/librotate_plugin.so
+/V3/usr/lib64/vlc/plugins/video_filter/libscale_plugin.so
+/V3/usr/lib64/vlc/plugins/video_filter/libscene_plugin.so
+/V3/usr/lib64/vlc/plugins/video_filter/libsepia_plugin.so
+/V3/usr/lib64/vlc/plugins/video_filter/libsharpen_plugin.so
+/V3/usr/lib64/vlc/plugins/video_filter/libtransform_plugin.so
+/V3/usr/lib64/vlc/plugins/video_filter/libvhs_plugin.so
+/V3/usr/lib64/vlc/plugins/video_filter/libwave_plugin.so
+/V3/usr/lib64/vlc/plugins/video_output/libegl_wl_plugin.so
+/V3/usr/lib64/vlc/plugins/video_output/libegl_x11_plugin.so
+/V3/usr/lib64/vlc/plugins/video_output/libfb_plugin.so
+/V3/usr/lib64/vlc/plugins/video_output/libflaschen_plugin.so
+/V3/usr/lib64/vlc/plugins/video_output/libgl_plugin.so
+/V3/usr/lib64/vlc/plugins/video_output/libglconv_vaapi_drm_plugin.so
+/V3/usr/lib64/vlc/plugins/video_output/libglconv_vaapi_wl_plugin.so
+/V3/usr/lib64/vlc/plugins/video_output/libglconv_vaapi_x11_plugin.so
+/V3/usr/lib64/vlc/plugins/video_output/libglx_plugin.so
+/V3/usr/lib64/vlc/plugins/video_output/libvdummy_plugin.so
+/V3/usr/lib64/vlc/plugins/video_output/libvmem_plugin.so
+/V3/usr/lib64/vlc/plugins/video_output/libwl_shell_plugin.so
+/V3/usr/lib64/vlc/plugins/video_output/libwl_shm_plugin.so
+/V3/usr/lib64/vlc/plugins/video_output/libxcb_window_plugin.so
+/V3/usr/lib64/vlc/plugins/video_output/libxcb_x11_plugin.so
+/V3/usr/lib64/vlc/plugins/video_output/libxcb_xv_plugin.so
+/V3/usr/lib64/vlc/plugins/video_output/libxdg_shell_plugin.so
+/V3/usr/lib64/vlc/plugins/video_output/libyuv_plugin.so
+/V3/usr/lib64/vlc/plugins/video_splitter/libclone_plugin.so
+/V3/usr/lib64/vlc/plugins/video_splitter/libpanoramix_plugin.so
+/V3/usr/lib64/vlc/plugins/video_splitter/libwall_plugin.so
+/V3/usr/lib64/vlc/plugins/visualization/libglspectrum_plugin.so
+/V3/usr/lib64/vlc/plugins/visualization/libvisual_plugin.so
 /usr/lib64/libvlc.so.5
 /usr/lib64/libvlc.so.5.6.1
 /usr/lib64/libvlccore.so.9
@@ -796,7 +1123,6 @@ rm -f %{buildroot}*/usr/lib64/vlc/plugins/plugins.dat
 /usr/lib64/vlc/plugins/video_splitter/libwall_plugin.so
 /usr/lib64/vlc/plugins/visualization/libglspectrum_plugin.so
 /usr/lib64/vlc/plugins/visualization/libvisual_plugin.so
-/usr/share/clear/optimized-elf/other*
 
 %files license
 %defattr(0644,root,root,0755)

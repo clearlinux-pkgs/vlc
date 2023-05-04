@@ -169,6 +169,7 @@ Configure miss: windres
 Configure miss: x262
 Configure miss: x262
 Configure miss: x264 >= 0.148
+Configure miss: x264 >= 0.148
 Configure miss: x264 >= 0.153
 Configure miss: x264 >= 0.153
 Configure miss: x265
