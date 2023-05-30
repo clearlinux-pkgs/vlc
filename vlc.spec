@@ -7,7 +7,7 @@
 #
 Name     : vlc
 Version  : 3.0.18
-Release  : 82
+Release  : 83
 URL      : https://get.videolan.org/vlc/3.0.18/vlc-3.0.18.tar.xz
 Source0  : https://get.videolan.org/vlc/3.0.18/vlc-3.0.18.tar.xz
 Source1  : https://get.videolan.org/vlc/3.0.18/vlc-3.0.18.tar.xz.asc
@@ -198,7 +198,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1683238018
+export SOURCE_DATE_EPOCH=1685490855
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -258,7 +258,7 @@ cd ../buildavx2;
 make %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1683238018
+export SOURCE_DATE_EPOCH=1685490855
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/vlc
 cp %{_builddir}/vlc-%{version}/COPYING %{buildroot}/usr/share/package-licenses/vlc/4cc77b90af91e615a64ae04893fdffa7939db84c || :
@@ -322,8 +322,6 @@ rm -f %{buildroot}*/usr/lib64/vlc/plugins/plugins.dat
 
 %files dev
 %defattr(-,root,root,-)
-/V3/usr/lib64/libvlc.so
-/V3/usr/lib64/libvlccore.so
 /usr/include/vlc/deprecated.h
 /usr/include/vlc/libvlc.h
 /usr/include/vlc/libvlc_dialog.h
@@ -433,15 +431,9 @@ rm -f %{buildroot}*/usr/lib64/vlc/plugins/plugins.dat
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libvlc.so.5
 /V3/usr/lib64/libvlc.so.5.6.1
-/V3/usr/lib64/libvlccore.so.9
 /V3/usr/lib64/libvlccore.so.9.0.1
-/V3/usr/lib64/vlc/libvlc_pulse.so
-/V3/usr/lib64/vlc/libvlc_pulse.so.0
 /V3/usr/lib64/vlc/libvlc_pulse.so.0.0.0
-/V3/usr/lib64/vlc/libvlc_xcb_events.so
-/V3/usr/lib64/vlc/libvlc_xcb_events.so.0
 /V3/usr/lib64/vlc/libvlc_xcb_events.so.0.0.0
 /V3/usr/lib64/vlc/plugins/access/libaccess_alsa_plugin.so
 /V3/usr/lib64/vlc/plugins/access/libaccess_concat_plugin.so
