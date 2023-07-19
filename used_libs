@@ -65,7 +65,6 @@ libsystemd.so.0
 libtag.so.1
 libtheoradec.so.1
 libtheoraenc.so.1
-libtinfow.so.6
 libudev.so.1
 libva-drm.so.2
 libva-wayland.so.2
