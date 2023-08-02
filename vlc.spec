@@ -7,7 +7,7 @@
 #
 Name     : vlc
 Version  : 3.0.18
-Release  : 90
+Release  : 91
 URL      : https://get.videolan.org/vlc/3.0.18/vlc-3.0.18.tar.xz
 Source0  : https://get.videolan.org/vlc/3.0.18/vlc-3.0.18.tar.xz
 Source1  : https://get.videolan.org/vlc/3.0.18/vlc-3.0.18.tar.xz.asc
