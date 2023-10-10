@@ -55,7 +55,6 @@ Configure miss: interface/mmal/mmal.h
 Configure miss: ioc_toc_header in sys/cdio.h
 Configure miss: ioc_toc_header in sys/cdio.h
 Configure miss: jack >= 0.120.1 jack < 1.0
-Configure miss: jack >= 0.120.1 jack < 1.0
 Configure miss: jack >= 1.9.7
 Configure miss: jack >= 1.9.7
 Configure miss: kai.h
@@ -98,8 +97,6 @@ Configure miss: libnfs >= 1.10.0
 Configure miss: libnfs >= 1.10.0
 Configure miss: libprojectM
 Configure miss: libprojectM
-Configure miss: library containing yywrap
-Configure miss: library containing yywrap
 Configure miss: libraw1394 >= 2.0.1 libavc1394 >= 0.5.3
 Configure miss: libraw1394 >= 2.0.1 libavc1394 >= 0.5.3
 Configure miss: libsidplay2

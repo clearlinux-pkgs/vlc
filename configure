@@ -6,7 +6,7 @@
 --disable-postproc
 --enable-avcodec
 --enable-merge-ffmpeg
---enable-libva
+--disable-libva
 --enable-gst-decode
 --enable-wayland
 --enable-shared
