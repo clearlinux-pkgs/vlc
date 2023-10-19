@@ -7,7 +7,7 @@
 #
 Name     : vlc
 Version  : 3.0.19
-Release  : 112
+Release  : 113
 URL      : https://get.videolan.org/vlc/3.0.19/vlc-3.0.19.tar.xz
 Source0  : https://get.videolan.org/vlc/3.0.19/vlc-3.0.19.tar.xz
 Source1  : https://get.videolan.org/vlc/3.0.19/vlc-3.0.19.tar.xz.asc
