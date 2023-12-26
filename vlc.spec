@@ -7,7 +7,7 @@
 #
 Name     : vlc
 Version  : 3.0.20
-Release  : 118
+Release  : 119
 URL      : https://get.videolan.org/vlc/3.0.20/vlc-3.0.20.tar.xz
 Source0  : https://get.videolan.org/vlc/3.0.20/vlc-3.0.20.tar.xz
 Summary  : VLC media player external control library
