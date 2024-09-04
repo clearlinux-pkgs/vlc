@@ -9,7 +9,7 @@
 #
 Name     : vlc
 Version  : 3.0.21
-Release  : 159
+Release  : 160
 URL      : https://get.videolan.org/vlc/3.0.21/vlc-3.0.21.tar.xz
 Source0  : https://get.videolan.org/vlc/3.0.21/vlc-3.0.21.tar.xz
 Source1  : https://get.videolan.org/vlc/3.0.21/vlc-3.0.21.tar.xz.asc
