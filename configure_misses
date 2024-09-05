@@ -1,5 +1,11 @@
 Configure miss: 3rd party libraries path
 Configure miss: 3rd party libraries path
+Configure miss: AMF/components/HQScaler.h
+Configure miss: AMF/components/HQScaler.h
+Configure miss: AMF/components/VQEnhancer.h
+Configure miss: AMF/components/VQEnhancer.h
+Configure miss: AMF/core/PropertyStorage.h
+Configure miss: AMF/core/PropertyStorage.h
 Configure miss: AudioToolbox/AudioToolbox.h
 Configure miss: AudioToolbox/AudioToolbox.h
 Configure miss: DeckLinkAPIDispatch.cpp
@@ -54,6 +60,8 @@ Configure miss: interface/mmal/mmal.h
 Configure miss: interface/mmal/mmal.h
 Configure miss: ioc_toc_header in sys/cdio.h
 Configure miss: ioc_toc_header in sys/cdio.h
+Configure miss: jack >= 0.120.1 jack < 1.0
+Configure miss: jack >= 0.120.1 jack < 1.0
 Configure miss: jack >= 1.9.7
 Configure miss: jack >= 1.9.7
 Configure miss: kai.h

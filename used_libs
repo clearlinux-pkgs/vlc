@@ -11,6 +11,8 @@ libSDL-1.2.so.0
 libSDL_image-1.2.so.0
 libX11.so.6
 libXpm.so.4
+libabsl_log_internal_check_op.so.2401.0.0
+libabsl_log_internal_message.so.2401.0.0
 libarchive.so.13
 libasound.so.2
 libass.so.9
@@ -46,7 +48,7 @@ libnotify.so.4
 libogg.so.0
 libopus.so.0
 libpng16.so.16
-libprotobuf-lite.so.32
+libprotobuf-lite.so.25.3.0
 libpulse.so.0
 librsvg-2.so.2
 libsamplerate.so.0
@@ -57,7 +59,7 @@ libspeexdsp.so.1
 libstdc++.so.6
 libswscale.so.7
 libsystemd.so.0
-libtag.so.1
+libtag.so.2
 libtheoradec.so.1
 libtheoraenc.so.1
 libudev.so.1
